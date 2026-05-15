@@ -1,0 +1,16 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.log
+
+# PlatformIO build output
+firmware/.pio/
+
+# Generated model/export artifacts. Regenerate with firmware/tools/convert_model.py.
+firmware/src/model_data.cpp
+firmware/tools/*.tflite
+firmware/*_saved_model/
+firmware/**/*_saved_model/
+firmware/*.onnx
+firmware/*.npy
+firmware/*.zip
