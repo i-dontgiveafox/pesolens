@@ -2,6 +2,37 @@
 
 Date: 2026-10-13
 
+## 2026-10-13 Client report: error tone on button press (OPEN)
+
+Client message: "hindi naglalabas ng feedback audio. Sa pag click ko nag o-audio sya ng
+error tone agad" (no feedback audio; on click it plays the error tone right away).
+The board was not connected, so this is analysis only. No firmware was changed.
+
+- **The model is not the cause.** The deployed 256px int8 TFLite was run on the PC with
+  the firmware's exact preprocessing (QVGA → center crop 240 → 256, int8 −128), using the
+  LiteRT interpreter in `PesoLens-training/.venv`. Device frames that contain a bill detect
+  at 0.40–0.88 confidence; `test_bill.jpg` and the model-audit samples score 0.73–0.93.
+  Device frames **without** a bill score < 0.25, which means no detection and the error
+  tone. For example, `firmware/logs/camera-frame-100peso.jpg` shows the ceiling, not a bill
+  (score 0.010). Device frames are rotated 90°.
+- **In the `button_capture` firmware, nothing plays the error tone right after a press.**
+  The error tone only plays after a 3 s aim delay, about 50 s of silent inference and 3 LED
+  blinks, and only when no bill reaches 0.25 confidence. Boot failures play it at boot, not
+  on press.
+- Two hypotheses, in order of likelihood:
+  1. **No bill in view at capture time.** The client hears 50+ s of silence, then the
+     error tone.
+  2. **The press resets the board** (button wired to RST/EN, or a brownout on battery).
+     Every boot plays the self-test **beep**, which is easy to hear as an "error tone".
+     Also, the firmware on the client's unit was never confirmed (see 07-29 notes).
+- **Questions for the client:** which button (D6?); USB or battery; how many seconds from
+  press to tone; does the LED go off, then blink 3 times before the tone; was the bill held
+  20–30 cm in front of the lens for 3 s after the press. Best of all: a serial log with the
+  unit on USB (`pio device monitor -b 115200`).
+- Weakness regardless of cause: there is **no audio on button press**, then about a minute
+  of silence. Consider an acknowledgement sound on press, plus a distinct error tone or a
+  spoken "no bill".
+
 ## 2026-10-13 GitHub sync status (read with the 10-04 state below)
 
 - **Cause of "nothing gets pushed":** the project root `.git` was an empty folder,

@@ -1,179 +1,123 @@
-# pesos firmware
+# PesoLens firmware
 
-Embedded code that runs on the Seeed XIAO ESP32-S3 Sense inside the assistive AI eyeglasses. It captures camera frames, runs a YOLOv8n int8 model to recognize a Philippine peso bill, and announces the denomination in English over an I2S amplifier + bone-conduction speaker.
+Runs on the Seeed XIAO ESP32-S3 Sense inside the glasses. It captures a camera frame,
+runs a YOLOv8n int8 model with TensorFlow Lite Micro, sums the detected peso bills,
+and speaks the total in English over an I2S amplifier and bone-conduction speaker.
 
-## Quick start
+Latest state and history: `../CURRENT_CHECKPOINT.md` (authoritative), `FIRMWARE_CHANGELOG.md`,
+`PROGRESS.md`.
 
+## Current build (2026-10-13)
+
+| Item | Value |
+|---|---|
+| Deployed env | `seeed_xiao_esp32s3_tflm_button_capture` (D6 manual capture, stays awake) |
+| Model | `model_exports/kaggle-yolov8n-imgsz256-5class-20260928/best_full_integer_quant.tflite`, 3,229,488 bytes, SHA-256 `efacda43…852f80` |
+| Tensor contract | input int8 `[1,256,256,3]`, scale 1/255, zero −128; output int8 `[1,9,1344]` |
+| Classes (`include/config.h`) | `20, 50, 100, 500, 1000` (no ₱200) |
+| Detection | conf ≥ 0.25, class-agnostic NMS IoU 0.45, multi-bill on (`SINGLE_BILL_MODE 0`) |
+| Size | flash 3,878,481 / 5,308,416 B (73.1%), RAM 6.9%, tensor arena used ≈ 866 KB of 4 MB PSRAM |
+| Verified | build, upload, boot (OV3660, PSRAM, TFLite init, audio self-test beep) on 2026-10-04 |
+| **Not verified** | a full D6 scan with the 256px model: inference time and spoken result on real bills |
+
+### Scan flow (`src/main.cpp`)
+
+Press D6 → ready LED off → 3 s aim delay → capture QVGA 320×240 → center-crop 240×240 →
+resize to 256×256 → inference (≈ 50 s, silent) → LED blinks 3× → speak total **or** error
+tone if no bill ≥ 0.25 confidence → ready beep → LED on.
+
+Every boot also plays a **beep** as the audio self-test. If a button press resets the board
+(wiring or brownout), the user hears that beep right after pressing.
+
+## Build and flash
+
+The user-profile `pio.exe` is blocked by Windows Application Control on the dev PC, so
+call PlatformIO through its bundled Python:
+
+```powershell
+cd C:\Users\james\Projects\PesoLens-project\firmware
+$env:PLATFORMIO_CORE_DIR = "C:\.platformio"
+$pio = 'C:\.platformio\penv\Scripts\python.exe'
+
+& $pio tools\convert_model.py                                   # .tflite -> src/model_data.cpp (not in git)
+& $pio -m platformio run -e seeed_xiao_esp32s3_tflm_button_capture -j 2
+& $pio -m platformio run -e seeed_xiao_esp32s3_tflm_button_capture --target upload   --upload-port COM3
+& $pio -m platformio run -e seeed_xiao_esp32s3_tflm_button_capture --target uploadfs --upload-port COM3   # audio clips
+& $pio -m platformio device monitor --port COM3 -b 115200
 ```
-cd firmware
-python tools/convert_model.py                # one-time: bake .tflite → C header
-python tools/generate_english_clips.py       # one-time: generate ~35 voice clips
-pio run -e seeed_xiao_esp32s3_tflm_button_capture  # build current D6 manual-capture firmware
-pio run -e seeed_xiao_esp32s3_tflm_button_capture --target upload --upload-port COM3
-pio run -e seeed_xiao_esp32s3_tflm_button_capture --target uploadfs --upload-port COM3
-pio device monitor --port COM3 -b 115200      # serial logs
+
+If upload can't reset the board: hold **BOOT**, tap **RESET**, release **BOOT**, then upload.
+
+Host unit tests (speech composition): `pio test -e native`.
+
+### Build environments
+
+| Env | Purpose |
+|---|---|
+| `seeed_xiao_esp32s3_tflm_button_capture` | **Current.** D6 press → one scan → speak. |
+| `seeed_xiao_esp32s3_tflm_button_capture_dump` | Same, plus a JPEG dump of each capture over serial. |
+| `seeed_xiao_esp32s3_tflm` | Auto-scan loop every 5 s, no button. |
+| `seeed_xiao_esp32s3_tflm_auto_capture_dump_8s` | No inference; dumps a JPEG every 8 s for dataset collection. |
+| `seeed_xiao_esp32s3_tflm_auto_run_d6_led` | Standalone auto-scan with D6 as LED. **Do not ship:** its `sdkconfig` still puts the console on UART0 (GPIO43/44), which collides with D6 and I2S LRC. Delete `sdkconfig.<env>` and rebuild first. |
+| `seeed_xiao_esp32s3` | Stub-inference recovery build (Arduino only). |
+| `audio_probe`, `serial_probe` | Minimal hardware smoke tests. |
+
+PlatformIO generates `sdkconfig.<env>` once and reuses it; editing `sdkconfig.defaults`
+has no effect on an env until you delete its generated file.
+
+## Pins (`include/config.h`)
+
+| Function | XIAO pin | GPIO |
+|---|---|---|
+| Capture button (active-low, to GND) | D6 | 43 |
+| Ready LED | D5 | 6 |
+| I2S DIN / BCLK / LRC → MAX98357A | D9 / D8 / D7 | 8 / 7 / 44 |
+| Future deep-sleep wake button | D4 | 5 |
+
+## Debugging without the board
+
+Run saved device JPEGs through the deployed TFLite on the PC:
+
+```powershell
+python tools\diagnose_tflite_capture.py logs\detections\<capture>.jpg --compare-letterbox
 ```
 
-Start with `../CURRENT_CHECKPOINT.md` and `PROGRESS.md` for the latest state.
+Capture frames from the device with `tools\monitor_detected_frames.py` while a `*_dump` env is flashed.
 
 ## Layout
 
 ```
 firmware/
-├── platformio.ini          board, libs, build flags
-├── partitions.csv          flash partition table (5 MB app, ~2.9 MB SPIFFS)
-├── sdkconfig.defaults      ESP-IDF tweaks (PSRAM OPI, 240 MHz CPU)
-├── data/                   audio clips uploaded via SPIFFS
-├── include/
-│   ├── config.h            pin map, thresholds, denomination/class table
-│   ├── camera_pins.h       XIAO Sense camera GPIO assignments
-│   └── model_data.h        generated by tools/convert_model.py
+├── platformio.ini          build environments
+├── partitions.csv          app0 @0x10000 (~5.06 MB), SPIFFS @0x520000 (~2.9 MB)
+├── sdkconfig.defaults      PSRAM OPI, 240 MHz, console on USB-Serial-JTAG, task WDT 60 s
+├── data/                   English WAV clips (16 kHz mono 16-bit) uploaded to SPIFFS
+├── include/config.h        pins, thresholds, model size, class table
 ├── src/
-│   ├── main.cpp            wake → capture → infer → count → speak → sleep
-│   ├── camera.cpp/.h       OV2640/OV3660 init + capture + preprocess
-│   ├── inference.cpp/.h    TFLite Micro runner + YOLOv8 head decode/NMS
-│   ├── counting.cpp/.h     detections → totals
-│   ├── speech.cpp/.h       integer → ordered list of English clip IDs
-│   ├── audio.cpp/.h        I2S init + WAV streaming player
-│   └── power.cpp/.h        deep sleep, EXT0 wake, optional VBAT read
-└── tools/
-    ├── convert_model.py            .pt → .tflite → C header
-    ├── diagnose_tflite_capture.py  run saved JPEGs through deployed TFLite
-    ├── generate_english_clips.py   edge-tts → 16 kHz mono 16-bit WAVs
-    └── make_placeholders.py        silent WAV stubs so the build compiles before real audio
+│   ├── main.cpp            boot, button/scan loop, result → audio
+│   ├── camera.cpp          OV3660 init, capture, crop/resize/quantize
+│   ├── inference.cpp       TFLite Micro runner, YOLOv8 decode, NMS
+│   ├── counting.cpp        detections → total pesos
+│   ├── speech.cpp          number → English clip sequence
+│   ├── audio.cpp           I2S + WAV streaming
+│   └── power.cpp           deep sleep / EXT0 wake (for the future battery build)
+├── tools/                  model conversion, clip generation, serial capture, diagnostics
+├── logs/                   serial logs and captured frames from hardware sessions
+└── backups/                pre-change copies of config/source (generated model arrays excluded)
 ```
 
-Diagnose saved camera captures without the board:
+## Known issues
 
-```powershell
-python tools\diagnose_tflite_capture.py logs\detections\capture.jpg --compare-letterbox
-```
-
-Evaluate a labeled YOLO validation split:
-
-```powershell
-python tools\diagnose_tflite_capture.py `
-  --dataset ..\PesoLens-training\pesolens-roboflow-balanced-esp32-v2\valid `
-  --source-classes 100,1000,50,500
-```
-
-## Build environment
-
-- Board: `seeed_xiao_esp32s3` with `board_build.psram_mode = opi`
-- Framework: Arduino (on top of ESP-IDF 5.x)
-- Audio: pre-recorded 16 kHz mono 16-bit PCM WAVs in SPIFFS, streamed over I2S
-- Inference: the recovery build runs in stub-inference mode. The `seeed_xiao_esp32s3_tflm` build links the local TFLite model with TensorFlow Lite Micro.
-- Current debug/demo trigger: D6 / GPIO43, active-low manual capture button
-- Older final battery wake plan: D4 / GPIO5, EXT0, active-low button
-
-## Current Firmware Status
-
-Audit update 2026-06-09:
-
-- Firmware class mapping and duplicate-box handling now apply uniformly to
-  P20, P50, P100, P200, P500, and P1000.
-- The currently embedded six-class model is diagnostic only, not release-ready.
-  Full source replay scored `719/995` and exposed severe P20, P500, and P1000
-  failures.
-- See `PROGRESS.md` and `../CURRENT_CHECKPOINT.md` for the per-denomination
-  results and corrected retraining workflow.
-
-Verified on 2026-05-26 with the replacement XIAO ESP32-S3 Sense:
-
-- `pio run -e seeed_xiao_esp32s3` passes.
-- `pio run -e seeed_xiao_esp32s3 --target buildfs` / `uploadfs` passes and packs the WAV audio clips from `data/`.
-- `pio test -e native` passes 15/15 speech tests.
-- `pio device list` detects the replacement board on `COM4` as USB VID:PID `303A:1001`, MAC `e0:72:a1:fa:38:3c`.
-- Firmware upload to `COM4` succeeds and verifies.
-- SPIFFS/audio upload to `COM4` succeeds and verifies.
-- Runtime serial capture confirms the firmware boots and prints `[debug] alive ...` heartbeats.
-- `pio run -e seeed_xiao_esp32s3_tflm -j 2 --target upload --upload-port COM4` succeeds from `C:\pesosfw`.
-- The TFLite firmware binary is `3,762,928 / 5,308,416 bytes`, so it fits the app partition.
-
-The 2026-05-26 fix was the partition layout: `app0` now starts at `0x10000`, matching PlatformIO's ESP32 Arduino upload offset, while SPIFFS remains at `0x520000`.
-
-Update 2026-05-30:
-
-- A new merged 6-class Kaggle YOLOv8n model was trained at `imgsz=224`.
-- It was exported to full-integer TFLite and embedded into `src/model_data.cpp`.
-- `include/config.h` now expects `MODEL_INPUT_SIZE = 224`, `MODEL_NUM_CLASSES = 6`, and class order `20, 50, 100, 200, 500, 1000`.
-- The updated 224/6-class firmware was built and flashed from this project copy on `COM3`.
-- Serial capture confirmed camera init, warmup frames, `[infer] ready`, arena usage, and about `35.1 s` invoke time.
-- The active uploaded build is now `seeed_xiao_esp32s3_tflm_button_capture`.
-- It waits for XIAO `D6 / GPIO43`; pressing D6 starts a 3000 ms aim delay, captures one frame, runs inference, plays the amount or error tone, then plays a ready beep.
-- Latest serial boot check confirmed:
-  - `[mode] D6/GPIO43 manual capture enabled`
-  - `[manual] D6/GPIO43 button enabled - press to start 3000 ms aim delay`
-  - `[cam] init ok (RGB565 QVGA 320x240)`
-  - `[infer] ready - input [1,224,224,3] int8, output [1,10,1029] (C,A), arena=4194304 bytes PSRAM, used=782980`
-  - `[audio] init ok (16 kHz, 16-bit, mono)`
-  - `[scan] manual mode - waiting for D6/GPIO43 press`
-
-The current uploaded firmware uses `PESOS_MANUAL_CAPTURE`, not continuous auto-scan. The older D4/GPIO5 deep-sleep wake path is retained as a future/final battery design item, not the active trigger in this debug build.
-
-Use the recovery build for USB flashing, boot logs, camera startup, SPIFFS audio, and MAX98357A output smoke tests. The D6 manual-capture TFLite firmware has been verified to boot and initialize inference; controlled real-bill stability tests are still pending.
-
-Latest backtrack log: `FIRMWARE_CHANGELOG.md`.
-
-## TFLite Micro Status
-
-The current Kaggle model is copied into this firmware folder and baked into
-`src/model_data.cpp` locally.
-
-Several PlatformIO environments now exist:
-
-```powershell
-pio run -e seeed_xiao_esp32s3       # known-good stub/recovery firmware
-pio run -e seeed_xiao_esp32s3_tflm  # real TFLite Micro firmware
-pio run -e seeed_xiao_esp32s3_tflm_button_capture       # current D6 manual-capture firmware
-pio run -e seeed_xiao_esp32s3_tflm_button_capture_dump  # D6 manual-capture firmware with serial JPEG dump
-pio run -e seeed_xiao_esp32s3_tflm_auto_capture_dump_8s # no button; JPEG dump every 8 seconds
-```
-
-The TFLite Micro environment uses ESP-IDF mixed mode with `esp-tflite-micro` and
-`esp32-camera` from `src/idf_component.yml`.
-
-```powershell
-cd "C:\Users\james\Projects\PesoLens-project\firmware"
-$env:PLATFORMIO_CORE_DIR = "C:\.platformio"
-pio run -e seeed_xiao_esp32s3_tflm_button_capture -j 2
-pio run -e seeed_xiao_esp32s3_tflm_button_capture --target upload --upload-port COM3
-```
-
-## Auto Capture JPEG Collection
-
-Use this mode when you want the same host-side saved JPEG flow as the D6 dump
-firmware, but without pressing D6. The ESP32 captures and dumps one frame every
-8 seconds over USB serial. The Python monitor saves the JPG files locally.
-
-```powershell
-cd "C:\Users\james\Projects\PesoLens-project\firmware"
-pio run -e seeed_xiao_esp32s3_tflm_auto_capture_dump_8s -j 2 --target upload --upload-port COM3
-py tools\monitor_detected_frames.py --port COM3 --reset --out-dir "C:\Users\james\Projects\PesoLens-project\firmware\logs\detections"
-```
-
-Keep the Python monitor running while collecting images. The ESP32 cannot save
-directly to a Windows path by itself; it streams JPEG data over serial and the
-monitor writes the files into `logs\detections`.
-
-## Hardware corrections vs. original spec
-
-- **Removed:** SYN6288 TTS chip (analog out incompatible with I2S amp; can't speak English).
-- **Added:** tactile push button on D6 / GPIO43 for current manual capture.
-- **Retained for later:** D4 / GPIO5 as the older trigger + wake-from-deep-sleep plan.
-
-## Model Artifact Paths
-
-The firmware project and the training/export project can live in different folders.
-
-- This firmware repo lives at `C:\Users\james\Projects\PesoLens-project\firmware` on the current machine.
-- The current ESP32-targeted Kaggle export lives at `model_exports/kaggle-yolov8n-imgsz224-merged-6class/best_full_integer_quant.tflite`.
-- The firmware model input size is now `224x224` to match that export.
-- The current embedded TFLite length is `3,227,889` bytes.
-- That split is OK for local development. The firmware build does not need the training folder unless you are regenerating `src/model_data.cpp`.
-- If someone clones this repo on another computer, they can build stub-inference firmware immediately. To regenerate real model bytes, pass explicit paths to `tools/convert_model.py` with `--tflite`, `--pt-model`, and `--data-yaml`.
-- Generated model files are intentionally not committed because the TFLite export and generated C++ source are too large for normal GitHub pushes.
+- **Client report 2026-10-13:** the error tone plays on button press and no amount is spoken.
+  Cause not yet confirmed. See `../CURRENT_CHECKPOINT.md`.
+- The camera image is rotated 90° relative to the bill. The model still detects bills in
+  test frames, but orientation was not part of validation.
+- Speech clips are 14–20 dB quieter (RMS) than the beep and error tones, so words are harder
+  to hear through bone conduction. Normalize or compress the clips; don't just add gain.
+- Multi-bill mode adds every surviving box to the total, so a spatially separate false
+  positive inflates the amount.
+- ₱200 is not a model class.
 
 ## License
 
-Project-internal — student initiative. Pinned to attribution-style use; ask before redistributing.
+Project-internal student initiative. Ask before redistributing.
