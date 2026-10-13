@@ -1,6 +1,20 @@
 # PesoLens Current Checkpoint
 
-Date: 2026-10-13
+Date: 2026-10-14
+
+## 2026-10-14 Diagnostic firmware c04127f flashed to COM3 (D6 test pending)
+
+- Flashed `seeed_xiao_esp32s3_tflm_button_capture` (upload + `uploadfs`) to COM3 at about
+  02:05. esptool verified the hashes. Board: ESP32-S3 rev v0.2, MAC e0:72:a1:fa:38:3c.
+- Boot log verified over USB serial: `[boot] reset reason: UNKNOWN`. That is expected for
+  the esptool/RTS reset over USB-Serial-JTAG, because IDF 4.4 has no enum value for it, so it
+  is not a crash. Camera OV3660 init ok, audio init ok, self-test beep played,
+  `[scan] manual mode - waiting for D6/GPIO43 press`, ready LED on.
+- Serial capture tip: the firmware waits for `Serial` (DTR). Open the port with DTR asserted.
+  An RTS-only reset from a script did not produce output; `esptool ... chip_id`
+  (hard reset) followed by opening the port with DTR=1 works.
+- **Next:** press D6 with the board on USB and the logger running, then read the
+  `[manual]`/`[scan]` lines, or a new `[boot] reset reason` if the press resets the board.
 
 ## 2026-10-13 (later) Client video: the press is RESTARTING the board
 
