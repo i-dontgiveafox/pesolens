@@ -2,6 +2,27 @@
 
 Date: 2026-10-14
 
+## 2026-10-14 (later) D6 press is not reaching the board: hardware fault
+
+- With c04127f on USB, the user pressed D6 repeatedly from about 02:17 to 02:20. The log
+  showed no `[manual]` line and no reboot, so GPIO43 never read LOW.
+- Added `env:gpio_probe` (`firmware/src/gpio_probe.cpp`). It samples every XIAO D0–D10
+  pin with a pull-up and with a pull-down, and logs every change plus a level report
+  every 10 s. It is excluded from the main builds (base `build_src_filter`; the IDF
+  `src/CMakeLists.txt` lists its sources explicitly).
+- Probe v1 (pull-up only, 02:22–02:26) logged no change while the user pressed. Probe v2
+  (02:26–03:14) logged no change in 48 min, and its heartbeats had no gaps, so there was
+  no reset. Idle: D0–D8 open, **D9 (I2S DIN) and D10 held at 3V3**. Nothing else is
+  wired to D10 in firmware, so check it.
+- Conclusion: the button connects no D pin to GND or 3V3. This is wiring, not firmware
+  or the model. The user says it worked before their changes ahead of the 256px upload.
+- **The board currently runs `gpio_probe`, not the scan firmware.** To restore it:
+  `pio run -e seeed_xiao_esp32s3_tflm_button_capture -t upload`. SPIFFS audio was not
+  touched.
+- **Next:** with the board unplugged, check continuity from the D6 pad to GND (it should
+  close only while pressed). Check the switch legs, look for a loose or cracked joint,
+  and find what drives D10 high.
+
 ## 2026-10-14 Diagnostic firmware c04127f flashed to COM3 (D6 test pending)
 
 - Flashed `seeed_xiao_esp32s3_tflm_button_capture` (upload + `uploadfs`) to COM3 at about
