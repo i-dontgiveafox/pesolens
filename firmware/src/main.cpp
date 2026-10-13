@@ -6,6 +6,7 @@
 
 #include <Arduino.h>
 #include <esp_sleep.h>
+#include <esp_system.h>
 
 #include "config.h"
 #include "camera.h"
@@ -16,6 +17,29 @@
 #include "power.h"
 
 static const char* g_shutdown_reason = "normal shutdown";
+
+// Why the chip last restarted. Note: a reset via the EN/RST pin reports as
+// POWERON on the ESP32-S3, so it is indistinguishable from a power cycle.
+static const char* reset_reason_name(esp_reset_reason_t r) {
+    switch (r) {
+        case ESP_RST_POWERON:   return "POWERON (power-up or EN/RST pin)";
+        case ESP_RST_EXT:       return "EXT (external pin)";
+        case ESP_RST_SW:        return "SW (software restart)";
+        case ESP_RST_PANIC:     return "PANIC (firmware crash)";
+        case ESP_RST_INT_WDT:   return "INT_WDT (interrupt watchdog)";
+        case ESP_RST_TASK_WDT:  return "TASK_WDT (task watchdog)";
+        case ESP_RST_WDT:       return "WDT (other watchdog)";
+        case ESP_RST_DEEPSLEEP: return "DEEPSLEEP (wake from deep sleep)";
+        case ESP_RST_BROWNOUT:  return "BROWNOUT (supply voltage dipped)";
+        default:                return "UNKNOWN";
+    }
+}
+
+// Crash, watchdog, or brownout: the previous run did not end normally.
+static bool reset_was_abnormal(esp_reset_reason_t r) {
+    return r == ESP_RST_PANIC || r == ESP_RST_INT_WDT || r == ESP_RST_TASK_WDT ||
+           r == ESP_RST_WDT || r == ESP_RST_BROWNOUT;
+}
 
 static void ready_led_init() {
 #if READY_LED_PIN >= 0
@@ -319,6 +343,8 @@ void setup() {
     Serial.begin(115200);
     wait_for_serial_monitor();
     Serial.println("\n=== pesos firmware boot ===");
+    const esp_reset_reason_t reset_reason = esp_reset_reason();
+    Serial.printf("[boot] reset reason: %s\n", reset_reason_name(reset_reason));
     ready_led_init();
 
     if (!psram_check()) {
@@ -386,8 +412,17 @@ void setup() {
         // button press and no inference, so it isolates audio from the trigger:
         // silence here = init/pin-mux fault; sound here = audio is fine and the
         // fault is downstream in the scan path.
-        Serial.println("[audio] boot self-test: playing beep");
-        audio_play_clip("beep");
+        //
+        // Without a serial monitor, the beep pattern reports why the chip
+        // restarted: 1 beep = normal power-up, 3 beeps = crash, watchdog, or
+        // brownout.
+        if (reset_was_abnormal(reset_reason)) {
+            Serial.println("[audio] boot self-test: abnormal reset, playing 3 beeps");
+            audio_play_sequence({"beep", "beep", "beep"});
+        } else {
+            Serial.println("[audio] boot self-test: playing beep");
+            audio_play_clip("beep");
+        }
         Serial.println("[audio] boot self-test done");
     }
 #endif
@@ -510,7 +545,16 @@ void loop() {
                       (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
         Serial.printf("[manual] D6 capture button pressed - capture in %u ms\n",
                       (unsigned)MANUAL_CAPTURE_DELAY_MS);
-        delay(MANUAL_CAPTURE_DELAY_MS);
+        // Acknowledge the press audibly so the user knows the scan started.
+        // The beep's ~200 ms comes out of the aim delay, so capture timing is unchanged.
+        const uint32_t t_press = millis();
+        if (g_audio_ready) {
+            audio_play_clip("beep");
+        }
+        const uint32_t ack_ms = millis() - t_press;
+        if (ack_ms < MANUAL_CAPTURE_DELAY_MS) {
+            delay(MANUAL_CAPTURE_DELAY_MS - ack_ms);
+        }
         Serial.println("[manual] capture delay done");
         scan_once(g_input_buf, g_audio_ready);
         ready_led_set(true);

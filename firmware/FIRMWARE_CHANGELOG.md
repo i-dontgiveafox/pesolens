@@ -3,6 +3,21 @@
 This file is the backtrack log for the firmware folder. Keep it updated when the
 model, firmware build, flash layout, or hardware test status changes.
 
+## 2026-10-13 - Reset-reason diagnostics + press acknowledgement beep
+
+Built (`seeed_xiao_esp32s3_tflm_button_capture` SUCCESS); **not yet flashed**, because the
+board was not connected.
+
+- Boot logs `[boot] reset reason: ...` from `esp_reset_reason()`.
+- Boot self-test plays **3 beeps** after a crash, watchdog or brownout reset, and 1 beep
+  otherwise. The user can now tell the reset cause by ear with no serial monitor.
+  A reset via EN/RST reads as POWERON (1 beep) on the ESP32-S3.
+- A D6 press plays a beep immediately. The beep time comes out of the 3 s aim delay,
+  so capture timing is unchanged.
+- Why: the client video shows press → LED on → one beep in < 8 s. That matches the boot
+  sequence (5 s serial wait with no USB host, plus ~3.6 s init), not a scan
+  (≥ 60 s, two sounds). So the press is restarting the board.
+
 ## 2026-06-09 - All-Denomination Recognition Audit
 
 - Verified the embedded TFLite is byte-for-byte identical to the current

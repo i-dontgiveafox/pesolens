@@ -2,6 +2,26 @@
 
 Date: 2026-10-13
 
+## 2026-10-13 (later) Client video: the press is RESTARTING the board
+
+This supersedes the "two hypotheses" ranking below.
+
+- Video: press → LED comes **on** → a single beep in **< 8 s**. A real D6 scan turns the
+  LED **off** and needs ≥ 60 s (3 s aim + ~47 s inference + 6 s blinks), then plays
+  **two** sounds (amount or error tone, then the ready beep). One beep about 8 s after an
+  event is the **boot self-test**: 5 s `wait_for_serial_monitor()` with no USB host,
+  plus ~3.6 s init (10-04 log: I2S up at 3565 ms). So the press resets the board.
+- Suspects, in order: (1) button wiring: switch on RST/EN, or a 4-pin tactile switch
+  rotated so pressing shorts 3V3 to GND; check that D6 → GND is the only path; (2) battery
+  brownout on press; (3) a crash in the never-hardware-tested 256px scan path.
+- Prepared but **not flashed**: the boot reports the reset reason (3 beeps = crash,
+  watchdog or brownout; 1 beep = power-on or EN/RST), and a D6 press now beeps immediately.
+  Build passes. See `firmware/FIRMWARE_CHANGELOG.md`.
+- **Next:** flash `button_capture` and run `uploadfs`. Then press D6 on USB with the serial
+  monitor open. Expected if healthy: an immediate beep, then about 1 minute later the
+  result. Check the D6 wiring with a multimeter (unpowered: D6 ↔ GND closes only when
+  pressed; 3V3 ↔ GND never closes).
+
 ## 2026-10-13 Client report: error tone on button press (OPEN)
 
 Client message: "hindi naglalabas ng feedback audio. Sa pag click ko nag o-audio sya ng
