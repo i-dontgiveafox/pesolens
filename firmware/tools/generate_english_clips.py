@@ -156,6 +156,11 @@ def _mp3_to_wav_pydub(mp3_path: Path, wav_path: Path) -> bool:
     except ImportError:
         return False
     try:
+        import imageio_ffmpeg  # type: ignore
+        AudioSegment.converter = imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        pass
+    try:
         seg = AudioSegment.from_file(str(mp3_path), format="mp3")
     except Exception as exc:
         print(f"  ! pydub couldn't decode {mp3_path.name}: {exc}", file=sys.stderr)
@@ -169,10 +174,15 @@ def _mp3_to_wav_ffmpeg(mp3_path: Path, wav_path: Path) -> bool:
     """Direct ffmpeg invocation as a last-ditch fallback. Returns True on success."""
     import shutil
     import subprocess
-    if shutil.which("ffmpeg") is None:
-        return False
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        try:
+            import imageio_ffmpeg  # type: ignore
+            ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+        except Exception:
+            return False
     cmd = [
-        "ffmpeg", "-y", "-loglevel", "error",
+        ffmpeg, "-y", "-loglevel", "error",
         "-i", str(mp3_path),
         "-ar", str(SAMPLE_RATE),
         "-ac", str(CHANNELS),

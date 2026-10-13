@@ -1,0 +1,741 @@
+PesoLens Firmware Code Walkthrough
+Generated: 2026-06-08
+Folder: C:\Users\james\Projects\PesoLens-project\firmware
+-
+============
+This project uses a common C++ firmware layout:
+
+- src/main.cpp is the entry point. It owns the boot/capture/infer/speak loop.
+- src/<module>.cpp files contain each module's implementation.
+- src/<module>.h files declare the functions/types other files can call.
+- include/config.h is the central settings file: pins, model size, thresholds.
+- include/camera_pins.h is the XIAO ESP32-S3 Sense camera pin map.
+- data/*.wav are the speech/audio clips uploaded to SPIFFS.
+- tools/*.py are PC-side helper scripts for model conversion, audio generation,
+  serial capture, and JPEG extraction.
+- managed_components contains third-party ESP-IDF components. Do not start
+  there when learning the project.
+
+Important correction: each component usually has its own .cpp/.h pair, not each
+individual function. For example, all camera-related functions live together in
+camera.cpp, all audio-related functions live together in audio.cpp, and so on.
+
+
+CURRENT PROJECT STATUS
+======================
+
+The main firmware build was checked from this folder with:
+
+  $env:PLATFORMIO_CORE_DIR='C:\.platformio'
+  pio run -e seeed_xiao_esp32s3_tflm_button_capture -j 2
+
+Result:
+
+- PlatformIO is installed.
+- Python is installed.
+- The firmware binary was produced:
+  .pio\build\seeed_xiao_esp32s3_tflm_button_capture\firmware.bin
+- Firmware binary size:
+  3,883,152 bytes
+
+Native host tests were not run because gcc/g++ are not on PATH on this PC.
+The project history says the same thing: this is a desktop toolchain issue,
+not necessarily a firmware problem.
+
+Hardware state from the latest checkpoint:
+
+- ESP32-S3 core, USB, flash, and PSRAM looked healthy on COM3.
+- The latest health check found camera init failing:
+  E camera: Camera probe failed with error 0x105(ESP_ERR_NOT_FOUND)
+  [cam] ERROR: esp_camera_init failed 0x105
+- That points first to the camera/expansion/ribbon connection or interference
+  on camera SCCB pins GPIO39/GPIO40, because earlier logs had detected OV3660.
+
+
+BIG PICTURE
+===========
+
+PesoLens is firmware for a Seeed XIAO ESP32-S3 Sense device.
+
+Its job is:
+
+1. Start the ESP32-S3.
+2. Initialize PSRAM, camera, TFLite Micro inference, audio, buttons, and LED.
+3. Wait for a capture trigger or auto-run depending on build flags.
+4. Capture a camera frame.
+5. Convert the camera image into the model's int8 input tensor.
+6. Run a YOLOv8n int8 model with TFLite Micro.
+7. Decode model output into peso bill detections.
+8. Add up the detected denominations.
+9. Convert the total into a list of English audio clip names.
+10. Stream those WAV clips over I2S to the MAX98357A amplifier.
+
+Data flow:
+
+  Camera frame
+    -> camera_preprocess_for_model()
+    -> int8 tensor
+    -> infer_run()
+    -> vector<Detection>
+    -> count_total_pesos()
+    -> total pesos
+    -> compose_english()
+    -> clip IDs
+    -> audio_play_sequence()
+    -> speaker
+
+
+FOLDER MAP
+==========
+
+firmware\
+  platformio.ini
+    Board setup, build environments, build flags, upload settings, SPIFFS.
+
+  partitions.csv
+    Flash layout. This project uses a large app partition and SPIFFS for audio.
+
+  include\
+    config.h
+      Main tunable settings: GPIO pins, model size, class labels, thresholds.
+
+    camera_pins.h
+      Camera GPIO mapping for Seeed XIAO ESP32-S3 Sense.
+
+    model_data.h
+      extern declarations for the embedded TFLite model byte array.
+
+  src\
+    main.cpp
+      Main entry point. Coordinates the entire device flow.
+
+    camera.cpp / camera.h
+      Camera init, frame capture, JPEG debug dump, and image preprocessing.
+
+    inference.cpp / inference.h
+      TFLite Micro setup, model invocation, YOLO output decode, and NMS.
+
+    counting.cpp / counting.h
+      Converts detections into peso totals.
+
+    speech.cpp / speech.h
+      Converts a number like 1234 into clip IDs like:
+      one, thousand, two, hundred, thirty, four, pesos.
+
+    audio.cpp / audio.h
+      Mounts SPIFFS, opens WAV files, streams audio over I2S.
+
+    power.cpp / power.h
+      Deep sleep, wake button setup, battery-voltage placeholder, wake logs.
+
+    model_data.cpp
+      Generated TFLite model bytes. Huge file. Do not edit by hand.
+
+    model_data_stub.cpp
+      Weak fallback model symbols so stub builds can compile without real model
+      bytes.
+
+    serial_probe.cpp
+      Tiny test firmware for USB serial.
+
+    audio_probe.cpp
+      Tiny test firmware for repeating audio beeps.
+
+  data\
+    *.wav
+      Audio clips used by speech.cpp and audio.cpp.
+
+  test\
+    test_speech\test_speech.cpp
+      Host-side unit tests for speech.cpp.
+
+  tools\
+    convert_model.py
+      Converts/copies a TFLite model into C++ bytes.
+
+    generate_english_clips.py
+      Generates the WAV speech clips.
+
+    serial_capture.py
+      Saves serial logs.
+
+    monitor_detected_frames.py
+      Reads serial logs and saves dumped JPEG frames from debug firmware.
+
+  managed_components\
+    Third-party ESP-IDF components like esp-tflite-micro, esp32-camera, esp-nn.
+    Treat this like vendor/library code.
+
+
+THE MAIN FILE: src/main.cpp
+==========================
+
+Start here when reading the firmware.
+
+Important functions:
+
+- ready_led_init()
+  Sets up the ready LED pin.
+
+- ready_led_set(bool ready)
+  Turns the ready LED on/off.
+
+- ready_led_blink_before_audio()
+  Blinks the ready LED 3 times before the result audio in manual mode.
+
+- shutdown_and_sleep()
+  Stops audio, then either stays awake for debug builds or enters deep sleep.
+
+- fail_and_sleep(const char* tag)
+  Logs an error, plays the error clip if possible, then shuts down.
+
+- wait_for_serial_monitor()
+  Gives USB serial time to connect unless the build disables waiting.
+
+- play_announcement(total, audio_ready)
+  Uses compose_english(total) to get clip IDs, then plays them.
+
+- scan_once(input_buf, audio_ready)
+  The most important runtime function. It performs one full read:
+    capture frame
+    optional JPEG dump
+    preprocess image
+    run inference
+    print detections
+    count pesos
+    speak amount or error
+    beep ready
+    release camera frame
+
+- manual_capture_pressed()
+  Debounced active-low D6 button check for manual mode.
+
+- setup()
+  Arduino entry point that runs once after boot/reset. It initializes hardware
+  and chooses the behavior based on build flags.
+
+- loop()
+  Arduino loop. In manual capture builds, it waits for D6, then calls scan_once.
+
+Current manual flow in loop():
+
+  D5 ready LED on
+  wait for D6 press
+  D5 ready LED off
+  wait 3000 ms aim delay
+  scan_once()
+  D5 ready LED on again
+
+
+CONFIG: include/config.h
+========================
+
+This is the main place to change firmware settings.
+
+Important values:
+
+- BUTTON_PIN = 5
+  Older/future deep-sleep wake button on XIAO D4/GPIO5.
+
+- CAPTURE_BUTTON_PIN = 43
+  Current manual capture button on XIAO D6/GPIO43.
+
+- MANUAL_CAPTURE_DELAY_MS = 3000
+  Three-second delay after button press so the user can aim the bill.
+
+- READY_LED_PIN = 6
+  Current ready LED on XIAO D5/GPIO6.
+
+- I2S_DIN = 8
+  Audio data to MAX98357A, XIAO D9/GPIO8.
+
+- I2S_BCLK = 7
+  Audio bit clock, XIAO D8/GPIO7.
+
+- I2S_LRC = 44
+  Audio word-select / left-right clock, XIAO D7/GPIO44.
+
+- MODEL_INPUT_SIZE = 224
+  The model expects 224 x 224 RGB input.
+
+- MODEL_NUM_CLASSES = 6
+  Classes are 20, 50, 100, 200, 500, 1000.
+
+- CONF_THRESHOLD = 0.25f
+  Detection confidence cutoff.
+
+- IOU_THRESHOLD = 0.45f
+  NMS overlap cutoff.
+
+- TENSOR_ARENA_SIZE = 4 MB
+  TFLite Micro working memory, allocated in PSRAM.
+
+
+CAMERA MODULE: src/camera.cpp
+=============================
+
+The camera module owns camera setup and image conversion.
+
+Main functions:
+
+- psram_check()
+  Confirms PSRAM exists and has enough free space. The camera frame buffers and
+  TFLite tensor arena need PSRAM.
+
+- camera_init()
+  Configures esp32-camera for the XIAO Sense camera. It sets RGB565 QVGA
+  capture, PSRAM frame buffers, sensor auto exposure/white balance, and grabs
+  warmup frames.
+
+- camera_capture()
+  Gets one camera frame with esp_camera_fb_get().
+
+- camera_release(fb)
+  Returns the frame buffer to the camera driver.
+
+- camera_dump_jpeg_to_serial(fb)
+  Debug helper. Converts the frame to JPEG and prints base64 over serial so the
+  PC helper script can save an image.
+
+- camera_preprocess_for_model(fb, out_buf)
+  Converts the raw camera frame to the model input.
+
+Preprocessing details:
+
+  camera gives RGB565 QVGA 320 x 240
+  center crop to 240 x 240
+  resize to 224 x 224
+  convert RGB565 to RGB888
+  quantize each channel as int8 using value - 128
+  output layout is NHWC:
+    [height][width][RGB]
+
+
+INFERENCE MODULE: src/inference.cpp
+===================================
+
+This module owns TFLite Micro and YOLO decoding.
+
+There are two modes:
+
+1. ENABLE_TFLITE_MICRO = 1
+   Real inference mode. Used by the tflm PlatformIO environments.
+
+2. ENABLE_TFLITE_MICRO = 0
+   Stub mode. infer_init() logs that TFLite is disabled and infer_run() returns
+   no detections.
+
+Important functions in real inference mode:
+
+- register_ops()
+  Adds the TFLite Micro operations needed by the current Ultralytics YOLO model.
+  The resolver is explicit because this ESP TFLM component does not use a
+  generic AllOpsResolver.
+
+- infer_init()
+  Allocates the 4 MB tensor arena in PSRAM, loads tflite_model from
+  model_data.cpp, checks the model schema, registers ops, creates the
+  interpreter, allocates tensors, and validates input/output tensor shapes.
+
+  Expected input:
+    [1, 224, 224, 3] int8
+
+  Expected output:
+    [1, 10, 1029] or transposed [1, 1029, 10]
+
+  Why 10 channels?
+    4 box values + 6 classes = 10
+
+- infer_run(input)
+  Copies the preprocessed int8 input into the model input tensor, calls Invoke(),
+  decodes every YOLO anchor, keeps candidates above CONF_THRESHOLD, normalizes
+  boxes, runs NMS, prints top candidate logs, and returns vector<Detection>.
+
+- nms()
+  Non-maximum suppression. It removes duplicate overlapping boxes. This project
+  enables class-agnostic NMS so one bill is less likely to be counted as several
+  denominations.
+
+Detection struct:
+
+  class_id  0..5
+  conf      confidence score
+  x, y      center of box, normalized 0..1
+  w, h      size of box, normalized 0..1
+
+
+COUNTING MODULE: src/counting.cpp
+=================================
+
+This module is intentionally simple.
+
+- count_total_pesos(detections)
+  For each Detection, look up DENOMINATIONS[class_id] in config.h and add it.
+
+- count_by_class(detections)
+  Returns a map from class_id to how many times it appeared. This is not heavily
+  used yet, but it supports future richer announcements.
+
+Example:
+
+  detections:
+    class 1 -> 50 pesos
+    class 3 -> 200 pesos
+
+  total:
+    250 pesos
+
+
+SPEECH MODULE: src/speech.cpp
+=============================
+
+This is pure C++ logic with no Arduino dependency.
+
+- compose_english(pesos)
+  Converts a number into a sequence of clip IDs.
+
+Examples:
+
+  0
+    zero, pesos
+
+  200
+    two, hundred, pesos
+
+  1234
+    one, thousand, two, hundred, thirty, four, pesos
+
+Those clip IDs map directly to files in data:
+
+  data\two.wav
+  data\hundred.wav
+  data\pesos.wav
+
+The unit tests for this module live in:
+
+  test\test_speech\test_speech.cpp
+
+
+AUDIO MODULE: src/audio.cpp
+===========================
+
+This module plays pre-recorded WAV files from SPIFFS over I2S.
+
+Expected WAV format:
+
+  16 kHz
+  16-bit PCM
+  mono
+
+Important functions:
+
+- audio_init()
+  Mounts SPIFFS and installs/configures the ESP-IDF I2S driver.
+
+- audio_play_clip(clip_id)
+  Opens /<clip_id>.wav from SPIFFS, seeks to the WAV data chunk, and streams it.
+
+- audio_play_sequence(clip_ids)
+  Plays several clips with a small silence gap between clips.
+
+- audio_deinit()
+  Writes a small silence pad, clears I2S DMA, uninstalls the I2S driver, and
+  unmounts SPIFFS.
+
+Important implementation detail:
+
+The WAV files are mono, but the code duplicates each mono sample into left and
+right I2S channels. That helps avoid silence if the MAX98357A amplifier is
+configured to listen to either side.
+
+
+POWER MODULE: src/power.cpp
+===========================
+
+This module owns deep sleep and wake behavior.
+
+- power_configure_wake_source()
+  Configures D4/GPIO5 as an active-low EXT0 wake button.
+
+- power_enter_deep_sleep()
+  Prints a message, flushes serial, then enters ESP deep sleep.
+
+- power_get_wake_cause()
+  Returns the ESP wake reason.
+
+- power_print_wake_reason()
+  Prints a readable wake reason over serial.
+
+- power_read_battery_voltage()
+  Placeholder. The default XIAO setup does not expose VBAT on a configured ADC
+  pin, so this currently returns 0.0.
+
+Current note:
+
+The current demo/manual flows are mostly controlled by build flags in
+platformio.ini. The older D4 deep-sleep wake path still exists for later
+battery behavior.
+
+
+MODEL DATA
+==========
+
+The real model is embedded in:
+
+  src\model_data.cpp
+
+That file is generated from:
+
+  model_exports\kaggle-yolov8n-imgsz224-merged-6class\best_full_integer_quant.tflite
+
+Do not edit model_data.cpp by hand. If the model changes, regenerate it with
+tools\convert_model.py.
+
+The model header is:
+
+  include\model_data.h
+
+It declares:
+
+  extern const unsigned char tflite_model[];
+  extern const unsigned int tflite_model_len;
+
+model_data_stub.cpp provides weak zero-length fallback symbols so some builds
+can compile before a real generated model file exists.
+
+
+PLATFORMIO ENVIRONMENTS
+=======================
+
+The build environments are in platformio.ini.
+
+Important ones:
+
+- seeed_xiao_esp32s3
+  Arduino-only recovery/stub build. TFLite Micro is disabled.
+
+- seeed_xiao_esp32s3_tflm
+  Real TFLite Micro firmware using mixed Arduino + ESP-IDF.
+
+- seeed_xiao_esp32s3_tflm_button_capture
+  Normal D6 manual-capture firmware. This is the main one to understand first.
+
+- seeed_xiao_esp32s3_tflm_button_capture_dump
+  Same as manual capture, but dumps each captured frame over serial as JPEG.
+  Use this for visual camera debugging.
+
+- seeed_xiao_esp32s3_tflm_auto_run_d6_led
+  Standalone auto-run deployment build. No D6 button; D6 can be used as status
+  LED. Latest health check says this firmware was restored to the board, but
+  camera probing was failing at runtime.
+
+- serial_probe
+  Minimal firmware to prove USB serial output works.
+
+- audio_probe
+  Minimal firmware to repeatedly play beep.wav.
+
+- native
+  Host-side unit tests for speech.cpp.
+
+
+BUILD FLAGS THAT CHANGE BEHAVIOR
+================================
+
+These are set in platformio.ini, not usually inside the C++ files.
+
+- ENABLE_TFLITE_MICRO=1
+  Enables real TFLite Micro inference in inference.cpp.
+
+- PESOS_MANUAL_CAPTURE
+  Enables D6/GPIO43 manual capture button behavior.
+
+- PESOS_DUMP_EACH_CAPTURE
+  Dumps each camera capture to serial as JPEG/base64.
+
+- PESOS_DUMP_FIRST_FRAME
+  Dumps only the first captured frame.
+
+- PESOS_DUMP_DETECTED_FRAMES
+  Dumps frames only when detections exist.
+
+- PESOS_CONTINUOUS_SCAN
+  Keeps the board scanning/running instead of the original deep-sleep one-shot
+  behavior.
+
+- PESOS_DEBUG_NO_SLEEP
+  Keeps the board awake and printing debug heartbeats instead of deep sleeping.
+
+- PESOS_NO_SERIAL_WAIT
+  Skips the 5-second wait for a USB serial monitor.
+
+
+HOW ONE MANUAL CAPTURE WORKS
+============================
+
+This is the normal D6 manual-capture firmware path.
+
+1. setup() starts.
+2. Serial begins.
+3. ready_led_init() configures D5/GPIO6.
+4. psram_check() verifies PSRAM.
+5. power_configure_wake_source() configures the older D4 wake source.
+6. PESOS_CONTINUOUS_SCAN mode is active because of the tflm build flags.
+7. PESOS_MANUAL_CAPTURE mode configures D6/GPIO43 as INPUT_PULLUP.
+8. camera_init() starts the camera and grabs warmup frames.
+9. setup() allocates the model input buffer in PSRAM.
+10. infer_init() prepares TFLite Micro.
+11. audio_init() mounts SPIFFS and starts I2S.
+12. D5 LED turns on and the firmware waits for D6.
+13. loop() sees D6 pressed with manual_capture_pressed().
+14. D5 LED turns off.
+15. Firmware waits MANUAL_CAPTURE_DELAY_MS, currently 3000 ms.
+16. scan_once() captures a frame.
+17. camera_preprocess_for_model() converts the image for the model.
+18. infer_run() runs YOLO/TFLite and returns detections.
+19. count_total_pesos() adds denominations.
+20. LED blinks 3 times before audio.
+21. If total > 0, play_announcement() speaks the amount.
+22. If total == 0, audio_play_clip("error") plays the error tone.
+23. audio_play_clip("beep") plays the ready beep.
+24. camera_release() returns the frame buffer.
+25. D5 LED turns on again.
+26. loop() waits for the next D6 press.
+
+
+COMMANDS YOU WILL ACTUALLY USE
+==============================
+
+Open PowerShell in the firmware folder:
+
+  cd "C:\Users\james\Projects\PesoLens-project\firmware"
+  $env:PLATFORMIO_CORE_DIR='C:\.platformio'
+
+Build the normal manual-capture firmware:
+
+  pio run -e seeed_xiao_esp32s3_tflm_button_capture -j 2
+
+Upload it:
+
+  pio run -e seeed_xiao_esp32s3_tflm_button_capture --target upload --upload-port COM3
+
+Upload audio files:
+
+  pio run -e seeed_xiao_esp32s3_tflm_button_capture --target uploadfs --upload-port COM3
+
+Open serial monitor:
+
+  pio device monitor --port COM3 -b 115200
+
+Save a serial log:
+
+  py tools\serial_capture.py COM3 --seconds 90
+
+Use frame-dump firmware:
+
+  pio run -e seeed_xiao_esp32s3_tflm_button_capture_dump -j 2 --target upload --upload-port COM3
+  py tools\monitor_detected_frames.py --port COM3 --seconds 180 --log logs\next-image-capture.log
+
+Restore normal manual-capture firmware afterward:
+
+  pio run -e seeed_xiao_esp32s3_tflm_button_capture -j 2 --target upload --upload-port COM3
+
+
+WHAT TO EDIT FOR COMMON CHANGES
+===============================
+
+Change pins:
+
+  include\config.h
+
+Change model input size/classes/thresholds:
+
+  include\config.h
+
+Change camera preprocessing:
+
+  src\camera.cpp
+
+Change inference operators, output decoding, NMS, confidence logging:
+
+  src\inference.cpp
+
+Change how total pesos are computed:
+
+  src\counting.cpp
+
+Change number-to-words speech composition:
+
+  src\speech.cpp
+  test\test_speech\test_speech.cpp
+
+Change audio playback:
+
+  src\audio.cpp
+
+Change sleep/wake behavior:
+
+  src\power.cpp
+  src\main.cpp
+  platformio.ini build flags
+
+Change which firmware mode builds:
+
+  platformio.ini
+
+Change the model:
+
+  model_exports\...
+  tools\convert_model.py
+  src\model_data.cpp generated output
+
+
+WHAT NOT TO TOUCH FIRST
+=======================
+
+Avoid editing these unless you know exactly why:
+
+- managed_components\
+  Vendor code.
+
+- .pio\
+  Build output/cache.
+
+- src\model_data.cpp
+  Generated model bytes.
+
+- sdkconfig.* files
+  ESP-IDF configuration snapshots.
+
+- partitions.csv
+  Flash layout. A wrong offset can break upload/boot/audio filesystem behavior.
+
+
+MENTAL MODEL FOR THE CODE
+=========================
+
+Think of the firmware as a coordinator plus six services:
+
+  main.cpp
+    coordinates the whole device
+
+  camera.cpp
+    turns the real world into pixels, then into a model tensor
+
+  inference.cpp
+    turns the tensor into bill detections
+
+  counting.cpp
+    turns detections into a peso number
+
+  speech.cpp
+    turns the number into word clip IDs
+
+  audio.cpp
+    turns clip IDs into speaker sound
+
+  power.cpp
+    handles sleep/wake support
+
+That is the cleanest way to read the project.
+

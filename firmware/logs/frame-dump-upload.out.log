@@ -1,0 +1,1884 @@
+Processing seeed_xiao_esp32s3_tflm_frame_dump (platform: espressif32; board: seeed_xiao_esp32s3; framework: arduino, espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/seeed_xiao_esp32s3.html
+PLATFORM: Espressif 32 (7.0.1) > Seeed Studio XIAO ESP32S3
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 5.06MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - framework-arduinoespressif32 @ 3.20017.241212+sha.dcc1105b 
+ - framework-espidf @ 3.40407.240606 (4.4.7) 
+ - tool-cmake @ 3.30.2 
+ - tool-esp-rom-elfs @ 0.0.1+20241011 
+ - tool-esptoolpy @ 2.41100.0 (4.11.0) 
+ - tool-idf @ 1.0.1 
+ - tool-mconf @ 1.4060000.20190628 (406.0.0) 
+ - tool-mkfatfs @ 2.0.1 
+ - tool-mklittlefs @ 1.203.210628 (2.3) 
+ - tool-mkspiffs @ 2.230.0 (2.30) 
+ - tool-ninja @ 1.9.0 
+ - toolchain-esp32ulp @ 1.23800.240113 (2.38.0) 
+ - toolchain-riscv32-esp @ 8.4.0+2021r2-patch5 
+ - toolchain-xtensa-esp32s3 @ 8.4.0+2021r2-patch5
+Warning! Arduino framework as an ESP-IDF component doesn't handle the `variant` field! The default `esp32` variant will be used.
+Reading CMake configuration...
+Generating assembly for certificate bundle...
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 33 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- FS @ 2.0.0
+|-- SPIFFS @ 2.0.0
+Building in release mode
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\audio.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\camera.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\counting.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\inference.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\main.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\model_data_stub.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\power.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\speech.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\src\model_data.cpp.o
+Generating LD script .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\memory.ld
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\__pio_env\__dummy.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\__pio_env\__dummy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\__pio_env\__dummy.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\__pio_env\lib__pio_env.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\app_trace\app_trace.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\app_trace\app_trace_util.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\app_trace\host_file_io.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\app_trace\gcov\gcov_rtio.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\app_trace\libapp_trace.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\app_update\esp_ota_ops.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\app_update\esp_app_desc.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\app_update\libapp_update.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\asio\asio\asio\src\asio.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\asio\libasio.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_common_loader.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_clock_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_flash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_mem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_random.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_random_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_utility.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\esp_image_format.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\flash_encrypt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\secure_boot.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\flash_partitions.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\flash_qio_mode.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_flash_config_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\bootloader_efuse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader_support\src\idf\bootloader_sha.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\bootloader_support\libbootloader_support.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborencoder_close_container_checked.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborencoder.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborerrorstrings.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborparser_dup_string.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborparser.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborpretty_stdio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborpretty.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cbortojson.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\cborvalidation.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbor\tinycbor\src\open_memstream.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\cbor\libcbor.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cmock\CMock\src\cmock.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\cmock\libcmock.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\address.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\async.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\block.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_asn1.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_cache.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_debug.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_event.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_hashkey.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_io.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_mbedtls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_notls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_prng.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_session.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_tcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\coap_time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\encode.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\mem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\net.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\option.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\pdu.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\resource.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\str.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\subscribe.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\coap\libcoap\src\uri.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\coap\libcoap.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\commands.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\esp_console_repl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\split_argv.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\linenoise\linenoise.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_cmd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_date.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_dbl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_dstr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_end.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_file.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_hashtable.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_int.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_lit.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_rem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_rex.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_str.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\arg_utils.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\console\argtable3\argtable3.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\console\libconsole.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cxx\cxx_exception_stubs.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cxx\cxx_guards.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\cxx\libcxx.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\gpio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\i2c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\i2s.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\ledc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\pcnt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\periph_ctrl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\rmt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\rtc_io.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\rtc_module.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\sdspi_crc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\sdspi_host.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\sdspi_transaction.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\sigmadelta.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\spi_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\spi_master.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\spi_slave.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\spi_bus_lock.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\timer.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\twai.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\uart.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\adc_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\adc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\dedic_gpio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\gdma.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\sdmmc_host.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\sdmmc_transaction.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\mcpwm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\usb_serial_jtag.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\spi_slave_hd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\touch_sensor_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\esp32s3\touch_sensor.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\driver\esp32s3\rtc_tempsensor.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\driver\libdriver.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\esp32s3\esp_efuse_table.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\esp32s3\esp_efuse_fields.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\esp32s3\esp_efuse_rtc_calib.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\esp32s3\esp_efuse_utility.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\src\esp_efuse_api.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\src\esp_efuse_fields.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\src\esp_efuse_utility.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\efuse\src\esp_efuse_api_key_esp32xx.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\efuse\libefuse.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-tls\esp_tls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-tls\esp-tls-crypto\esp_tls_crypto.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-tls\esp_tls_error_capture.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-tls\esp_tls_mbedtls.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp-tls\libesp-tls.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_adc_cal\esp_adc_cal_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_adc_cal\esp32s3\esp_adc_cal.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_adc_cal\libesp_adc_cal.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_common\src\esp_err_to_name.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_common\libesp_common.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_eth\src\esp_eth.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_eth\src\esp_eth_phy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_eth\src\esp_eth_netif_glue.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_eth\libesp_eth.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_event\default_event_loop.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_event\esp_event.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_event\esp_event_private.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_event\event_loop_legacy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_event\event_send.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_event\libesp_event.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_gdbstub\src\gdbstub.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_gdbstub\src\packet.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_gdbstub\xtensa\gdbstub_xtensa.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_gdbstub\xtensa\gdbstub-entry.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_gdbstub\esp_common\gdbstub_common.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_gdbstub\libesp_gdbstub.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hid\src\esp_hidd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hid\src\esp_hidh.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hid\src\esp_hid_common.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_hid\libesp_hid.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_client\esp_http_client.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_client\lib\http_auth.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_client\lib\http_header.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_client\lib\http_utils.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_http_client\libesp_http_client.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_server\src\httpd_main.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_server\src\httpd_parse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_server\src\httpd_sess.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_server\src\httpd_txrx.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_server\src\httpd_uri.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_server\src\httpd_ws.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_http_server\src\util\ctrl_sock.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_http_server\libesp_http_server.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_https_ota\src\esp_https_ota.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_https_ota\libesp_https_ota.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\compare_set.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\cpu_util.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\esp_async_memcpy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\esp_clk.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\clk_ctrl_os.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\hw_random.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\intr_alloc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\mac_addr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\revision.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\sleep_modes.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\sleep_console.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\sleep_gpio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\sleep_mac_bb.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\regi2c_ctrl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\sleep_retention.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\sleep_wake_stub.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\rtc_clk.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\rtc_clk_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\rtc_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\rtc_pm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\rtc_sleep.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\rtc_time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\rtc_wdt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\chip_info.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\async_memcpy_impl_gdma.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\dport_access.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\esp_hmac.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\esp_ds.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\esp_crypto_lock.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\spiram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\sar_periph_ctrl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_hw_support\port\esp32s3\opiram_psram.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_hw_support\libesp_hw_support.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_ipc\src\esp_ipc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_ipc\src\esp_ipc_isr\esp_ipc_isr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_ipc\src\esp_ipc_isr\esp_ipc_isr_handler.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_ipc\src\esp_ipc_isr\esp_ipc_isr_routines.S.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_ipc\libesp_ipc.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_io.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_io_i2c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_io_i2s.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_io_spi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_io_i80.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_nt35510.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_ssd1306.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_st7789.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_panel_ops.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_lcd\src\esp_lcd_rgb_panel.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_lcd\libesp_lcd.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_local_ctrl\src\esp_local_ctrl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_local_ctrl\src\esp_local_ctrl_handler.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_local_ctrl\proto-c\esp_local_ctrl.pb-c.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_local_ctrl\libesp_local_ctrl.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_netif\esp_netif_handlers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_netif\esp_netif_objects.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_netif\esp_netif_defaults.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_netif\lwip\esp_netif_lwip.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_netif\lwip\esp_netif_lwip_defaults.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_netif\lwip\esp_netif_sta_list.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_netif\loopback\esp_netif_loopback.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_netif\libesp_netif.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_phy\src\phy_override.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_phy\src\lib_printf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_phy\src\phy_init.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_phy\libesp_phy.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_pm\pm_locks.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_pm\pm_trace.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_pm\pm_impl.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_pm\libesp_pm.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_ringbuf\ringbuf.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_ringbuf\libesp_ringbuf.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_crc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_sys.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_uart.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_tjpgd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_efuse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_longjmp.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_cache.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_cache_writeback_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_rom\patches\esp_rom_mmap.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_rom\libesp_rom.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_serial_slave_link\essl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_serial_slave_link\essl_sdio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_serial_slave_link\essl_spi.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_serial_slave_link\libesp_serial_slave_link.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\esp_err.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\crosscore_int.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\freertos_hooks.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\int_wdt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\panic.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\esp_system.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\startup.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\system_time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\stack_check.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\task_wdt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\ubsan.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\xt_wdt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\debug_stubs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\cpu_start.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\panic_handler.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\brownout.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\soc\esp32s3\highint_hdl.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\soc\esp32s3\clk.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\soc\esp32s3\reset_reason.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\soc\esp32s3\system_internal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\soc\esp32s3\cache_err_int.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\soc\esp32s3\apb_backup_dma.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\panic_arch.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\panic_handler_asm.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\expression_with_stack.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\expression_with_stack_asm.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\debug_helpers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\debug_helpers_asm.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\debug_stubs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_system\port\arch\xtensa\trax.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_system\libesp_system.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_timer\src\esp_timer.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_timer\src\ets_timer_legacy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_timer\src\system_time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_timer\src\esp_timer_impl_systimer.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_timer\libesp_timer.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_websocket_client\esp_websocket_client.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_websocket_client\libesp_websocket_client.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\src\coexist.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\src\mesh_event.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\src\smartconfig.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\src\smartconfig_ack.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\src\wifi_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\src\wifi_default.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\src\wifi_netif.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_wifi\esp32s3\esp_adapter.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\esp_wifi\libesp_wifi.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\espcoredump\src\core_dump_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\espcoredump\src\core_dump_checksum.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\espcoredump\src\core_dump_flash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\espcoredump\src\core_dump_uart.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\espcoredump\src\core_dump_elf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\espcoredump\src\core_dump_binary.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\espcoredump\src\port\xtensa\core_dump_port.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\espcoredump\libespcoredump.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\activation_functions\esp_nn_relu_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\activation_functions\esp_nn_hard_swish_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\common\esp_nn_mean_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\basic_math\esp_nn_add_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\basic_math\esp_nn_mul_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_opt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_opt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\fully_connected\esp_nn_fully_connected_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\softmax\esp_nn_softmax_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\softmax\esp_nn_softmax_opt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\logistic\esp_nn_logistic_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\pooling\esp_nn_avg_pool_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\pooling\esp_nn_max_pool_ansi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\common\esp_nn_common_functions_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\common\esp_nn_dot_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\common\esp_nn_multiply_by_quantized_mult_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\common\esp_nn_multiply_by_quantized_mult_ver1_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\activation_functions\esp_nn_relu_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\activation_functions\esp_nn_hard_swish_s8_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\common\esp_nn_mean_s8_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\basic_math\esp_nn_add_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\basic_math\esp_nn_mul_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\basic_math\esp_nn_mul_broadcast_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_s8_1x1_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_s8_3x3_opt_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s8_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_s16_mult8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_s8_mult8_1x1_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_s16_mult4_1x1_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_conv_s8_filter_aligned_input_padded_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s8_mult1_3x3_padded_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s16_mult1_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s16_mult1_3x3_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s16_mult1_3x3_no_pad_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s16_mult8_3x3_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s16_mult4_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\convolution\esp_nn_depthwise_conv_s16_mult8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\fully_connected\esp_nn_fully_connected_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\fully_connected\esp_nn_fc_s8_mac16_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\fully_connected\esp_nn_fully_connected_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\fully_connected\esp_nn_fully_connected_per_ch_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\pooling\esp_nn_max_pool_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\pooling\esp_nn_avg_pool_s8_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\pooling\esp_nn_avg_pool_s8_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-nn\src\softmax\esp_nn_softmax_s8_esp32s3.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\espressif__esp-nn\libespressif__esp-nn.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\debug_log.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\flatbuffer_utils.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\memory_helpers.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_allocation_info.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_allocator.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_context.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_interpreter_context.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_interpreter_graph.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_interpreter.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_log.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_op_resolver.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_profiler.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_resource_variable.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\micro_utils.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\recording_micro_allocator.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\system_setup.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\esp\micro_time.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\activations.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\activations_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\add_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\add_n.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\arg_min_max.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\assign_variable.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\batch_matmul.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\batch_matmul_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\batch_to_space_nd.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\broadcast_args.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\broadcast_to.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\call_once.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\cast.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\ceil.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\circular_buffer.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\circular_buffer_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\comparisons.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\concatenation.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\conv_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\cumsum.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decompress.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\decompress_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\depth_to_space.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\depthwise_conv_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\dequantize.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\dequantize_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\detection_postprocess.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\div.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\elementwise.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\elu.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\embedding_lookup.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\ethosu.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\exp.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\expand_dims.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\fill.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\floor.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\floor_div.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\floor_mod.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\fully_connected_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\gather.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\gather_nd.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\hard_swish.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\hard_swish_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\if.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\kernel_runner.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\kernel_util.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\l2_pool_2d.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\l2norm.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\leaky_relu.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\leaky_relu_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\log_softmax.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logical.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logical_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logistic.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\logistic_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\lstm_eval.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\lstm_eval_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\maximum_minimum.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\micro_tensor_utils.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mirror_pad.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mul_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\neg.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pack.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pad.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pad_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\pooling_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\prelu.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\prelu_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\quantize.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\quantize_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\read_variable.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reduce.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reduce_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reshape.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reshape_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\resize_bilinear.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\resize_nearest_neighbor.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\reverse.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\round.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\select.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\shape.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\slice.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\softmax_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\space_to_batch_nd.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\space_to_depth.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\split.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\split_v.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\squared_difference.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\squeeze.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\strided_slice.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\strided_slice_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\svdf.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\svdf_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\tanh.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\transpose.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\transpose_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\transpose_conv.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\unidirectional_sequence_lstm.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\unpack.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\var_handle.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\while.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\zeros_like.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\tflite_bridge\flatbuffer_conversions_bridge.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\tflite_bridge\micro_error_reporter.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\add.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\conv.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\depthwise_conv.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\fully_connected.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\mul.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\pooling.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\softmax.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\delay.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\energy.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\fft_auto_scale_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\fft_auto_scale_kernel.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\filter_bank.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\filter_bank_log.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\filter_bank_spectral_subtraction.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\filter_bank_square_root.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\filter_bank_square_root_common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\framer.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\irfft.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\overlap_add.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\pcan.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\rfft.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\stacker.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\micro\kernels\window.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\circular_buffer.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\energy.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\fft_auto_scale.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\filter_bank.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\filter_bank_log.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\filter_bank_spectral_subtraction.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\filter_bank_square_root.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\irfft_float.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\irfft_int16.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\irfft_int32.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\log.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\max_abs.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\msb_32.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\msb_64.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\overlap_add.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\pcan_argc_fixed.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\rfft_float.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\rfft_int16.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\rfft_int32.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\square_root_32.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\square_root_64.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\window.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\kiss_fft_wrappers\kiss_fft_float.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\kiss_fft_wrappers\kiss_fft_int16.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\signal\src\kiss_fft_wrappers\kiss_fft_int32.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\kernel_util.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\memory_planner\greedy_memory_planner.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\memory_planner\linear_memory_planner.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\non_persistent_arena_buffer_allocator.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\persistent_arena_buffer_allocator.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\recording_single_arena_buffer_allocator.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\arena_allocator\single_arena_buffer_allocator.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\core\c\common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\core\api\flatbuffer_conversions.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\core\api\tensor_utils.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\common.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\quantization_util.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\portable_tensor_utils.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\tensor_utils.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\tensor_ctypes.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\reference\portable_tensor_utils.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\lite\kernels\internal\reference\comparisons.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir\lite\core\api\error_reporter.cc.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp-tflite-micro\tensorflow\compiler\mlir\lite\schema\schema_utils.cc.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\espressif__esp-tflite-micro\libespressif__esp-tflite-micro.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\conversions\yuv.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\conversions\to_jpg.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\conversions\to_bmp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\conversions\jpge.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\conversions\esp_jpg_decode.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\driver\esp_camera.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\driver\cam_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\driver\sensor.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\ov2640.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\ov3660.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\ov5640.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\ov7725.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\ov7670.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\nt99141.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\gc0308.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\gc2145.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\gc032a.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\bf3005.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\bf20a6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\sc101iot.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\sc030iot.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\sc031gs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\sensors\mega_ccm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\target\esp32s3\ll_cam.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\driver\sccb.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\managed_components\espressif__esp32-camera\target\tjpgd.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\espressif__esp32-camera\libespressif__esp32-camera.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\expat\expat\expat\lib\xmlparse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\expat\expat\expat\lib\xmlrole.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\expat\expat\expat\lib\xmltok.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\expat\expat\expat\lib\xmltok_impl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\expat\expat\expat\lib\xmltok_ns.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\expat\libexpat.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\diskio\diskio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\diskio\diskio_rawflash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\diskio\diskio_sdmmc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\diskio\diskio_wl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\src\ff.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\port\freertos\ffsystem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\src\ffunicode.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\vfs\vfs_fat.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\vfs\vfs_fat_sdmmc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\fatfs\vfs\vfs_fat_spiflash.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\fatfs\libfatfs.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\base64.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cbuf.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-adc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-bt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-cpu.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-dac.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-gpio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-i2c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-i2c-slave.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-ledc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-matrix.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-misc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-psram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-rgb-led.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-sigmadelta.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-spi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-timer.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-tinyusb.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-touch.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-uart.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp32-hal-rmt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Esp.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\FunctionalInterrupt.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\HardwareSerial.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\IPAddress.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\IPv6Address.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cdecode.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\cencode.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\main.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\MD5Builder.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Print.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\stdlib_noniso.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Stream.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\StreamString.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Tone.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\HWCDC.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USB.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBCDC.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBMSC.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\FirmwareMSC.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\firmware_msc_fat.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wiring_pulse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wiring_shift.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WMath.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WString.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\ArduinoOTA.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\AsyncUDP.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BluetoothSerial.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BTAddress.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BTAdvertisedDeviceSet.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BTScanResultsSet.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\DNSServer.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\EEPROM.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\ESPmDNS.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\ETH.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\FFat.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\FS.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\vfs_api.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\HTTPClient.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\HTTPUpdate.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\LittleFS.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Insights.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\I2S.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\NetBIOS.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Preferences.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\RMaker.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\RMakerNode.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\RMakerParam.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\RMakerDevice.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\RMakerType.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\RMakerQR.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\RMakerUtils.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\AppInsights.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\SD_MMC.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\SD.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sd_diskio.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sd_diskio_crc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\SimpleBLE.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\SPIFFS.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\SPI.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Ticker.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Updater.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\HttpsOTAUpdate.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBHID.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBHIDMouse.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBHIDKeyboard.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBHIDGamepad.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBHIDConsumerControl.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBHIDSystemControl.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBHIDVendor.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\USBVendor.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WebServer.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Parsing.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mimetable.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\ssl_client.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp_crt_bundle.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiClientSecure.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiAP.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiClient.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFi.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiGeneric.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiMulti.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiScan.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiServer.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiSTA.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiUdp.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\WiFiProv.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\Wire.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLE2902.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLE2904.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEAddress.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEAdvertisedDevice.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEAdvertising.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEBeacon.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLECharacteristic.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLECharacteristicMap.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEClient.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEDescriptor.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEDescriptorMap.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEDevice.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEEddystoneTLM.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEEddystoneURL.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEExceptions.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEHIDDevice.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLERemoteCharacteristic.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLERemoteDescriptor.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLERemoteService.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEScan.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLESecurity.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEServer.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEService.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEServiceMap.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEUtils.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEUUID.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\BLEValue.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\FreeRTOS.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\GeneralUtils.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\framework-arduinoespressif32\libframework-arduinoespressif32.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\common\esp_modbus_master.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\common\esp_modbus_slave.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\mb.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\mb_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\ascii\mbascii.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\ascii\mbascii_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\rtu\mbrtu_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\rtu\mbrtu.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\rtu\mbcrc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\tcp\mbtcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\tcp\mbtcp_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\port.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\portevent.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\portevent_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\portother.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\portother_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\portserial.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\portserial_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\porttimer.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\port\porttimer_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfunccoils.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfunccoils_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncdiag.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncdisc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncdisc_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncholding.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncholding_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncinput.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncinput_m.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbfuncother.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\modbus\functions\mbutils.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\serial_slave\modbus_controller\mbc_serial_slave.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\serial_master\modbus_controller\mbc_serial_master.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\tcp_slave\port\port_tcp_slave.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\tcp_slave\modbus_controller\mbc_tcp_slave.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\tcp_master\modbus_controller\mbc_tcp_master.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\tcp_master\port\port_tcp_master.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\common\esp_modbus_master_tcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\common\esp_modbus_slave_tcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\common\esp_modbus_master_serial.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freemodbus\freemodbus\common\esp_modbus_slave_serial.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\freemodbus\libfreemodbus.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\xtensa\port.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\xtensa\portasm.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\xtensa\xtensa_context.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\xtensa\xtensa_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\xtensa\xtensa_overlay_os_hook.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\xtensa\xtensa_vector_defaults.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\xtensa\xtensa_vectors.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\esp_additions\task_snapshot.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\port_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\port\port_systick.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\croutine.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\event_groups.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\list.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\queue.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\tasks.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\timers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\stream_buffer.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\FreeRTOS-openocd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\freertos\freertos_v8_compat.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\freertos\libfreertos.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\wdt_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\mpu_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\cpu_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\efuse_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\esp32s3\efuse_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\rmt_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\rtc_io_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_slave_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_slave_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\i2s_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\sigmadelta_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\timer_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\ledc_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\ledc_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\i2c_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\i2c_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\gpio_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\uart_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\uart_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_flash_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_flash_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_flash_encrypt_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\soc_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\interrupt_controller_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\sha_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\aes_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\twai_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\twai_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\adc_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\ds_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\gdma_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\lcd_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\mcpwm_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\pcnt_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_flash_hal_gpspi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\spi_slave_hd_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\systimer_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\touch_sensor_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\usb_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\usb_phy_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\xt_wdt_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\esp32s3\brownout_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\esp32s3\hmac_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\esp32s3\interrupt_descriptor_table.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\esp32s3\touch_sensor_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\esp32s3\rtc_cntl_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\hal\usb_dwc_hal.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\hal\libhal.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\heap\heap_caps.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\heap\heap_caps_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\heap\multi_heap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\heap\heap_tlsf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\heap\port\memory_layout_utils.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\heap\port\esp32s3\memory_layout.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\heap\libheap.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\jsmn\src\jsmn.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\jsmn\libjsmn.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\json\cJSON\cJSON.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\json\cJSON\cJSON_Utils.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\json\libjson.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_aead\chacha20poly1305\sodium\aead_chacha20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_aead\xchacha20poly1305\sodium\aead_xchacha20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_auth\crypto_auth.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_auth\hmacsha256\auth_hmacsha256.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_auth\hmacsha512\auth_hmacsha512.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_auth\hmacsha512256\auth_hmacsha512256.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_box\crypto_box.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_box\crypto_box_easy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_box\crypto_box_seal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_box\curve25519xchacha20poly1305\box_curve25519xchacha20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_box\curve25519xchacha20poly1305\box_seal_curve25519xchacha20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_box\curve25519xsalsa20poly1305\box_curve25519xsalsa20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_core\ed25519\core_ed25519.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_core\ed25519\core_ristretto255.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_core\ed25519\ref10\ed25519_ref10.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_core\hchacha20\core_hchacha20.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_core\hsalsa20\core_hsalsa20.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_core\hsalsa20\ref2\core_hsalsa20_ref2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_core\salsa\ref\core_salsa_ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_generichash\blake2b\generichash_blake2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_generichash\blake2b\ref\blake2b-compress-avx2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_generichash\blake2b\ref\blake2b-compress-ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_generichash\blake2b\ref\blake2b-compress-ssse3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_generichash\blake2b\ref\blake2b-ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_generichash\blake2b\ref\generichash_blake2b.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_generichash\crypto_generichash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_hash\crypto_hash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_hash\sha256\cp\hash_sha256_cp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_hash\sha256\hash_sha256.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_hash\sha512\cp\hash_sha512_cp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_hash\sha512\hash_sha512.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_kdf\blake2b\kdf_blake2b.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_kdf\crypto_kdf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_kx\crypto_kx.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_onetimeauth\crypto_onetimeauth.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_onetimeauth\poly1305\donna\poly1305_donna.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_onetimeauth\poly1305\onetimeauth_poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\argon2-core.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\argon2-encoding.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\argon2-fill-block-avx2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\argon2-fill-block-avx512f.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\argon2-fill-block-ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\argon2-fill-block-ssse3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\argon2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\blake2b-long.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\pwhash_argon2i.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\argon2\pwhash_argon2id.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\crypto_pwhash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\scryptsalsa208sha256\crypto_scrypt-common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\scryptsalsa208sha256\nosse\pwhash_scryptsalsa208sha256_nosse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\scryptsalsa208sha256\pbkdf2-sha256.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\scryptsalsa208sha256\pwhash_scryptsalsa208sha256.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_pwhash\scryptsalsa208sha256\scrypt_platform.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\crypto_scalarmult.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\ref10\x25519_ref10.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\consts.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\curve25519_sandy2x.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\fe51_invert.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\fe51_mul.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\fe51_nsquare.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\fe51_pack.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\fe_frombytes_sandy2x.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\ladder.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\sandy2x\sandy2x.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\curve25519\scalarmult_curve25519.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\ed25519\ref10\scalarmult_ed25519_ref10.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_scalarmult\ristretto255\ref10\scalarmult_ristretto255_ref10.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_secretbox\crypto_secretbox.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_secretbox\crypto_secretbox_easy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_secretbox\xchacha20poly1305\secretbox_xchacha20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_secretbox\xsalsa20poly1305\secretbox_xsalsa20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_secretstream\xchacha20poly1305\secretstream_xchacha20poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_shorthash\crypto_shorthash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_shorthash\siphash24\ref\shorthash_siphash24_ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_shorthash\siphash24\ref\shorthash_siphashx24_ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_shorthash\siphash24\shorthash_siphash24.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_shorthash\siphash24\shorthash_siphashx24.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_sign\crypto_sign.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_sign\ed25519\ref10\keypair.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_sign\ed25519\ref10\obsolete.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_sign\ed25519\ref10\open.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_sign\ed25519\ref10\sign.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_sign\ed25519\sign_ed25519.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\chacha20\dolbeau\chacha20_dolbeau-avx2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\chacha20\dolbeau\chacha20_dolbeau-ssse3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\chacha20\ref\chacha20_ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\chacha20\stream_chacha20.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\crypto_stream.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa20\ref\salsa20_ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa20\stream_salsa20.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa20\xmm6\salsa20_xmm6-asm.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa20\xmm6\salsa20_xmm6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa20\xmm6int\salsa20_xmm6int-avx2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa20\xmm6int\salsa20_xmm6int-sse2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa2012\ref\stream_salsa2012_ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa2012\stream_salsa2012.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa208\ref\stream_salsa208_ref.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\salsa208\stream_salsa208.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\xchacha20\stream_xchacha20.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_stream\xsalsa20\stream_xsalsa20.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\crypto_verify\sodium\verify.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\randombytes\randombytes.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\sodium\codecs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\sodium\core.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\sodium\runtime.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\sodium\utils.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\libsodium\src\libsodium\sodium\version.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\libsodium\port\randombytes_esp32.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\libsodium\liblibsodium.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\log\log.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\log\log_buffers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\log\log_freertos.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\log\liblog.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\apps\sntp\sntp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\api_lib.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\api_msg.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\err.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\if_api.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\netbuf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\netdb.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\netifapi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\sockets.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\api\tcpip.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\apps\sntp\sntp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\apps\netbiosns\netbiosns.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\def.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\dns.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\inet_chksum.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ip.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\mem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\memp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\netif.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\pbuf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\raw.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\stats.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\sys.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\tcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\tcp_in.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\tcp_out.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\timeouts.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\udp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\autoip.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\dhcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\etharp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\icmp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\igmp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\ip4.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\ip4_napt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\ip4_addr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv4\ip4_frag.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\dhcp6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\ethip6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\icmp6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\inet6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\ip6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\ip6_addr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\ip6_frag.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\mld6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\core\ipv6\nd6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ethernet.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\lowpan6.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\slipif.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\auth.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\ccp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\chap-md5.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\chap-new.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\chap_ms.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\demand.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\eap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\ecp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\eui64.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\fsm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\ipcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\ipv6cp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\lcp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\magic.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\mppe.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\multilink.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\ppp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\pppapi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\pppcrypt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\pppoe.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\pppol2tp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\pppos.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\upap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\utils.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\lwip\src\netif\ppp\vj.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\hooks\tcp_isn_default.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\hooks\lwip_default_hooks.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\debug\lwip_debug.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\freertos\sys_arch.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\netif\dhcp_state.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\netif\wlanif.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\netif\ethernetif.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\port\esp32\vfs_lwip.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\apps\ping\esp_ping.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\apps\ping\ping.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\apps\ping\ping_sock.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lwip\apps\dhcpserver\dhcpserver.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\lwip\liblwip.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\esp_crt_bundle\esp_crt_bundle.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\.pio\build\seeed_xiao_esp32s3_tflm_frame_dump\x509_crt_bundle.S.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\mbedtls\libmbedtls.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mdns\mdns.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mdns\mdns_networking_lwip.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mdns\mdns_console.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\mdns\libmdns.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mqtt\esp-mqtt\mqtt_client.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mqtt\esp-mqtt\lib\mqtt_msg.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mqtt\esp-mqtt\lib\mqtt_outbox.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mqtt\esp-mqtt\lib\platform_esp32_idf.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\mqtt\libmqtt.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\abort.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\assert.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\heap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\locks.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\poll.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\pthread.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\random.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\reent_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\newlib_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\syscalls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\termios.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\stdatomic.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\sysconf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\realpath.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\newlib\port\esp_time_impl.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\newlib\libnewlib.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_buf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_callbacks.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_debug.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_extpri.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_frame.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_hd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_hd_huffman.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_hd_huffman_data.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_helper.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_http.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_map.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_mem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_npn.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_option.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_outbound_item.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_pq.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_priority_spec.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_queue.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_ratelim.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_rcbuf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_session.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_stream.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_submit.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\nghttp2_version.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\nghttp2\lib\sfparse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nghttp\port\http_parser.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\nghttp\libnghttp.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_api.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_cxx_api.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_item_hash_list.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_page.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_pagemanager.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_storage.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_handle_simple.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_handle_locked.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_partition.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_partition_lookup.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_partition_manager.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\nvs_flash\src\nvs_types.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\nvs_flash\libnvs_flash.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_cert.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_lib.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_methods.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_pkey.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_bio.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_err.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_stack.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\library\ssl_x509.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\platform\ssl_pm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\openssl\platform\ssl_port.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\openssl\libopenssl.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\perfmon\xtensa_perfmon_access.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\perfmon\xtensa_perfmon_apis.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\perfmon\xtensa_perfmon_masks.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\perfmon\libperfmon.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protobuf-c\protobuf-c\protobuf-c\protobuf-c.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\protobuf-c\libprotobuf-c.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\src\common\protocomm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\src\security\security0.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\src\security\security1.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\proto-c\constants.pb-c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\proto-c\sec0.pb-c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\proto-c\sec1.pb-c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\proto-c\session.pb-c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\src\transports\protocomm_console.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\protocomm\src\transports\protocomm_httpd.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\protocomm\libprotocomm.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\pthread\pthread.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\pthread\pthread_cond_var.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\pthread\pthread_local_storage.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\pthread\pthread_rwlock.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\pthread\libpthread.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sdmmc\sdmmc_cmd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sdmmc\sdmmc_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sdmmc\sdmmc_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sdmmc\sdmmc_io.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sdmmc\sdmmc_mmc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sdmmc\sdmmc_sd.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\sdmmc\libsdmmc.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\lldesc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\soc_include_legacy_warn.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\adc_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\dedic_gpio_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\gdma_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\gpio_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\i2c_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\i2s_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\interrupts.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\lcd_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\ledc_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\mcpwm_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\pcnt_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\rmt_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\rtc_io_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\sdio_slave_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\sdmmc_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\sigmadelta_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\spi_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\timer_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\touch_sensor_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\uart_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\usb_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\soc\esp32s3\usb_phy_periph.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\soc\libsoc.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\partition.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\esp32s3\spi_flash_rom_patch.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\esp32s3\spi_timing_config.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_timing_tuning.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_hpm_enable.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_drivers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_generic.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_issi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_mxic.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_gd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_winbond.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_boya.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_mxic_opi.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_chip_th.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\memspi_host_driver.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\cache_utils.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\flash_mmap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\flash_ops.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\esp32s3\flash_ops_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\esp_flash_api.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\esp_flash_spi_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_os_func_app.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spi_flash\spi_flash_os_func_noos.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\spi_flash\libspi_flash.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spiffs\esp_spiffs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spiffs\spiffs_api.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spiffs\spiffs\src\spiffs_cache.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spiffs\spiffs\src\spiffs_check.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spiffs\spiffs\src\spiffs_gc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spiffs\spiffs\src\spiffs_hydrogen.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\spiffs\spiffs\src\spiffs_nucleus.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\spiffs\libspiffs.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\tcp_transport\transport.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\tcp_transport\transport_ssl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\tcp_transport\transport_internal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\tcp_transport\transport_ws.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\tcp_transport\libtcp_transport.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\tcpip_adapter\tcpip_adapter_compat.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\tcpip_adapter\libtcpip_adapter.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\ulp\ulp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\ulp\ulp_macro.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\ulp\libulp.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\unity\unity\src\unity.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\unity\unity_runner.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\unity\unity_port_esp32.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\unity\libunity.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\usb\hcd_dwc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\usb\hub.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\usb\usb_helpers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\usb\usb_host.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\usb\usb_private.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\usb\usbh.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\usb\usb_phy.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\usb\libusb.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\vfs\vfs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\vfs\vfs_eventfd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\vfs\vfs_uart.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\vfs\vfs_semihost.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\vfs\vfs_console.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\vfs\vfs_usb_serial_jtag.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\vfs\libvfs.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wear_levelling\Partition.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wear_levelling\SPI_Flash.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wear_levelling\WL_Ext_Perf.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wear_levelling\WL_Ext_Safe.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wear_levelling\WL_Flash.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wear_levelling\crc32.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wear_levelling\wear_levelling.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\wear_levelling\libwear_levelling.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\src\wifi_config.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\src\wifi_scan.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\src\manager.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\src\handlers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\src\scheme_console.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\proto-c\wifi_config.pb-c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\proto-c\wifi_scan.pb-c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\proto-c\wifi_constants.pb-c.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wifi_provisioning\src\scheme_softap.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\wifi_provisioning\libwifi_provisioning.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\port\os_xtensa.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\ap\ap_config.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\ap\ieee802_1x.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\ap\wpa_auth.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\ap\wpa_auth_ie.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\common\sae.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\common\dragonfly.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\common\wpa_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\bitfield.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\aes-siv.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\sha256-kdf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\ccmp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\aes-gcm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\crypto_ops.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\dh_group5.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\dh_groups.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\ms_funcs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\sha1-tlsprf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\sha256-tlsprf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\sha384-tlsprf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\sha256-prf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\sha1-prf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\sha384-prf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\md4-internal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\chap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_mschapv2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_peap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_peap_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_tls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_tls_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_ttls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\mschapv2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_fast.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_fast_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\eap_peer\eap_fast_pac.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\rsn_supp\pmksa_cache.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\rsn_supp\wpa.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\rsn_supp\wpa_ie.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\base64.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\ext_password.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\uuid.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\wpabuf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\wpa_debug.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\utils\json.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_attr_build.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_attr_parse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_attr_process.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_dev_attr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_enrollee.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_registrar.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\wps\wps_validate.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\esp_supplicant\src\esp_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\esp_supplicant\src\esp_wpa2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\esp_supplicant\src\esp_wpa_main.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\esp_supplicant\src\esp_wpas_glue.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\esp_supplicant\src\esp_wps.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\esp_supplicant\src\esp_wpa3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\esp_supplicant\src\esp_hostap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\tls_mbedtls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\fastpbkdf2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\crypto_mbedtls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\crypto_mbedtls-bignum.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\crypto_mbedtls-ec.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\rc4.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\des-internal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\aes-omac1.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\aes-wrap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\aes-unwrap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\wpa_supplicant\src\crypto\aes-ccm.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\wpa_supplicant\libwpa_supplicant.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\xtensa\eri.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\xtensa\xt_trax.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\xtensa\xtensa_intr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\xtensa\xtensa_intr_asm.S.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\xtensa\libxtensa.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\aes.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\aesni.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\arc4.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\aria.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\asn1parse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\asn1write.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\base64.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\bignum.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\blowfish.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\camellia.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ccm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\chacha20.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\chachapoly.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\cipher.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\cipher_wrap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\constant_time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\cmac.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ctr_drbg.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\des.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\dhm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ecdh.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ecdsa.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ecjpake.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ecp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ecp_curves.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\entropy.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\entropy_poll.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\error.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\gcm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\havege.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\hkdf.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\hmac_drbg.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\md.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\md2.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\md4.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\md5.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\memory_buffer_alloc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\mps_reader.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\mps_trace.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\nist_kw.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\oid.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\padlock.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pk.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pk_wrap.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pkcs12.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pkcs5.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pkparse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pkwrite.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\platform.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\platform_util.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\poly1305.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_aead.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_cipher.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_client.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_driver_wrappers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_ecp.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_hash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_mac.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_rsa.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_se.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_slot_management.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_crypto_storage.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\psa_its_file.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ripemd160.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\rsa.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\rsa_internal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\sha1.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\sha256.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\sha512.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\threading.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\timing.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\version.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\version_features.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\xtea.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\sha\dma\esp_sha_gdma_impl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\crypto_shared_gdma\esp_crypto_shared_gdma.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\aes\dma\esp_aes_gdma_impl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\esp_hardware.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\esp_mem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\esp_timing.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\sha\esp_sha.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\aes\esp_aes_xts.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\aes\esp_aes_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\aes\dma\esp_aes.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\sha\dma\sha.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\esp_ds\esp_rsa_sign_alt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\esp_bignum.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\esp32s3\bignum.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\sha\dma\esp_sha1.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\sha\dma\esp_sha256.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\sha\dma\esp_sha512.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\aes\esp_aes_gcm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\md\esp_md.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\mbedtls\mbedtls\library\libmbedcrypto.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\debug.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_cache.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_ciphersuites.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_cli.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_cookie.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_msg.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_srv.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_ticket.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_tls.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\ssl_tls13_keys.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\mbedtls_debug.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\port\net_sockets.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\mbedtls\mbedtls\library\libmbedtls.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\certs.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\pkcs11.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\x509.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\x509_create.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\x509_crl.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\x509_crt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\x509_csr.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\x509write_crt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\mbedtls\mbedtls\library\x509write_csr.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\esp-idf\mbedtls\mbedtls\library\libmbedx509.a
+Generating project linker script .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\sections.ld
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\hal\wdt_hal_iram.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\hal\mpu_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\hal\cpu_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\hal\efuse_hal.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\hal\esp32s3\efuse_hal.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\hal\libhal.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader\subproject\main\bootloader_start.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\main\libmain.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_common.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_common_loader.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_clock_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_flash.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_mem.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_random.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_random_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_utility.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\esp_image_format.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\flash_encrypt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\secure_boot.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\flash_partitions.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\flash_qio_mode.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_flash_config_esp32s3.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_efuse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_clock_loader.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_console.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_console_loader.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\bootloader_panic.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\esp32s3\bootloader_sha.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\esp32s3\bootloader_soc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader_support\src\esp32s3\bootloader_esp32s3.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\bootloader_support\libbootloader_support.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\esp32s3\esp_efuse_table.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\esp32s3\esp_efuse_fields.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\esp32s3\esp_efuse_rtc_calib.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\esp32s3\esp_efuse_utility.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\src\esp_efuse_api.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\src\esp_efuse_fields.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\src\esp_efuse_utility.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\efuse\src\esp_efuse_api_key_esp32xx.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\efuse\libefuse.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_common\src\esp_err_to_name.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\esp_common\libesp_common.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\compare_set.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\cpu_util.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\rtc_clk.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\rtc_clk_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\rtc_init.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\rtc_pm.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\rtc_sleep.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\rtc_time.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\rtc_wdt.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_hw_support\port\esp32s3\chip_info.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\esp_hw_support\libesp_hw_support.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_crc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_sys.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_uart.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_tjpgd.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_efuse.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_longjmp.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_cache.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_cache_writeback_esp32s3.S.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_rom\patches\esp_rom_mmap.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\esp_rom\libesp_rom.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp_system\esp_err.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\esp_system\libesp_system.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\log\log.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\log\log_buffers.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\log\log_noos.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\log\liblog.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\bootloader\subproject\components\micro-ecc\uECC_verify_antifault.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\micro-ecc\libmicro-ecc.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\lldesc.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\soc_include_legacy_warn.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\adc_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\dedic_gpio_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\gdma_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\gpio_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\i2c_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\i2s_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\interrupts.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\lcd_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\ledc_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\mcpwm_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\pcnt_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\rmt_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\rtc_io_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\sdio_slave_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\sdmmc_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\sigmadelta_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\spi_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\timer_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\touch_sensor_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\uart_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\usb_periph.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\soc\esp32s3\usb_phy_periph.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\soc\libsoc.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\spi_flash\esp32s3\spi_flash_rom_patch.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\spi_flash\libspi_flash.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\xtensa\eri.c.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\xtensa\xt_trax.c.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader\esp-idf\xtensa\libxtensa.a
+Linking .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader.elf
+Building .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\bootloader.bin
+esptool.py v4.11.0
+Creating esp32s3 image...
+Merged 1 ELF section
+Successfully created esp32s3 image.
+Generating partitions .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\partitions.bin
+Generating an empty partition .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\ota_data_initial.bin
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lib9b1\FS\FS.cpp.o
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lib9b1\FS\vfs_api.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lib9b1\libFS.a
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lib667\SPIFFS\SPIFFS.cpp.o
+Archiving .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\lib667\libSPIFFS.a
+Linking .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\firmware.elf
+Retrieving maximum program size .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\firmware.elf
+Checking size .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]   8.4% (used 27620 bytes from 327680 bytes)
+Flash: [=======   ]  73.3% (used 3892469 bytes from 5308416 bytes)
+Building .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\firmware.bin
+esptool.py v4.11.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Configuring upload protocol...
+AVAILABLE: cmsis-dap, esp-bridge, esp-builtin, esp-prog, espota, esptool, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa
+CURRENT: upload_protocol = esptool
+Looking for upload port...
+Using manually specified: COM3
+Uploading .pio\build\seeed_xiao_esp32s3_tflm_frame_dump\firmware.bin
+esptool.py v4.11.0
+Serial port COM3
+Connecting...
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+USB mode: USB-Serial/JTAG
+MAC: e0:72:a1:fa:38:3c
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 921600
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00005fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Flash will be erased from 0x0000e000 to 0x0000ffff...
+Flash will be erased from 0x00010000 to 0x003c6fff...
+SHA digest in image updated
+Compressed 22960 bytes to 14241...
+Writing at 0x00000000... (100 %)
+Wrote 22960 bytes (14241 compressed) at 0x00000000 in 0.4 seconds (effective 443.4 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 119...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (119 compressed) at 0x00008000 in 0.1 seconds (effective 455.2 kbit/s)...
+Hash of data verified.
+Compressed 8192 bytes to 31...
+Writing at 0x0000e000... (100 %)
+Wrote 8192 bytes (31 compressed) at 0x0000e000 in 0.1 seconds (effective 747.7 kbit/s)...
+Hash of data verified.
+Compressed 3892832 bytes to 3042958...
+Writing at 0x00010000... (0 %)
+Writing at 0x0001545b... (1 %)
+Writing at 0x00019e5e... (1 %)
+Writing at 0x0001e8fc... (2 %)
+Writing at 0x00023391... (2 %)
+Writing at 0x00027bc3... (3 %)
+Writing at 0x0002c5a2... (3 %)
+Writing at 0x00031114... (4 %)
+Writing at 0x00035b7a... (4 %)
+Writing at 0x0003a3af... (5 %)
+Writing at 0x0003edbc... (5 %)
+Writing at 0x00043af1... (6 %)
+Writing at 0x00048611... (6 %)
+Writing at 0x0004d069... (7 %)
+Writing at 0x00051b31... (8 %)
+Writing at 0x00056527... (8 %)
+Writing at 0x0005ae80... (9 %)
+Writing at 0x0005f7cd... (9 %)
+Writing at 0x00063ea1... (10 %)
+Writing at 0x0006859a... (10 %)
+Writing at 0x0006cd3e... (11 %)
+Writing at 0x00071534... (11 %)
+Writing at 0x00075dc4... (12 %)
+Writing at 0x0007a5fb... (12 %)
+Writing at 0x0007eeab... (13 %)
+Writing at 0x00083750... (13 %)
+Writing at 0x00087f52... (14 %)
+Writing at 0x0008c784... (15 %)
+Writing at 0x00091237... (15 %)
+Writing at 0x00095b27... (16 %)
+Writing at 0x0009a3e2... (16 %)
+Writing at 0x0009eba7... (17 %)
+Writing at 0x000a3534... (17 %)
+Writing at 0x000a7d45... (18 %)
+Writing at 0x000ac583... (18 %)
+Writing at 0x000b0cf1... (19 %)
+Writing at 0x000b5292... (19 %)
+Writing at 0x000b9827... (20 %)
+Writing at 0x000bde1f... (20 %)
+Writing at 0x000c248e... (21 %)
+Writing at 0x000c6e0d... (22 %)
+Writing at 0x000cb8da... (22 %)
+Writing at 0x000d0116... (23 %)
+Writing at 0x000d4b34... (23 %)
+Writing at 0x000d9468... (24 %)
+Writing at 0x000ddf3d... (24 %)
+Writing at 0x000e297e... (25 %)
+Writing at 0x000e724d... (25 %)
+Writing at 0x000ebbaf... (26 %)
+Writing at 0x000f0443... (26 %)
+Writing at 0x000f4cb0... (27 %)
+Writing at 0x000f9525... (27 %)
+Writing at 0x000fdd9b... (28 %)
+Writing at 0x0010243b... (29 %)
+Writing at 0x00106ccd... (29 %)
+Writing at 0x0010b509... (30 %)
+Writing at 0x0010fba3... (30 %)
+Writing at 0x001141fe... (31 %)
+Writing at 0x00118872... (31 %)
+Writing at 0x0011ce83... (32 %)
+Writing at 0x00121580... (32 %)
+Writing at 0x00125be2... (33 %)
+Writing at 0x0012a1fc... (33 %)
+Writing at 0x0012ec71... (34 %)
+Writing at 0x0013365c... (34 %)
+Writing at 0x00138109... (35 %)
+Writing at 0x0013cb1e... (36 %)
+Writing at 0x001416e1... (36 %)
+Writing at 0x0014604f... (37 %)
+Writing at 0x0014aa73... (37 %)
+Writing at 0x0014f0fe... (38 %)
+Writing at 0x00153955... (38 %)
+Writing at 0x00158262... (39 %)
+Writing at 0x0015cd9a... (39 %)
+Writing at 0x001616a2... (40 %)
+Writing at 0x0016604e... (40 %)
+Writing at 0x0016a810... (41 %)
+Writing at 0x0016ef28... (41 %)
+Writing at 0x0017387c... (42 %)
+Writing at 0x00178409... (43 %)
+Writing at 0x0017cf05... (43 %)
+Writing at 0x00181862... (44 %)
+Writing at 0x00186166... (44 %)
+Writing at 0x0018b02f... (45 %)
+Writing at 0x0018fdc5... (45 %)
+Writing at 0x00194e45... (46 %)
+Writing at 0x00199e15... (46 %)
+Writing at 0x0019ea8f... (47 %)
+Writing at 0x001a3611... (47 %)
+Writing at 0x001a815d... (48 %)
+Writing at 0x001acc2d... (48 %)
+Writing at 0x001b1673... (49 %)
+Writing at 0x001b611b... (50 %)
+Writing at 0x001baca8... (50 %)
+Writing at 0x001bf8f9... (51 %)
+Writing at 0x001c427f... (51 %)
+Writing at 0x001c8935... (52 %)
+Writing at 0x001ccfda... (52 %)
+Writing at 0x001d19a6... (53 %)
+Writing at 0x001d6550... (53 %)
+Writing at 0x001daf9f... (54 %)
+Writing at 0x001e01d4... (54 %)
+Writing at 0x001e50e7... (55 %)
+Writing at 0x001e9f76... (55 %)
+Writing at 0x001eedfc... (56 %)
+Writing at 0x001f3eb7... (56 %)
+Writing at 0x001f8a5d... (57 %)
+Writing at 0x001fdb5e... (58 %)
+Writing at 0x00202d8d... (58 %)
+Writing at 0x00207bf0... (59 %)
+Writing at 0x0020ccf6... (59 %)
+Writing at 0x00211ad2... (60 %)
+Writing at 0x00216a35... (60 %)
+Writing at 0x0021ba46... (61 %)
+Writing at 0x002208d6... (61 %)
+Writing at 0x002259ea... (62 %)
+Writing at 0x0022a86f... (62 %)
+Writing at 0x0022f65a... (63 %)
+Writing at 0x002343b9... (63 %)
+Writing at 0x00239042... (64 %)
+Writing at 0x0023e23f... (65 %)
+Writing at 0x00243ad2... (65 %)
+Writing at 0x00249330... (66 %)
+Writing at 0x0024eddd... (66 %)
+Writing at 0x002544e0... (67 %)
+Writing at 0x00259c93... (67 %)
+Writing at 0x0025f53d... (68 %)
+Writing at 0x00264e86... (68 %)
+Writing at 0x0026a329... (69 %)
+Writing at 0x0026e6d7... (69 %)
+Writing at 0x00272d18... (70 %)
+Writing at 0x00277128... (70 %)
+Writing at 0x0027b598... (71 %)
+Writing at 0x0027fae6... (72 %)
+Writing at 0x00283fbd... (72 %)
+Writing at 0x00288605... (73 %)
+Writing at 0x0028ca22... (73 %)
+Writing at 0x00290cc0... (74 %)
+Writing at 0x00294ea9... (74 %)
+Writing at 0x00299ad7... (75 %)
+Writing at 0x0029f185... (75 %)
+Writing at 0x002a45bf... (76 %)
+Writing at 0x002a9d0a... (76 %)
+Writing at 0x002af629... (77 %)
+Writing at 0x002b4793... (77 %)
+Writing at 0x002b8c72... (78 %)
+Writing at 0x002bd21d... (79 %)
+Writing at 0x002c174f... (79 %)
+Writing at 0x002c5bd8... (80 %)
+Writing at 0x002ca02a... (80 %)
+Writing at 0x002ce382... (81 %)
+Writing at 0x002d3061... (81 %)
+Writing at 0x002d7e6e... (82 %)
+Writing at 0x002dd459... (82 %)
+Writing at 0x002e3abc... (83 %)
+Writing at 0x002e7ca2... (83 %)
+Writing at 0x002ebf92... (84 %)
+Writing at 0x002f0238... (84 %)
+Writing at 0x002f44aa... (85 %)
+Writing at 0x002ffa58... (86 %)
+Writing at 0x0030d802... (86 %)
+Writing at 0x0031a9b5... (87 %)
+Writing at 0x00326850... (87 %)
+Writing at 0x0033148a... (88 %)
+Writing at 0x0034008c... (88 %)
+Writing at 0x00345dad... (89 %)
+Writing at 0x0034b7bc... (89 %)
+Writing at 0x003525dc... (90 %)
+Writing at 0x0035966d... (90 %)
+Writing at 0x0035fa4a... (91 %)
+Writing at 0x0036523c... (91 %)
+Writing at 0x0036b9bb... (92 %)
+Writing at 0x00370aad... (93 %)
+Writing at 0x00375ead... (93 %)
+Writing at 0x0037b656... (94 %)
+Writing at 0x00380fbd... (94 %)
+Writing at 0x0038759a... (95 %)
+Writing at 0x0038de03... (95 %)
+Writing at 0x00393cc3... (96 %)
+Writing at 0x00399900... (96 %)
+Writing at 0x0039e6c8... (97 %)
+Writing at 0x003a504b... (97 %)
+Writing at 0x003af125... (98 %)
+Writing at 0x003b5dc2... (98 %)
+Writing at 0x003bba10... (99 %)
+Writing at 0x003c1ad5... (100 %)
+Wrote 3892832 bytes (3042958 compressed) at 0x00010000 in 26.5 seconds (effective 1174.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+======================== [SUCCESS] Took 681.35 seconds ========================
+
+Environment                         Status    Duration
+----------------------------------  --------  ------------
+seeed_xiao_esp32s3_tflm_frame_dump  SUCCESS   00:11:21.352
+========================= 1 succeeded in 00:11:21.352 =========================

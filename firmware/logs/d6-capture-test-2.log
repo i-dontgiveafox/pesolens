@@ -1,0 +1,7 @@
+[ready] D5/GPIO6 LED off - capture busy
+[manual] D6 capture button pressed - capture in 3000 ms
+[manual] capture delay done
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 91 ms

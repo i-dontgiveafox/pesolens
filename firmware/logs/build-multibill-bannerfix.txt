@@ -1,0 +1,51 @@
+Processing seeed_xiao_esp32s3_tflm_button_capture (platform: espressif32; board: seeed_xiao_esp32s3; framework: arduino, espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/seeed_xiao_esp32s3.html
+PLATFORM: Espressif 32 (7.0.1) > Seeed Studio XIAO ESP32S3
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 5.06MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - framework-arduinoespressif32 @ 3.20017.241212+sha.dcc1105b 
+ - framework-espidf @ 3.40407.240606 (4.4.7) 
+ - tool-cmake @ 3.30.2 
+ - tool-esp-rom-elfs @ 0.0.1+20241011 
+ - tool-esptoolpy @ 2.41100.0 (4.11.0) 
+ - tool-idf @ 1.0.1 
+ - tool-mconf @ 1.4060000.20190628 (406.0.0) 
+ - tool-ninja @ 1.9.0 
+ - toolchain-esp32ulp @ 1.23800.240113 (2.38.0) 
+ - toolchain-riscv32-esp @ 8.4.0+2021r2-patch5 
+ - toolchain-xtensa-esp32s3 @ 8.4.0+2021r2-patch5
+Warning! Arduino framework as an ESP-IDF component doesn't handle the `variant` field! The default `esp32` variant will be used.
+Reading CMake configuration...
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 33 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- FS @ 2.0.0
+|-- SPIFFS @ 2.0.0
+Building in release mode
+Compiling .pio\build\seeed_xiao_esp32s3_tflm_button_capture\src\main.cpp.o
+src/main.cpp: In function 'void setup()':
+src/main.cpp:333:30: warning: unused variable 'wake' [-Wunused-variable]
+     esp_sleep_wakeup_cause_t wake = power_get_wake_cause();
+                              ^~~~
+Linking .pio\build\seeed_xiao_esp32s3_tflm_button_capture\firmware.elf
+Retrieving maximum program size .pio\build\seeed_xiao_esp32s3_tflm_button_capture\firmware.elf
+Checking size .pio\build\seeed_xiao_esp32s3_tflm_button_capture\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]   6.9% (used 22660 bytes from 327680 bytes)
+Flash: [=======   ]  73.3% (used 3892069 bytes from 5308416 bytes)
+Building .pio\build\seeed_xiao_esp32s3_tflm_button_capture\firmware.bin
+esptool.py v4.11.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+========================= [SUCCESS] Took 9.49 seconds =========================
+
+Environment                             Status    Duration
+--------------------------------------  --------  ------------
+seeed_xiao_esp32s3_tflm_button_capture  SUCCESS   00:00:09.491
+========================= 1 succeeded in 00:00:09.491 =========================

@@ -1,0 +1,34 @@
+e
+] D6/GPIO43 is ready LED only; capture runs after 5000 ms LED-on window
+[cam] warmup frame 1/2 ok
+[cam] warmup frame 2/2 ok
+[cam] init ok (RGB565 QVGA 320x240)
+[infer] invoke=32314 ms, threshold=0.25, candidates>threshold=0, nms_detections=0, returned=0
+[infer] class_max 20=0.000 50=0.000 100=0.012 200=0.000 500=0.000 1000=0.000
+[infer] conf-dist anchors=1029 global_best=0.012  >=0.10:0  >=0.15:0  >=0.20:0  >=0.25:0   out_quant scale=0.011684 zero=-118
+[infer] top1 class=100 score=0.012 box_raw=(0.4,0.5,0.7,1.0)
+[infer] top2 class=100 score=0.012 box_raw=(0.9,0.9,0.2,0.2)
+[infer] top3 class=100 score=0.012 box_raw=(0.6,0.9,0.7,0.1)
+[scan] inference complete in 32325 ms; detections=0
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+>>>>>>>>>>  NO BILL DETECTED / UNDETERMINED  <<<<<<<<<<
+[time] capture=0 ms preprocess=104 ms infer=32325 ms total=32429 ms
+[audio-out] start - ready LED remains off
+[speak] no bill detected; playing error tone
+[audio] playing error (274ms)
+[audio-out] done
+[cycle] #1 complete: detected=no busy_ms=32723 total_cycle_ms=37724
+
+[cycle] #2 start at 40070 ms
+[ready] D6/GPIO43 LED ON - auto ready window; place bill in view at 40070 ms
+[cycle] #2 ready window start: 5000 ms before capture
+[cycle] #2 ready window done: elapsed=5000 ms; capture starts now
+[ready] D6/GPIO43 LED OFF - capture/process/audio busy at 45070 ms
+[scan] capture start at 45071 ms
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[scan] capture complete in 0 ms; preprocessing frame
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 91 ms
+[cam] input int8 stats min=-128 max=-47 mean=-124.3 (n=150528)
+[scan] preprocess complete in 105 ms; inference start

@@ -1,0 +1,208 @@
+ESP32-S3 BOOTLOADER / FIRMWARE TROUBLESHOOTING SUMMARY
+=======================================================
+
+Date: 2026-05-23
+Project folder:
+C:\Users\Lester Valdez\Downloads\pesos-firmware-v1\firmware
+
+Board / PlatformIO target:
+- Board: Seeed Studio XIAO ESP32-S3 / XIAO ESP32-S3 Sense
+- PlatformIO board ID: seeed_xiao_esp32s3
+- Platform: espressif32
+- Framework: arduino
+- Serial port detected by Windows/PlatformIO: COM3
+- USB device shown as: USB VID:PID=303A:1001
+- Detected chip: ESP32-S3 QFN56 revision v0.2
+- Upload mode reported by esptool: USB-Serial/JTAG
+
+Important project pin mapping:
+- PesoLens trigger/wake button is intended to be D4 / GPIO5 to GND.
+- Firmware does not intentionally use D0 or BOOT/GPIO0 for external wiring.
+- On XIAO ESP32-S3, D0 is GPIO1.
+- BOOT is GPIO0.
+- Normal boot requires BOOT/GPIO0 to be high during reset.
+- If BOOT/GPIO0 is low during reset, ESP32-S3 enters download/bootloader mode.
+
+Original symptom:
+- Board appeared stuck in bootloader/download mode.
+- Serial monitor did not show firmware logs after pressing R/RESET.
+- The user confirmed they pressed only R/RESET and did not press B/BOOT.
+- External components were disconnected, leaving only the ESP32-S3 board.
+
+Expected firmware serial output on normal boot:
+------------------------------------------------
+=== pesos firmware boot ===
+[power] wake source: EXT0 on D4/GPIO5 (button, active-low)
+[power] wake reason: UNDEFINED (cold boot / reset)
+[boot] first boot / non-button wake - confirming and sleeping
+[power] entering deep sleep...
+
+Expected behavior:
+- After pressing only R/RESET, the board should run the flashed app.
+- It should print app logs at 115200 baud.
+- Then it may enter deep sleep because the D4/GPIO5 trigger button is disconnected.
+
+Commands that succeeded:
+------------------------
+1. Device detection:
+
+pio device list
+
+Output showed COM3:
+- Hardware ID: USB VID:PID=303A:1001
+- Description: USB Serial Device (COM3)
+
+2. Firmware build:
+
+pio run -e seeed_xiao_esp32s3
+
+Result:
+- SUCCESS
+
+3. Firmware upload:
+
+pio run -e seeed_xiao_esp32s3 --target upload --upload-port COM3
+
+Result:
+- SUCCESS
+- esptool connected to ESP32-S3.
+- Firmware was written and verified.
+- Hard resetting via RTS pin.
+
+4. SPIFFS/audio filesystem upload:
+
+pio run -e seeed_xiao_esp32s3 --target uploadfs --upload-port COM3
+
+Result:
+- SUCCESS
+- SPIFFS image was written and verified.
+
+5. Full flash erase:
+
+"C:\Users\Lester Valdez\AppData\Local\Programs\Python\Python312\python.exe" "C:\Users\Lester Valdez\.platformio\packages\tool-esptoolpy\esptool.py" --chip esp32s3 --port COM3 erase_flash
+
+Result:
+- Chip erase completed successfully in about 11.6 seconds.
+
+6. Re-upload after erase:
+
+pio run -e seeed_xiao_esp32s3 --target upload --upload-port COM3
+pio run -e seeed_xiao_esp32s3 --target uploadfs --upload-port COM3
+
+Result:
+- Both succeeded after erase_flash.
+
+7. Temporary serial probe test:
+- A simple serial_probe firmware was uploaded successfully.
+- It was expected to print:
+  === serial probe boot ===
+  [serial_probe] alive ...
+- Upload succeeded, but serial monitor still received 0 bytes.
+- This suggested the problem is not specific to the PesoLens firmware.
+
+Tests that failed / suspicious behavior:
+----------------------------------------
+1. Serial monitor received no firmware output.
+
+Commands tried:
+
+pio device monitor -p COM3 -b 115200
+
+and a custom Python serial reader at 115200 baud.
+
+Result:
+- COM3 opened.
+- Pressing R/RESET caused the USB serial device to drop/reconnect sometimes.
+- No app logs were captured.
+- Captured bytes: 0
+
+2. No-reset esptool check repeatedly connected immediately:
+
+"C:\Users\Lester Valdez\AppData\Local\Programs\Python\Python312\python.exe" "C:\Users\Lester Valdez\.platformio\packages\tool-esptoolpy\esptool.py" --chip esp32s3 --port COM3 --before no_reset --after no_reset chip_id
+
+Observed output included:
+- WARNING: Pre-connection option "no_reset" was selected.
+- Connecting...
+- Chip is ESP32-S3 (QFN56) (revision v0.2)
+- USB mode: USB-Serial/JTAG
+- MAC: 90:70:69:11:ec:10
+- Staying in bootloader.
+
+Why this matters:
+- With --before no_reset, esptool should usually fail if the chip is running the user app normally.
+- It connected immediately multiple times.
+- This strongly suggests the chip was already in ROM bootloader/download mode after reset.
+
+3. Monitor DTR/RTS experiment did not fix it.
+
+Temporarily added to platformio.ini:
+
+monitor_dtr = 0
+monitor_rts = 0
+upload_protocol = esptool
+
+Result:
+- Monitor was still blank.
+- No-reset esptool still connected immediately.
+- The added lines were reverted.
+
+Current status:
+---------------
+- Flash is not blank anymore.
+- Firmware has been re-uploaded successfully after erase_flash.
+- SPIFFS/audio filesystem has also been re-uploaded successfully.
+- Upload path works.
+- COM3 is visible.
+- The board still does not appear to boot into the app.
+- No app logs are visible after pressing only R/RESET.
+- Repeated no-reset esptool checks say "Staying in bootloader."
+
+Most likely current diagnosis:
+------------------------------
+This does not look like a PlatformIO upload failure anymore.
+It looks like a board boot-mode / hardware state problem.
+
+Most likely causes:
+- BOOT/GPIO0 is being held low electrically.
+- BOOT button may be electrically stuck even if it mechanically clicks.
+- GPIO0/BOOT pad may be shorted to GND by solder bridge, debris, flux, or board damage.
+- Reset/boot circuit on the board may be faulty.
+- Less likely: USB serial/CDC issue, but even serial_probe produced 0 bytes and no-reset esptool repeatedly found bootloader mode.
+
+Recommended next hardware checks:
+---------------------------------
+1. Disconnect all external modules and jumper wires.
+2. Unplug USB.
+3. Do not press B/BOOT.
+4. Use a multimeter continuity test between BOOT/GPIO0 and GND.
+5. Expected result:
+   - B/BOOT not pressed: no continuity / no beep.
+   - B/BOOT pressed: continuity / beep.
+6. If it beeps when B is not pressed, BOOT/GPIO0 is stuck low.
+7. Inspect BOOT button and nearby pads for solder bridge, metal debris, flux residue, or damage.
+8. Try a different USB cable/port only after checking BOOT/GPIO0.
+9. If possible, compare behavior with another XIAO ESP32-S3 board.
+
+Arduino IDE sanity check suggestion:
+------------------------------------
+To rule out PlatformIO concerns, upload this simple sketch in Arduino IDE:
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+  Serial.println("hello");
+}
+
+void loop() {
+  Serial.println("alive");
+  delay(1000);
+}
+
+Expected:
+- If Arduino IDE sketch prints "alive", then revisit PlatformIO/project config.
+- If Arduino IDE upload succeeds but prints nothing and the board still enters bootloader, the issue is likely board/BOOT/GPIO0 hardware state.
+
+Key conclusion:
+---------------
+Firmware and filesystem uploads are successful.
+The remaining problem is that after reset the ESP32-S3 still behaves as if it is in bootloader/download mode, so the flashed firmware is not actually running.

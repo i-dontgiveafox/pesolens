@@ -1,5 +1,5 @@
 // pesos firmware — camera module
-// Owns OV2640/OV3660 init, single-shot capture, and 320×320 int8 preprocessing.
+// Owns OV2640/OV3660 init, single-shot capture, and model-size int8 preprocessing.
 
 #pragma once
 
@@ -25,3 +25,7 @@ bool camera_preprocess_for_model(camera_fb_t* fb, int8_t* out_buf);
 
 // Return the frame buffer to the camera driver pool.
 void camera_release(camera_fb_t* fb);
+
+// Debug helper: convert one frame to JPEG and stream it as base64 over Serial.
+// Used only by capture/debug builds.
+bool camera_dump_jpeg_to_serial(camera_fb_t* fb);

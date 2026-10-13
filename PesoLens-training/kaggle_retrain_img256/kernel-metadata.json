@@ -1,0 +1,16 @@
+{
+  "id": "jamesasperilla/pesolens-img256",
+  "title": "pesolens-img256",
+  "code_file": "pesolens-img256.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [
+    "jamesasperilla/pesolens-july7"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

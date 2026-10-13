@@ -4,10 +4,10 @@ Reads the .tflite file produced by the PesoLens export pipeline and emits:
   - firmware/include/model_data.h
   - firmware/src/model_data.cpp
 
-If the default TFLite file is too large for the app partition declared in
-firmware/partitions.csv, the script automatically exports a smaller int8 TFLite
-model from the canonical PesoLens .pt checkpoint using imgsz=96 and converts
-that instead.
+The preferred default is the current Kaggle export trained at imgsz=256 with
+five classes: 20, 50, 100, 500, 1000.
+If that file is missing, the script can still fall back to older PesoLens
+exports or generate a small int8 export from the canonical .pt checkpoint.
 """
 
 from __future__ import annotations
@@ -21,20 +21,56 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 FIRMWARE_DIR = HERE.parent
+PROJECT_ROOT = FIRMWARE_DIR.parent
+TRAINING_DIR = PROJECT_ROOT / "PesoLens-training"
 USER_ROOT = Path.home()
 PESOLENS_DIR = USER_ROOT / "PesoLens-fixed-2026-05-12" / "PesoLens"
 PESOLENS_ALT_DIR = USER_ROOT / "PesoLens"
 
+
+# ORDER MATTERS. The first existing path wins when no explicit source is passed.
+# Keep the newest validated firmware export at the top. The 20260625 export below
+# it is a known-bad model (P500 recall 0.41); demoting it prevents a silent
+# regression if this script is ever re-run with no arguments.
 DEFAULT_TFLITE_CANDIDATES = (
+    FIRMWARE_DIR
+    / "model_exports"
+    / "kaggle-yolov8n-imgsz256-5class-20260928"
+    / "best_full_integer_quant.tflite",
+    FIRMWARE_DIR
+    / "model_exports"
+    / "kaggle-yolov8n-imgsz320-5class-20260707"
+    / "best_full_integer_quant.tflite",
+    FIRMWARE_DIR
+    / "model_exports"
+    / "kaggle-yolov8n-imgsz320-5class-20260625"
+    / "best_full_integer_quant.tflite",
+    FIRMWARE_DIR
+    / "model_exports"
+    / "kaggle-yolov8n-imgsz224-merged-6class"
+    / "best_full_integer_quant.tflite",
+    TRAINING_DIR / "pesolens_best_saved_model" / "best_full_integer_quant.tflite",
+    TRAINING_DIR / "pesolens_best_saved_model" / "best_int8.tflite",
+    FIRMWARE_DIR
+    / "model_exports"
+    / "kaggle-yolov8n-imgsz160-balanced"
+    / "best_int8.tflite",
     PESOLENS_DIR / "pesolens_best_saved_model" / "pesolens_best_int8.tflite",
     PESOLENS_ALT_DIR / "pesolens_best_saved_model" / "pesolens_best_int8.tflite",
     HERE / "pesolens_best_int8.tflite",
 )
 DEFAULT_PT_MODEL_CANDIDATES = (
+    FIRMWARE_DIR / "model_exports" / "kaggle-yolov8n-imgsz256-5class-20260928" / "best.pt",
+    TRAINING_DIR / "pesolens_best.pt",
+    FIRMWARE_DIR / "model_exports" / "kaggle-yolov8n-imgsz320-5class-20260707" / "best.pt",
+    FIRMWARE_DIR / "model_exports" / "kaggle-yolov8n-imgsz320-5class-20260625" / "best.pt",
     PESOLENS_DIR / "pesolens_best.pt",
     PESOLENS_ALT_DIR / "pesolens_best.pt",
 )
 DEFAULT_DATA_YAML_CANDIDATES = (
+    TRAINING_DIR / "pesolens-roboflow-balanced-esp32-v2" / "data.yaml",
+    TRAINING_DIR / "pesolens-roboflow-balanced-esp32" / "data.yaml",
+    TRAINING_DIR / "pesolens-roboflow" / "data.yaml",
     PESOLENS_DIR / "pesolens-roboflow" / "data.yaml",
     PESOLENS_ALT_DIR / "pesolens-roboflow" / "data.yaml",
 )
@@ -46,7 +82,7 @@ DEFAULT_PARTITIONS = FIRMWARE_DIR / "partitions.csv"
 DEFAULT_HEADER = FIRMWARE_DIR / "include" / "model_data.h"
 DEFAULT_SOURCE = FIRMWARE_DIR / "src" / "model_data.cpp"
 STUB_SOURCE = FIRMWARE_DIR / "src" / "model_data_stub.cpp"
-DEFAULT_EXPORT_IMGSZ = 96
+DEFAULT_EXPORT_IMGSZ = 256
 
 
 HEADER_TEMPLATE = """\
@@ -80,14 +116,21 @@ alignas(8) const unsigned char tflite_model[] = {{
 """
 
 STUB_DISABLED = """\
-// pesos firmware - model data stub (DISABLED).
-// The real bytes now live in model_data.cpp.
+// pesos firmware - weak model data fallback.
+// A generated model_data.cpp provides strong symbols when present.
 
-#if 0
 #include "model_data.h"
-const unsigned char tflite_model[] = { 0 };
-const unsigned int tflite_model_len = 0;
+
+#if defined(__GNUC__)
+#define MODEL_DATA_WEAK __attribute__((weak))
+#else
+#define MODEL_DATA_WEAK
 #endif
+
+extern "C" {
+extern MODEL_DATA_WEAK const unsigned char tflite_model[] = { 0 };
+extern MODEL_DATA_WEAK const unsigned int tflite_model_len = 0;
+}
 """
 
 
@@ -265,7 +308,7 @@ def write_files(
         print(f"  app part  : {app_partition_size:,} bytes")
     print(f"  re-read   : {count:,} byte literals - {'OK' if ok else 'MISMATCH'}")
     if STUB_SOURCE.exists() and STUB_SOURCE.resolve() != source_path.resolve():
-        print(f"  stub      : disabled ({STUB_SOURCE.name})")
+        print(f"  stub      : weak fallback refreshed ({STUB_SOURCE.name})")
 
     return 0 if ok else 4
 

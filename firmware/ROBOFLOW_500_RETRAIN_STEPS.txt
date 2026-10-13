@@ -1,0 +1,288 @@
+PesoLens 500 Peso Retraining Steps
+Date: 2026-05-28
+
+Goal
+----
+Improve the small ESP32-targeted model so it can detect the 500 peso bill in
+real photos, especially when it is tilted, held in hand, partly covered, or
+shown together with a 1000 peso bill.
+
+Important Notes
+---------------
+1. Do not train a 500-only model for the firmware.
+   The Python app and ESP32 firmware expect the full four-class model:
+
+   0 = 100
+   1 = 1000
+   2 = 50
+   3 = 500
+
+2. The current small model does have 500 peso data.
+   The problem is not "no 500 data." The problem is that the smaller model
+   does not generalize well enough to real handheld/overlapped 500 peso photos.
+
+3. The old Roboflow annotations are still useful.
+   The old 28 MB model is separate from the dataset. You can reuse the
+   annotated images from Roboflow to train a new smaller YOLOv8n model.
+
+4. Keep the old large model as the accuracy reference.
+   The old model correctly detected P500 + P1000 on the test photo. The new
+   small model and compressed TFLite model detected only P1000.
+
+
+Step 1 - Prepare 500 Peso Images In Roboflow
+--------------------------------------------
+1. Open your PesoLens Roboflow project.
+
+2. Go to the dataset/images section.
+
+3. Search or filter for the 500 peso class.
+   In Roboflow search, this is usually similar to:
+
+   class:500
+
+4. Review the existing 500 peso images.
+
+5. Keep useful examples like:
+   - 500 peso bill held in hand
+   - 500 peso bill beside a 1000 peso bill
+   - 500 and 1000 bills overlapping each other
+   - tilted or rotated 500 peso bills
+   - portrait/vertical phone photos
+   - warm or yellow lighting
+   - partial coverage
+   - close-up and far shots
+   - bills with background clutter
+
+6. Add the failed real-world examples.
+   The photo we tested locally was copied as:
+
+   C:\Users\Lester Valdez\PesoLens-fixed-2026-05-12\PesoLens\test_500_1000pesos.jpg
+
+7. If an image contains both a 500 and a 1000 peso bill, annotate both bills.
+   Do not annotate only the 500 bill. The model needs to learn the full scene.
+
+
+Step 2 - Split The New Images Correctly
+---------------------------------------
+Use most new images for training, but keep some images for validation/testing.
+
+Suggested split:
+
+Train:      70-80%
+Validation: 10-20%
+Test:       10%
+
+Recommendation:
+- Put the exact failed image in validation or test, not training.
+- Put similar images in training.
+
+Why:
+- If the exact failed image is in training, the model may memorize it.
+- If it is in validation/test, it is a better proof that the model improved.
+
+
+Step 3 - Generate A New Roboflow Dataset Version
+------------------------------------------------
+1. In Roboflow, go to Versions.
+
+2. Click Generate New Version.
+
+3. Make sure this is still an Object Detection dataset.
+
+4. Make sure all four classes are still included:
+
+   100
+   1000
+   50
+   500
+
+5. Recommended preprocessing:
+   - Auto-orient: enabled
+   - Resize: okay, but the YOLO training command will still use imgsz=160
+
+6. Recommended augmentations:
+   - small rotation
+   - brightness/exposure changes
+   - slight blur
+   - small crop/scale
+
+7. Avoid augmentations that make bills unreadable.
+   Do not use extreme blur, extreme crop, or unrealistic color changes.
+
+8. Generate the new version.
+
+9. Export/download the dataset in YOLOv8 or Ultralytics format.
+
+
+Step 4 - Train Again In Kaggle
+------------------------------
+Yes, use Kaggle again if possible. Local CPU training will be much slower.
+
+In a Kaggle notebook:
+
+1. Install Ultralytics:
+
+   !pip install -q ultralytics
+
+2. Upload or attach the new Roboflow dataset export.
+
+3. Locate the dataset data.yaml.
+
+4. Check that data.yaml still has this class order:
+
+   names:
+   - '100'
+   - '1000'
+   - '50'
+   - '500'
+
+5. Train a small ESP32-targeted YOLOv8n model:
+
+   from ultralytics import YOLO
+
+   model = YOLO("yolov8n.pt")
+
+   results = model.train(
+       data=str(data_yaml),
+       epochs=80,
+       imgsz=160,
+       batch=16,
+       patience=20,
+       device=0,
+       project="/kaggle/working/pesolens-esp32-runs",
+       name="yolov8n-imgsz160-500fix",
+   )
+
+Notes:
+- Keep imgsz=160 first because the current 3 MB model already fits the ESP32
+  firmware target.
+- If accuracy is still poor, try more/better data before changing image size.
+- If size or speed becomes a problem later, then consider imgsz=128.
+
+
+Step 5 - Validate The New Model
+-------------------------------
+Run validation in Kaggle:
+
+   best = "/kaggle/working/pesolens-esp32-runs/yolov8n-imgsz160-500fix/weights/best.pt"
+
+   model = YOLO(best)
+   metrics = model.val(data=str(data_yaml), imgsz=160, device=0)
+
+Check the validation table.
+
+Focus on the 500 row:
+- Images
+- Instances
+- Precision
+- Recall
+- mAP50
+- mAP50-95
+
+Important:
+High validation scores are good, but they are not enough. You still need to test
+the failed real-world photos.
+
+
+Step 6 - Export INT8 TFLite
+---------------------------
+After validation, export the best model:
+
+   model = YOLO(best)
+
+   export_path = model.export(
+       format="tflite",
+       int8=True,
+       imgsz=160,
+       data=str(data_yaml),
+   )
+
+   print(export_path)
+
+The data argument is important for INT8 calibration.
+
+
+Step 7 - Download These Kaggle Outputs
+--------------------------------------
+Download these files before closing the Kaggle notebook:
+
+Required:
+- best.pt
+- best_int8.tflite
+- results.png
+- confusion_matrix.png
+
+Recommended:
+- confusion_matrix_normalized.png
+- BoxPR_curve.png
+- BoxF1_curve.png
+- BoxP_curve.png
+- BoxR_curve.png
+- val_batch0_pred.jpg
+- val_batch0_labels.jpg
+- val_batch1_pred.jpg
+- val_batch1_labels.jpg
+- val_batch2_pred.jpg
+- val_batch2_labels.jpg
+
+For documentation/thesis:
+- Use the validation table printed by model.val().
+- Use confusion_matrix.png and the curve images as supporting figures.
+
+
+Step 8 - Test The New TFLite Before Firmware
+--------------------------------------------
+Do not put the new model into firmware yet.
+First test it in the Python app.
+
+Copy the new best_int8.tflite somewhere easy to reference, then run:
+
+   cd "C:\Users\Lester Valdez\PesoLens-fixed-2026-05-12\PesoLens"
+
+   .\.venv\Scripts\python.exe predict.py test_500_1000pesos.jpg `
+     --model "PATH_TO_NEW_best_int8.tflite" `
+     --conf 0.6 `
+     --iou 0.3 `
+     --out predict_results_new_500fix
+
+Expected good result:
+
+   1 x P1000
+   1 x P500
+   Total: P1500
+
+If it still detects only P1000:
+- Add more hard 500 peso examples.
+- Make sure the 500 peso boxes are accurate.
+- Make sure the class order in data.yaml is unchanged.
+- Retrain again.
+
+
+Step 9 - Only Then Update Firmware
+----------------------------------
+After the Python test works:
+
+1. Copy the new best_int8.tflite into the firmware model_exports folder.
+
+2. Regenerate the firmware model source using tools/convert_model.py.
+
+3. Build the recovery/stub firmware first:
+
+   pio run -e seeed_xiao_esp32s3
+
+4. Build the real TFLite Micro firmware from the no-space path:
+
+   cd C:\pesosfw
+   $env:PLATFORMIO_CORE_DIR = "C:\.platformio"
+   pio run -e seeed_xiao_esp32s3_tflm -j 2
+
+5. Upload only after the build passes.
+
+
+Summary
+-------
+Use the old Roboflow 500 peso annotations, but do not train a 500-only model.
+Add hard real-world 500 peso examples into the full four-class dataset, generate
+a new Roboflow version, train a new small YOLOv8n model on Kaggle, export INT8
+TFLite, and test the failed photos in Python before updating the ESP32 firmware.

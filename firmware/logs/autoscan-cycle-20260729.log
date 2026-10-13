@@ -1,0 +1,67 @@
+[cycle] #1 ready window done: elapsed=5001 ms; capture starts now
+[ready] D5/GPIO6 LED OFF - capture/process/audio busy at 9025 ms
+[scan] capture start at 9025 ms
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[scan] capture complete in 0 ms; preprocessing frame
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=320x320
+[cam] preprocess done in 184 ms
+[cam] input int8 stats min=-54 max=74 mean=-16.1 (n=307200)
+[scan] preprocess complete in 212 ms; inference start
+[infer] invoke=72922 ms, threshold=0.25, candidates>threshold=0, nms_detections=0, returned=0
+[infer] class_max 20=0.008 50=0.000 100=0.000 500=0.000 1000=0.000
+[infer] conf-dist anchors=2100 global_best=0.008  >=0.10:0  >=0.15:0  >=0.20:0  >=0.25:0   out_quant scale=0.004008 zero=-128
+[infer] top1 class=20 score=0.008 box_raw=(0.2,0.6,0.4,0.4)
+[infer] top2 class=20 score=0.004 box_raw=(0.2,0.4,0.4,0.4)
+[infer] top3 class=20 score=0.004 box_raw=(0.1,0.5,0.2,0.6)
+[scan] inference complete in 72941 ms; detections=0
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+>>>>>>>>>>  NO BILL DETECTED / UNDETERMINED  <<<<<<<<<<
+[time] capture=0 ms preprocess=212 ms infer=72941 ms total=73153 ms
+[audio-out] start - ready LED remains off
+[speak] no bill detected; playing error tone
+[audio] playing error (284ms)
+[audio-out] done
+[cycle] #1 complete: detected=no busy_ms=73456 total_cycle_ms=78457
+
+[cycle] #2 start at 82481 ms
+[ready] D5/GPIO6 LED ON - auto ready window; place bill in view at 82481 ms
+[cycle] #2 ready window start: 5000 ms before capture
+[cycle] #2 ready window done: elapsed=5000 ms; capture starts now
+[ready] D5/GPIO6 LED OFF - capture/process/audio busy at 87481 ms
+[scan] capture start at 87481 ms
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[scan] capture complete in 0 ms; preprocessing frame
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=320x320
+[cam] preprocess done in 184 ms
+[cam] input int8 stats min=-54 max=78 mean=-16.3 (n=307200)
+[scan] preprocess complete in 212 ms; inference start
+[infer] invoke=72921 ms, threshold=0.25, candidates>threshold=0, nms_detections=0, returned=0
+[infer] class_max 20=0.004 50=0.000 100=0.000 500=0.000 1000=0.000
+[infer] conf-dist anchors=2100 global_best=0.004  >=0.10:0  >=0.15:0  >=0.20:0  >=0.25:0   out_quant scale=0.004008 zero=-128
+[infer] top1 class=20 score=0.004 box_raw=(0.5,0.2,0.3,0.4)
+[infer] top2 class=20 score=0.004 box_raw=(0.5,0.3,0.3,0.4)
+[infer] top3 class=20 score=0.004 box_raw=(0.2,0.4,0.4,0.6)
+[scan] inference complete in 72941 ms; detections=0
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+>>>>>>>>>>  NO BILL DETECTED / UNDETERMINED  <<<<<<<<<<
+[time] capture=0 ms preprocess=212 ms infer=72941 ms total=73153 ms
+[audio-out] start - ready LED remains off
+[speak] no bill detected; playing error tone
+[audio] playing error (282ms)
+[audio-out] done
+[cycle] #2 complete: detected=no busy_ms=73440 total_cycle_ms=78440
+
+[cycle] #3 start at 160921 ms
+[ready] D5/GPIO6 LED ON - auto ready window; place bill in view at 160921 ms
+[cycle] #3 ready window start: 5000 ms before capture
+[cycle] #3 ready window done: elapsed=5000 ms; capture starts now
+[ready] D5/GPIO6 LED OFF - capture/process/audio busy at 165922 ms
+[scan] capture start at 165922 ms
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[scan] capture complete in 0 ms; preprocessing frame
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=320x320
+[cam] preprocess done in 184 ms
+[cam] input int8 stats min=-54 max=78 mean=-16.6 (n=307200)
+[scan] preprocess complete in 212 ms; inference start

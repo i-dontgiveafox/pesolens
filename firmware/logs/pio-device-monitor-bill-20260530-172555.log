@@ -1,0 +1,33 @@
+--- Terminal on COM3 | 115200 8-N-1
+--- Available filters and text transformations: debug, default, direct, esp32_exception_decoder, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 90 ms
+[infer] invoke=32246 ms, threshold=0.25, candidates>threshold=0, detections=0
+[infer] top1 class=100 score=0.023 box_raw=(0.5,0.4,1.0,0.6)
+[infer] top2 class=100 score=0.012 box_raw=(0.5,0.3,1.0,0.6)
+[infer] top3 class=100 score=0.012 box_raw=(0.5,0.4,1.0,0.6)
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 91 ms
+[infer] invoke=32154 ms, threshold=0.25, candidates>threshold=8, detections=1
+[infer] top1 class=100 score=0.678 box_raw=(0.6,0.7,0.5,0.3)
+[infer] top2 class=100 score=0.643 box_raw=(0.6,0.7,0.5,0.4)
+[infer] top3 class=100 score=0.619 box_raw=(0.5,0.7,0.5,0.3)
+[detect] #1 class=100 denom=P100 conf=0.678 box=(0.56,0.71,0.49,0.34)
+[count] 1 bills -> P100
+[result] 100 pesos from 1 bills
+[audio] playing one (1359ms)
+[audio] playing hundred (1558ms)
+[audio] playing pesos (1754ms)
+[audio] playing beep (175ms)
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 91 ms

@@ -1,0 +1,88 @@
+PesoLens PowerShell Run Commands
+Last updated: 2026-05-31
+
+Use these from PowerShell.
+If the ESP32-S3 appears on a different port, replace COM3 with the port from
+`pio device list`.
+
+Quick test only: D5 LED + D6 capture logs
+
+cd "C:\Users\james\Projects\PesoLens-project\firmware"
+$env:PLATFORMIO_CORE_DIR = 'C:\.platformio'
+py tools\monitor_detected_frames.py --port COM3 --reset --seconds 120 --log logs\quick-test.log
+
+After the boot logs show:
+
+[ready] D5/GPIO6 LED on - ready for capture
+
+Press D6 once. Then wait. Inference takes about 32 seconds.
+
+Use Ctrl+C if you want to stop the monitor early.
+
+------------------------------------------------------------
+
+1. Go to the firmware folder
+
+cd "C:\Users\james\Projects\PesoLens-project\firmware"
+
+2. Use the no-space PlatformIO package/cache folder
+
+$env:PLATFORMIO_CORE_DIR = 'C:\.platformio'
+
+3. Check the connected ESP32-S3 port
+
+pio device list
+
+4. Build the normal D6 manual-capture firmware
+
+pio run -e seeed_xiao_esp32s3_tflm_button_capture -j 2
+
+5. Upload the normal D6 manual-capture firmware
+
+pio run -e seeed_xiao_esp32s3_tflm_button_capture --target upload --upload-port COM3
+
+6. Upload the audio files to SPIFFS
+
+pio run -e seeed_xiao_esp32s3_tflm_button_capture --target uploadfs --upload-port COM3
+
+7. Open the serial monitor
+
+pio device monitor --port COM3 -b 115200
+
+Important serial monitor notes:
+
+- Use `-b 115200`, not `- b 115200`.
+- Only one program can use COM3 at a time. Close `pio device monitor` with
+  Ctrl+C before running another serial tool.
+- If the monitor opens but the screen is blank, press the ESP32-S3 RESET button
+  while the monitor is open. The firmware only prints boot logs during reset and
+  capture logs after D6 is pressed.
+- If it is still blank after reset, press D6 once and wait for the 3-second aim
+  delay plus inference. Capture logs should appear during that flow.
+
+Expected normal flow:
+
+- D5/GPIO6 LED ON means ready for capture.
+- Press D6/GPIO43.
+- D5 LED turns OFF.
+- Firmware waits 3000 ms, captures, and runs inference.
+- D5 LED blinks 3 times before audio.
+- Firmware speaks the bill amount, or plays the error tone if no bill is found.
+- Firmware plays the ready beep.
+- D5 LED turns ON again for the next capture.
+
+Optional: save a 90-second serial log
+
+py tools\serial_capture.py COM3 --seconds 90
+
+Optional: upload the debug frame-dump firmware instead
+
+pio run -e seeed_xiao_esp32s3_tflm_button_capture_dump -j 2 --target upload --upload-port COM3
+
+Optional: monitor the frame-dump firmware and save captured JPEGs
+
+py tools\monitor_detected_frames.py --port COM3 --seconds 180 --log logs\next-image-capture.log
+
+To restore the normal non-dump firmware after image capture:
+
+pio run -e seeed_xiao_esp32s3_tflm_button_capture -j 2 --target upload --upload-port COM3

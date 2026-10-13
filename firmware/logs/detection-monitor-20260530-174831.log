@@ -1,0 +1,40 @@
+[infer] invoke=32164 ms, threshold=0.25, candidates>threshold=0, detections=0
+[infer] top1 class=200 score=0.023 box_raw=(0.9,0.5,0.2,0.9)
+[infer] top2 class=200 score=0.012 box_raw=(0.6,0.7,0.2,0.6)
+[infer] top3 class=200 score=0.012 box_raw=(0.6,0.7,0.2,0.6)
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 90 ms
+[infer] invoke=32160 ms, threshold=0.25, candidates>threshold=0, detections=0
+[infer] top1 class=200 score=0.023 box_raw=(0.9,0.5,0.2,1.0)
+[infer] top2 class=200 score=0.012 box_raw=(0.6,0.7,0.2,0.7)
+[infer] top3 class=200 score=0.012 box_raw=(0.6,0.7,0.2,0.7)
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 90 ms
+[infer] invoke=32153 ms, threshold=0.25, candidates>threshold=0, detections=0
+[infer] top1 class=200 score=0.035 box_raw=(0.9,0.5,0.2,1.0)
+[infer] top2 class=200 score=0.023 box_raw=(0.8,0.5,0.3,1.0)
+[infer] top3 class=200 score=0.012 box_raw=(0.9,0.5,0.2,0.5)
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 91 ms
+[infer] invoke=32137 ms, threshold=0.25, candidates>threshold=0, detections=0
+[infer] top1 class=200 score=0.035 box_raw=(0.8,0.5,0.3,1.0)
+[infer] top2 class=200 score=0.023 box_raw=(0.6,0.5,0.7,1.0)
+[infer] top3 class=200 score=0.023 box_raw=(0.9,0.5,0.2,1.0)
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 90 ms

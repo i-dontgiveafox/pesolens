@@ -1,0 +1,402 @@
+In file included from src/audio.cpp:11:
+include/config.h:47:20: warning: 'CLASS_NAMES' defined but not used [-Wunused-variable]
+ static const char* CLASS_NAMES[MODEL_NUM_CLASSES] = {
+                    ^~~~~~~~~~~
+In file included from src/camera.cpp:19:
+include/config.h:47:20: warning: 'CLASS_NAMES' defined but not used [-Wunused-variable]
+ static const char* CLASS_NAMES[MODEL_NUM_CLASSES] = {
+                    ^~~~~~~~~~~
+In file included from src/counting.cpp:6:
+include/config.h:47:20: warning: 'CLASS_NAMES' defined but not used [-Wunused-variable]
+ static const char* CLASS_NAMES[MODEL_NUM_CLASSES] = {
+                    ^~~~~~~~~~~
+src/main.cpp: In function 'bool scan_once(int8_t*, bool)':
+src/main.cpp:61:17: warning: unused variable 'dumped_debug_frame' [-Wunused-variable]
+     static bool dumped_debug_frame = false;
+                 ^~~~~~~~~~~~~~~~~~
+src/main.cpp: In function 'void setup()':
+src/main.cpp:134:30: warning: unused variable 'wake' [-Wunused-variable]
+     esp_sleep_wakeup_cause_t wake = power_get_wake_cause();
+                              ^~~~
+src/main.cpp: At global scope:
+src/main.cpp:61:17: warning: 'dumped_debug_frame' defined but not used [-Wunused-variable]
+     static bool dumped_debug_frame = false;
+                 ^~~~~~~~~~~~~~~~~~
+In file included from src/power.cpp:16:
+include/config.h:47:20: warning: 'CLASS_NAMES' defined but not used [-Wunused-variable]
+ static const char* CLASS_NAMES[MODEL_NUM_CLASSES] = {
+                    ^~~~~~~~~~~
+In file included from managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\lstm_eval.cc:25:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:151:34: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const uint8_t input2_val) {
+                                  ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:126:56: note: shadowed declaration is here
+ inline void BroadcastMul6DSlow(const ArithmeticParams& params,
+                                ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:210:28: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const T input2_val) {
+                            ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:171:44: note: shadowed declaration is here
+ BroadcastMul6DSlow(const ArithmeticParams& params,
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:250:46: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const std::complex<float> input2_val) {
+                                              ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:221:56: note: shadowed declaration is here
+ inline void BroadcastMul6DSlow(const ArithmeticParams& params,
+                                ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mul_common.cc:19:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:151:34: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const uint8_t input2_val) {
+                                  ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:126:56: note: shadowed declaration is here
+ inline void BroadcastMul6DSlow(const ArithmeticParams& params,
+                                ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:210:28: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const T input2_val) {
+                            ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:171:44: note: shadowed declaration is here
+ BroadcastMul6DSlow(const ArithmeticParams& params,
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:250:46: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const std::complex<float> input2_val) {
+                                              ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:221:56: note: shadowed declaration is here
+ inline void BroadcastMul6DSlow(const ArithmeticParams& params,
+                                ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In instantiation of 'typename std::enable_if<((! tflite::is_small_integer<T>::value) || enable_for_short_integers), void>::type tflite::reference_ops::BroadcastMul6DSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = int; bool enable_for_short_integers = false; typename std::enable_if<((! tflite::is_small_integer<T>::value) || enable_for_short_integers), void>::type = void]':
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:260:28:   required from 'void tflite::reference_ops::BroadcastMul4DSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = int]'
+managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mul_common.cc:147:56:   required from here
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:206:34: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+   BroadcastMulRecursiveDimensions(
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+       params, 0, input1_data, input2_data, output_data, &input1_offset,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       &input2_offset, &output_offset, desc1, desc2, extended_output_shape_dims,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       [](const ArithmeticParams& params, const T input1_val,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          const T input2_val) {
+          ~~~~~~~~~~~~~~~~~~~~~    
+         T output_activation_min;
+         ~~~~~~~~~~~~~~~~~~~~~~~~  
+         T output_activation_max;
+         ~~~~~~~~~~~~~~~~~~~~~~~~  
+         GetActivationParams(params, &output_activation_min,
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             &output_activation_max);
+                             ~~~~~~~~~~~~~~~~~~~~~~~~
+         return ActivationFunctionWithMinMax<T>(input1_val * input2_val,
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                output_activation_min,
+                                                ~~~~~~~~~~~~~~~~~~~~~~
+                                                output_activation_max);
+                                                ~~~~~~~~~~~~~~~~~~~~~~~
+       });
+       ~~                          
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:171:44: note: shadowed declaration is here
+ BroadcastMul6DSlow(const ArithmeticParams& params,
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In instantiation of 'typename std::enable_if<((! tflite::is_small_integer<T>::value) || enable_for_short_integers), void>::type tflite::reference_ops::BroadcastMul6DSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = float; bool enable_for_short_integers = false; typename std::enable_if<((! tflite::is_small_integer<T>::value) || enable_for_short_integers), void>::type = void]':
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:260:28:   required from 'void tflite::reference_ops::BroadcastMul4DSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = float]'
+managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\mul_common.cc:202:52:   required from here
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:206:34: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+   BroadcastMulRecursiveDimensions(
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+       params, 0, input1_data, input2_data, output_data, &input1_offset,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       &input2_offset, &output_offset, desc1, desc2, extended_output_shape_dims,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       [](const ArithmeticParams& params, const T input1_val,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          const T input2_val) {
+          ~~~~~~~~~~~~~~~~~~~~~    
+         T output_activation_min;
+         ~~~~~~~~~~~~~~~~~~~~~~~~  
+         T output_activation_max;
+         ~~~~~~~~~~~~~~~~~~~~~~~~  
+         GetActivationParams(params, &output_activation_min,
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             &output_activation_max);
+                             ~~~~~~~~~~~~~~~~~~~~~~~~
+         return ActivationFunctionWithMinMax<T>(input1_val * input2_val,
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                output_activation_min,
+                                                ~~~~~~~~~~~~~~~~~~~~~~
+                                                output_activation_max);
+                                                ~~~~~~~~~~~~~~~~~~~~~~~
+       });
+       ~~                          
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:171:44: note: shadowed declaration is here
+ BroadcastMul6DSlow(const ArithmeticParams& params,
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub.cc:24:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:264:68: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+                                                                    ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:256:47: note: shadowed declaration is here
+ void BroadcastSubSlow(const ArithmeticParams& params,
+                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:284:40: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const ArithmeticParams& params) {
+                                        ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:272:59: note: shadowed declaration is here
+ inline void BroadcastSub16POTSlow(const ArithmeticParams& params,
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:308:68: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+                                                                    ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:298:52: note: shadowed declaration is here
+ void BroadcastQuantSubSlow(const ArithmeticParams& params,
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:420:68: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+                                                                    ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:413:34: note: shadowed declaration is here
+ void Sub(const ArithmeticParams& params, const RuntimeShape& input1_shape,
+          ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In instantiation of 'void tflite::reference_ops::BroadcastSubSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = float]':
+managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub.cc:58:56:   required from here
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:261:24: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+   BroadcastSubCommon<T>(
+   ~~~~~~~~~~~~~~~~~~~~~^
+       params, input1_shape, input1_data, input2_shape, input2_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       output_shape, output_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         T activation_min, activation_max;
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         GetActivationParams(params, &activation_min, &activation_max);
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         return ActivationFunctionWithMinMax(input1_val - input2_val,
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                             activation_min, activation_max);
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       });
+       ~~                
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:256:47: note: shadowed declaration is here
+ void BroadcastSubSlow(const ArithmeticParams& params,
+                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In instantiation of 'void tflite::reference_ops::BroadcastSubSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = int]':
+managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub.cc:83:58:   required from here
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:261:24: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+   BroadcastSubCommon<T>(
+   ~~~~~~~~~~~~~~~~~~~~~^
+       params, input1_shape, input1_data, input2_shape, input2_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       output_shape, output_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         T activation_min, activation_max;
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         GetActivationParams(params, &activation_min, &activation_max);
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         return ActivationFunctionWithMinMax(input1_val - input2_val,
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                             activation_min, activation_max);
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       });
+       ~~                
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:256:47: note: shadowed declaration is here
+ void BroadcastSubSlow(const ArithmeticParams& params,
+                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In instantiation of 'void tflite::reference_ops::BroadcastQuantSubSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = signed char]':
+managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub.cc:134:57:   required from here
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:305:24: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+   BroadcastSubCommon<T>(
+   ~~~~~~~~~~~~~~~~~~~~~^
+       params, input1_shape, input1_data, input2_shape, input2_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       output_shape, output_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t shifted_input1_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             (params.input1_offset + input1_val) * (1 << params.left_shift);
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t shifted_input2_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             (params.input2_offset + input2_val) * (1 << params.left_shift);
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t scaled_input1_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             MultiplyByQuantizedMultiplierSmallerThanOneExp(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 shifted_input1_val, params.input1_multiplier,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 params.input1_shift);
+                 ~~~~~~~~~~~~~~~~~~~~~
+         const int32_t scaled_input2_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             MultiplyByQuantizedMultiplierSmallerThanOneExp(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 shifted_input2_val, params.input2_multiplier,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 params.input2_shift);
+                 ~~~~~~~~~~~~~~~~~~~~~
+         const int32_t raw_sub = scaled_input1_val - scaled_input2_val;
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t raw_output =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+             MultiplyByQuantizedMultiplierSmallerThanOneExp(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 raw_sub, params.output_multiplier, params.output_shift) +
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             params.output_offset;
+             ~~~~~~~~~~~~~~~~~~~~~
+         const int32_t clamped_output =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             std::min(params.quantized_activation_max,
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                      std::max(params.quantized_activation_min, raw_output));
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         return static_cast<T>(clamped_output);
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       });
+       ~~                
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:298:52: note: shadowed declaration is here
+ void BroadcastQuantSubSlow(const ArithmeticParams& params,
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In instantiation of 'void tflite::reference_ops::BroadcastQuantSubSlow(const tflite::ArithmeticParams&, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, const T*, const tflite::RuntimeShape&, T*) [with T = short int]':
+managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub.cc:154:58:   required from here
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:305:24: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+   BroadcastSubCommon<T>(
+   ~~~~~~~~~~~~~~~~~~~~~^
+       params, input1_shape, input1_data, input2_shape, input2_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       output_shape, output_data,
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t shifted_input1_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             (params.input1_offset + input1_val) * (1 << params.left_shift);
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t shifted_input2_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             (params.input2_offset + input2_val) * (1 << params.left_shift);
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t scaled_input1_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             MultiplyByQuantizedMultiplierSmallerThanOneExp(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 shifted_input1_val, params.input1_multiplier,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 params.input1_shift);
+                 ~~~~~~~~~~~~~~~~~~~~~
+         const int32_t scaled_input2_val =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             MultiplyByQuantizedMultiplierSmallerThanOneExp(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 shifted_input2_val, params.input2_multiplier,
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 params.input2_shift);
+                 ~~~~~~~~~~~~~~~~~~~~~
+         const int32_t raw_sub = scaled_input1_val - scaled_input2_val;
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         const int32_t raw_output =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+             MultiplyByQuantizedMultiplierSmallerThanOneExp(
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 raw_sub, params.output_multiplier, params.output_shift) +
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             params.output_offset;
+             ~~~~~~~~~~~~~~~~~~~~~
+         const int32_t clamped_output =
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             std::min(params.quantized_activation_max,
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                      std::max(params.quantized_activation_min, raw_output));
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         return static_cast<T>(clamped_output);
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       });
+       ~~                
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:298:52: note: shadowed declaration is here
+ void BroadcastQuantSubSlow(const ArithmeticParams& params,
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\sub_common.cc:22:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:264:68: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+                                                                    ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:256:47: note: shadowed declaration is here
+ void BroadcastSubSlow(const ArithmeticParams& params,
+                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:284:40: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const ArithmeticParams& params) {
+                                        ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:272:59: note: shadowed declaration is here
+ inline void BroadcastSub16POTSlow(const ArithmeticParams& params,
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:308:68: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+                                                                    ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:298:52: note: shadowed declaration is here
+ void BroadcastQuantSubSlow(const ArithmeticParams& params,
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:420:68: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+       [](T input1_val, T input2_val, const ArithmeticParams& params) {
+                                                                    ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/sub.h:413:34: note: shadowed declaration is here
+ void Sub(const ArithmeticParams& params, const RuntimeShape& input1_shape,
+          ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from managed_components\espressif__esp-tflite-micro\tensorflow\lite\micro\kernels\esp_nn\mul.cc:21:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:151:34: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const uint8_t input2_val) {
+                                  ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:126:56: note: shadowed declaration is here
+ inline void BroadcastMul6DSlow(const ArithmeticParams& params,
+                                ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:210:28: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const T input2_val) {
+                            ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:171:44: note: shadowed declaration is here
+ BroadcastMul6DSlow(const ArithmeticParams& params,
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h: In lambda function:
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:250:46: warning: declaration of 'const tflite::ArithmeticParams& params' shadows a parameter [-Wshadow]
+          const std::complex<float> input2_val) {
+                                              ^
+managed_components\espressif__esp-tflite-micro/tensorflow/lite/kernels/internal/reference/mul.h:221:56: note: shadowed declaration is here
+ inline void BroadcastMul6DSlow(const ArithmeticParams& params,
+                                ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp: In member function 'int I2SClass::_installDriver()':
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::tx_desc_auto_clear' [-Wmissing-field-initializers]
+   };
+   ^
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::fixed_mclk' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::mclk_multiple' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::bits_per_chan' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::chan_mask' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::total_chan' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::left_align' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::big_edin' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::bit_order_msb' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:148:3: warning: missing initializer for member 'esp_i2s::i2s_driver_config_t::skip_msk' [-Wmissing-field-initializers]
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp: In member function 'int I2SClass::_applyPinSetting()':
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src/I2S.cpp:324:5: warning: missing initializer for member 'esp_i2s::i2s_pin_config_t::mck_io_num' [-Wmissing-field-initializers]
+     };
+     ^
+C:/Users/james/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src/ssl_client.cpp:24:4: warning: #warning "Please call `idf.py menuconfig` then go to Component config -> mbedTLS -> TLS Key Exchange Methods -> Enable pre-shared-key ciphersuites and then check `Enable PSK based cyphersuite modes`. Save and Quit." [-Wcpp]
+ #  warning "Please call `idf.py menuconfig` then go to Component config -> mbedTLS -> TLS Key Exchange Methods -> Enable pre-shared-key ciphersuites and then check `Enable PSK based cyphersuite modes`. Save and Quit."
+    ^~~~~~~

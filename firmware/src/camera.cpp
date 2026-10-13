@@ -1,15 +1,18 @@
 // pesos firmware — camera module
-// Owns OV2640/OV3660 init, single-shot capture, and 320x320 int8 preprocessing.
+// Owns OV2640/OV3660 init, single-shot capture, and model-size int8 preprocessing.
 //
 // Pipeline: OV2640/OV3660 -> RGB565 QVGA (320x240)
 //        -> center-crop to 240x240
-//        -> bilinear resize to 320x320 RGB888
+//        -> bilinear resize to MODEL_INPUT_SIZE x MODEL_INPUT_SIZE RGB888
 //        -> int8 quantize (uint8 - 128)
-//        -> 307200-byte tensor input (NHWC, RGB).
+//        -> MODEL_INPUT_SIZE * MODEL_INPUT_SIZE * 3 tensor input (NHWC, RGB).
 
 #include <Arduino.h>
 #include <esp_heap_caps.h>
+#include <mbedtls/base64.h>
+#include <stdlib.h>
 #include "esp_camera.h"
+#include "img_converters.h"
 
 #include "camera.h"
 #include "camera_pins.h"
@@ -92,6 +95,18 @@ bool camera_init() {
         Serial.println("[cam] WARNING: sensor handle null, using defaults");
     }
 
+    delay(200);
+    for (int i = 0; i < CAMERA_WARMUP_FRAMES; ++i) {
+        camera_fb_t* warmup = esp_camera_fb_get();
+        if (warmup != nullptr) {
+            esp_camera_fb_return(warmup);
+            Serial.printf("[cam] warmup frame %d/%d ok\n", i + 1, CAMERA_WARMUP_FRAMES);
+        } else {
+            Serial.printf("[cam] WARNING: warmup frame %d/%d failed\n", i + 1, CAMERA_WARMUP_FRAMES);
+        }
+        delay(50);
+    }
+
     Serial.println("[cam] init ok (RGB565 QVGA 320x240)");
     return true;
 }
@@ -114,6 +129,49 @@ void camera_release(camera_fb_t* fb) {
     if (fb != nullptr) {
         esp_camera_fb_return(fb);
     }
+}
+
+bool camera_dump_jpeg_to_serial(camera_fb_t* fb) {
+    if (fb == nullptr) {
+        Serial.println("[frame] ERROR: cannot dump null frame");
+        return false;
+    }
+
+    uint8_t* jpg_buf = nullptr;
+    size_t jpg_len = 0;
+    const bool ok = fmt2jpg(
+        fb->buf, fb->len, fb->width, fb->height, fb->format,
+        85, &jpg_buf, &jpg_len);
+    if (!ok || jpg_buf == nullptr || jpg_len == 0) {
+        Serial.println("[frame] ERROR: fmt2jpg failed");
+        if (jpg_buf != nullptr) {
+            free(jpg_buf);
+        }
+        return false;
+    }
+
+    Serial.printf("[frame] jpeg bytes=%u\n", (unsigned)jpg_len);
+    Serial.println("[frame] JPEG_BASE64_BEGIN");
+
+    const size_t in_chunk = 768;
+    uint8_t out_chunk[1100];
+    for (size_t off = 0; off < jpg_len; off += in_chunk) {
+        const size_t n = (jpg_len - off < in_chunk) ? (jpg_len - off) : in_chunk;
+        size_t out_len = 0;
+        const int err = mbedtls_base64_encode(
+            out_chunk, sizeof(out_chunk), &out_len, jpg_buf + off, n);
+        if (err != 0) {
+            Serial.printf("[frame] ERROR: base64 encode failed %d\n", err);
+            free(jpg_buf);
+            return false;
+        }
+        Serial.write(out_chunk, out_len);
+        Serial.println();
+    }
+
+    Serial.println("[frame] JPEG_BASE64_END");
+    free(jpg_buf);
+    return true;
 }
 
 // ---------------- Preprocess ----------------
@@ -225,21 +283,34 @@ bool camera_preprocess_for_model(camera_fb_t* fb, int8_t* out_buf) {
         return false;
     }
 
-    // Center-crop to a square of side = min(w, h). For QVGA (320x240) this is 240.
+    // Center-crop to a square of side = min(w, h). For QVGA this is 240.
     int crop_size = (src_w < src_h) ? src_w : src_h;
-    int crop_x0   = (src_w - crop_size) / 2;
-    int crop_y0   = (src_h - crop_size) / 2;
+    int crop_x0 = (src_w - crop_size) / 2;
+    int crop_y0 = (src_h - crop_size) / 2;
 
     Serial.printf("[cam] preprocess src=%dx%d, crop=%dx%d@(%d,%d), dst=%dx%d\n",
                   src_w, src_h, crop_size, crop_size, crop_x0, crop_y0,
                   MODEL_INPUT_SIZE, MODEL_INPUT_SIZE);
 
     uint32_t t0 = millis();
-    bilinear_crop_resize_quantize(fb->buf, src_w, src_h,
-                                  crop_x0, crop_y0, crop_size,
-                                  MODEL_INPUT_SIZE,
-                                  out_buf);
+    bilinear_crop_resize_quantize(
+        fb->buf, src_w, src_h, crop_x0, crop_y0, crop_size,
+        MODEL_INPUT_SIZE, out_buf);
     uint32_t dt = millis() - t0;
     Serial.printf("[cam] preprocess done in %u ms\n", (unsigned)dt);
+
+    // --- DEBUG: stats of the int8 image actually fed to the model. A healthy
+    // bill image has a wide spread; all -128 means black, all +127 saturated. ---
+    long isum = 0;
+    int imn = 127, imx = -128;
+    const size_t in_n = (size_t)MODEL_INPUT_SIZE * MODEL_INPUT_SIZE * 3;
+    for (size_t i = 0; i < in_n; ++i) {
+        const int v = (int)out_buf[i];
+        isum += v;
+        if (v < imn) imn = v;
+        if (v > imx) imx = v;
+    }
+    Serial.printf("[cam] input int8 stats min=%d max=%d mean=%.1f (n=%u)\n",
+                  imn, imx, (double)isum / (double)in_n, (unsigned)in_n);
     return true;
 }

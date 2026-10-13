@@ -1,0 +1,110 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4206fede
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x1820
+load:0x403c9700,len:0xeb0
+load:0x403cc700,len:0x3284
+entry 0x403c9980
+[0;32mI (24) boot: ESP-IDF 4.4.7 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time 21:46:04[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (26) boot: chip revision: v0.2[0m
+[0;32mI (30) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (45) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (50) boot: Enabling RNG early entropy source...[0m
+[0;32mI (55) boot: Partition Table:[0m
+[0;32mI (59) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (66) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (73) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (81) boot:  2 app0             OTA app          00 10 00010000 00510000[0m
+[0;32mI (88) boot:  3 spiffs           Unknown data     01 82 00520000 002e0000[0m
+[0;32mI (96) boot: End of partition table[0m
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vaddr=3c080020 size=32f19ch (3338652) map[0m
+[0;32mI (636) esp_image: segment 1: paddr=0033f1c4 vaddr=3fc95f20 size=00e54h (  3668) load[0m
+[0;32mI (637) esp_image: segment 2: paddr=00340020 vaddr=42000020 size=720a4h (467108) map[0m
+[0;32mI (715) esp_image: segment 3: paddr=003b20cc vaddr=3fc96d74 size=02938h ( 10552) load[0m
+[0;32mI (717) esp_image: segment 4: paddr=003b4a0c vaddr=40374000 size=11f20h ( 73504) load[0m
+[0;32mI (743) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (743) boot: Disabling RNG early entropy source...[0m
+[0;32mI (754) cpu_start: Multicore app[0m
+[0;32mI (754) opi psram: vendor id : 0x0d (AP)[0m
+[0;32mI (755) opi psram: dev id    : 0x02 (generation 3)[0m
+[0;32mI (757) opi psram: density   : 0x03 (64 Mbit)[0m
+[0;32mI (762) opi psram: good-die  : 0x01 (Pass)[0m
+[0;32mI (767) opi psram: Latency   : 0x01 (Fixed)[0m
+[0;32mI (771) opi psram: VCC       : 0x01 (3V)[0m
+[0;32mI (776) opi psram: SRF       : 0x01 (Fast Refresh)[0m
+[0;32mI (782) opi psram: BurstType : 0x01 (Hybrid Wrap)[0m
+[0;32mI (787) opi psram: BurstLen  : 0x01 (32 Byte)[0m
+[0;32mI (792) opi psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (798) opi psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (804) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (808) spiram: Found 64MBit SPI RAM device[0m
+[0;32mI (813) spiram: SPI RAM mode: sram 80m[0m
+[0;32mI (818) spiram: PSRAM initialized, cache is in normal (1-core) mode.[0m
+[0;32mI (825) cpu_start: Pro cpu up.[0m
+[0;32mI (828) cpu_start: Starting app cpu, entry point is 0x40376f74[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1254) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1263) cpu_start: Pro cpu start user code[0m
+[0;32mI (1263) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1263) cpu_start: Application information:[0m
+[0;32mI (1266) cpu_start: Project name:     pesos_firmware[0m
+[0;32mI (1272) cpu_start: App version:      1[0m
+[0;32mI (1276) cpu_start: Compile time:     May 30 2026 21:40:29[0m
+[0;32mI (1283) cpu_start: ELF file SHA256:  f6925ee24e1ba532...[0m
+[0;32mI (1289) cpu_start: ESP-IDF:          4.4.7[0m
+[0;32mI (1294) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (1298) cpu_start: Max chip rev:     v0.99 [0m
+[0;32mI (1303) cpu_start: Chip rev:         v0.2[0m
+[0;32mI (1308) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1315) heap_init: At 3FC9CB00 len 0004CC10 (307 KiB): D/IRAM[0m
+[0;32mI (1322) heap_init: At 3FCE9710 len 00005724 (21 KiB): STACK/DIRAM[0m
+[0;32mI (1329) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (1335) heap_init: At 600FE000 len 00002000 (8 KiB): RTCRAM[0m
+[0;32mI (1341) spiram: Adding pool of 8192K of external SPI memory to heap allocator[0m
+[0;32mI (1350) spi_flash: detected chip: gd[0m
+[0;32mI (1354) spi_flash: flash io: qio[0m
+[0;32mI (1358) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1364) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1372) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1387) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[  1391][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+
+=== pesos firmware boot ===
+[cam] PSRAM total=8386307 bytes, free=8386307 bytes
+[cam] PSRAM ok
+[0;32mI (1932) gpio: GPIO[5]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[power] wake source: EXT0 on D4/GPIO5 (button, active-low)
+[power] wake reason: UNDEFINED (cold boot / reset)
+[mode] D6/GPIO43 button capture debug enabled
+[0;32mI (1933) gpio: GPIO[43]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[debug] D6/GPIO43 capture button enabled - press to capture/dump a frame
+[0;32mI (1941) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (1944) cam_hal: cam init ok[0m
+[0;32mI (1948) sccb: pin_sda 40 pin_scl 39[0m
+[0;32mI (1952) sccb: sccb_i2c_port=1[0m
+[0;32mI (1967) camera: Detected camera at address=0x3c[0m
+[0;32mI (1968) camera: Detected OV3660 camera[0m
+[0;32mI (1968) camera: Camera PID=0x3660 VER=0x00 MIDL=0x00 MIDH=0x00[0m
+[0;32mI (2288) s3 ll_cam: node_size: 3840, nodes_per_line: 1, lines_per_node: 6[0m
+[0;32mI (2288) s3 ll_cam: dma_half_buffer_min:  3840, dma_half_buffer: 15360, lines_per_half_buffer: 24, dma_buffer_size: 30720[0m
+[0;32mI (2296) cam_hal: buffer_size: 30720, half_buffer_size: 15360, node_buffer_size: 3840, node_cnt: 8, total_cnt: 10[0m
+[0;32mI (2307) cam_hal: Allocating 153600 Byte frame buffer in PSRAM[0m
+[0;32mI (2314) cam_hal: cam config ok[0m
+[0;32mI (2331) ov3660: Calculated VCO: 160000000 Hz, PLLCLK: 80000000 Hz, SYSCLK: 20000000 Hz, PCLK: 10000000 Hz[0m
+[cam] warmup frame 1/2 ok
+[cam] warmup frame 2/2 ok
+[cam] init ok (RGB565 QVGA 320x240)
+[infer] ready — input [1,224,224,3] int8, output [1,10,1029] (C,A), arena=4194304 bytes PSRAM, used=782980
+[0;32mI (3
+701) I2S: DMA Malloc info, datalen=blocksize=512, dma_buf_count=8[0m
+[audio] init ok (16 kHz, 16-bit, mono)
+[scan] ready - point a bill at the camera; scanning every 3000 ms
+[scan] button mode - waiting for D6/GPIO43 press

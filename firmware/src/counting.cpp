@@ -9,7 +9,7 @@ uint32_t count_total_pesos(const std::vector<Detection>& detections) {
     uint32_t total = 0;
     for (const auto& d : detections) {
         if (d.class_id < MODEL_NUM_CLASSES) {
-            total += DENOMINATIONS[d.class_id];
+            total += MODEL_CLASSES[d.class_id].denomination;
         }
     }
     Serial.printf("[count] %u bills -> P%u\n",

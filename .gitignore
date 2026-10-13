@@ -1,16 +1,36 @@
-# OS/editor noise
-.DS_Store
-Thumbs.db
-*.log
+# --- Python / editors ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.agents/
 
-# PlatformIO build output
+# --- Datasets (re-download from Roboflow/Kaggle) ---
+PesoLens-training/datasets/
+PesoLens-training/pesolens-roboflow*/
+PesoLens-training/predict_results/
+
+# --- Model weights & exports (too large for git; keep on Kaggle/Drive) ---
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.npy
+*.zip
+*_saved_model/
+firmware/model_exports/
+
+# --- Firmware build output & fetched components ---
 firmware/.pio/
+firmware/build/
+firmware/managed_components/
+firmware/sdkconfig.*.old
 
-# Generated model/export artifacts. Regenerate with firmware/tools/convert_model.py.
-firmware/src/model_data.cpp
-firmware/tools/*.tflite
-firmware/*_saved_model/
-firmware/**/*_saved_model/
-firmware/*.onnx
-firmware/*.npy
-firmware/*.zip
+# --- Personal / unrelated files ---
+PesoLens-training/le-sserafim-*.jpg
+PesoLens-training/wp*.webp
+
+# --- Generated model byte arrays / TF graphs ---
+**/model_data.cpp
+*.pb

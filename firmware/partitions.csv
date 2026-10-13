@@ -1,8 +1,8 @@
-# pesos firmware partition table — 8 MB flash on XIAO ESP32-S3 Sense
-# Layout: nvs (24K) + otadata (8K) + app (5 MB) + spiffs (~3 MB for audio clips)
-# App must start on a 64 KB-aligned boundary; otadata ends at 0x11000 so app starts at 0x20000.
+# pesos firmware partition table - 8 MB flash on XIAO ESP32-S3 Sense
+# Layout: nvs + OTA select data + app (~5.06 MB) + spiffs (~2.88 MB for audio clips)
+# Keep app0 at 0x10000 so it matches PlatformIO/ESP32 Arduino upload offsets.
 # Name,   Type, SubType, Offset,   Size,     Flags
-nvs,      data, nvs,     0x9000,   0x6000,
-otadata,  data, ota,     0xf000,   0x2000,
-app0,     app,  ota_0,   0x20000,  0x500000,
+nvs,      data, nvs,     0x9000,   0x5000,
+otadata,  data, ota,     0xe000,   0x2000,
+app0,     app,  ota_0,   0x10000,  0x510000,
 spiffs,   data, spiffs,  0x520000, 0x2E0000,

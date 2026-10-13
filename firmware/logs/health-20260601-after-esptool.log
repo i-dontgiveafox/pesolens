@@ -1,0 +1,21 @@
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vaddr=3c0800[debug] alive 5737 ms heartbeat=3 reason=camera_init failed
+[debug] alive 6738 ms heartbeat=4 reason=camera_init failed
+[debug] alive 7739 ms heartbeat=5 reason=camera_init failed
+[debug] alive 8740 ms heartbeat=6 reason=camera_init failed
+[debug] alive 9741 ms heartbeat=7 reason=camera_init failed
+[debug] alive 10742 ms heartbeat=8 reason=camera_init failed
+[debug] alive 11743 ms heartbeat=9 reason=camera_init failed
+[debug] alive 12744 ms heartbeat=10 reason=camera_init failed
+[debug] alive 13745 ms heartbeat=11 reason=camera_init failed
+[debug] alive 14746 ms heartbeat=12 reason=camera_init failed
+[debug] alive 15747 ms heartbeat=13 reason=camera_init failed
+[debug] alive 16748 ms heartbeat=14 reason=camera_init failed
+[debug] alive 17749 ms heartbeat=15 reason=camera_init failed
+[debug] alive 18750 ms heartbeat=16 reason=camera_init failed
+[debug] alive 19751 ms heartbeat=17 reason=camera_init failed
+[debug] alive 20752 ms heartbeat=18 reason=camera_init failed
+[debug] alive 21753 ms heartbeat=19 reason=camera_init failed
+[debug] alive 22754 ms heartbeat=20 reason=camera_init failed
+[debug] alive 23755 ms heartbeat=21 reason=camera_init failed
+[debug] aliv
+e 24756 ms heartbeat=22 reason=camera_init failed

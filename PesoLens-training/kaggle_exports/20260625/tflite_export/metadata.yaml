@@ -1,0 +1,27 @@
+description: Ultralytics best model trained on /kaggle/working/pesolens_roboflow_merged/data.yaml
+author: Ultralytics
+date: '2026-06-24T16:34:22.329984'
+version: 8.4.76
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 320
+- 320
+names:
+  0: '20'
+  1: '50'
+  2: '100'
+  3: '500'
+  4: '1000'
+args:
+  data: /kaggle/working/pesolens_roboflow_merged/data.yaml
+  batch: 1
+  fraction: 1.0
+  half: false
+  int8: true
+  nms: false
+channels: 3
+end2end: false

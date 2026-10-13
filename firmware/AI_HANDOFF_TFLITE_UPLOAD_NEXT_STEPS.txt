@@ -1,0 +1,206 @@
+PesoLens ESP32-S3 Firmware / TFLite Upload Handoff
+Date: 2026-05-26
+Project folder:
+C:\Users\Lester Valdez\Downloads\pesos-firmware-v1\firmware
+
+Important context:
+- The "Model / Training Project" and "Firmware Project" paths the user gave are the same folder.
+- Do not retrain the model unless the user explicitly asks. A new ESP32-sized INT8 TFLite model already exists in this firmware folder.
+- The real TFLite Micro firmware build and upload to COM4 has now completed successfully.
+- The remaining goal is runtime proof of the button-wake/capture/inference path.
+- The machine may feel laggy because the ESP-IDF + TFLite Micro compile is heavy. Check for leftover compiler/build processes before starting another long build.
+
+Current board:
+- PlatformIO sees the replacement ESP32-S3 board on COM4.
+- Device ID seen: USB VID:PID=303A:1001, serial/MAC-like ID E0:72:A1:FA:38:3C.
+
+Current model artifact:
+- Model file:
+  model_exports\kaggle-yolov8n-imgsz160-balanced\best_int8.tflite
+- Size:
+  3,160,608 bytes
+- Model:
+  YOLOv8n INT8, imgsz=160
+- Classes:
+  0 = 100
+  1 = 1000
+  2 = 50
+  3 = 500
+- Firmware config already matches this:
+  include\config.h uses MODEL_INPUT_SIZE = 160 and MODEL_NUM_CLASSES = 4.
+- Generated firmware model bytes exist locally:
+  src\model_data.cpp
+- src\model_data.cpp is intentionally ignored by Git and is large, but it is required for the real model build.
+
+What was verified this session:
+1. PlatformIO is installed:
+   PlatformIO Core 6.1.19
+
+2. Board was detected:
+   pio device list
+   Result: COM4 USB Serial Device
+
+3. Normal recovery/stub firmware build passed:
+   pio run -e seeed_xiao_esp32s3
+   Result: SUCCESS
+   Size shown:
+   RAM: 24,092 / 327,680 bytes
+   Flash: 383,841 / 5,308,416 bytes
+
+4. Native host tests passed:
+   pio test -e native
+   Result: 15 test cases, 15 succeeded
+
+5. Audio filesystem image passed:
+   pio run -e seeed_xiao_esp32s3 --target buildfs
+   Result: SUCCESS
+   It packed WAV clips from data/.
+
+6. Real TFLite Micro build/upload passed:
+   cd C:\pesosfw
+   $env:PLATFORMIO_CORE_DIR = "C:\.platformio"
+   pio run -e seeed_xiao_esp32s3_tflm -j 2 --target upload --upload-port COM4
+   Result: SUCCESS
+
+7. TFLite firmware artifact exists:
+   .pio\build\seeed_xiao_esp32s3_tflm\firmware.bin
+   Size: 3,762,928 bytes
+   App partition limit: 5,308,416 bytes
+
+8. Serial capture after upload showed the board running:
+   [debug] alive ... heartbeat logs
+
+What is not finished:
+- Runtime inference has not been proven yet.
+- Serial capture only showed debug heartbeat logs because PESOS_DEBUG_NO_SLEEP is enabled and the first boot/non-button wake path stays awake in the debug loop.
+- Need a button-wake/capture test that reaches infer_init() and prints:
+  [infer] ready - input [1,160,160,3] int8, output ...
+- I did not retrain anything.
+
+Path issue and workaround:
+- ESP-IDF mixed mode can fail from:
+  C:\Users\Lester Valdez\Downloads\pesos-firmware-v1\firmware
+  because the path contains a space in "Lester Valdez".
+- There is already a no-space junction:
+  C:\pesosfw
+- Use C:\pesosfw for the TFLite Micro build.
+- Also use a no-space PlatformIO core/cache:
+  C:\.platformio
+
+Do this first before more building:
+1. Check whether build/compiler processes are still running.
+   In PowerShell:
+   Get-Process | Where-Object { $_.ProcessName -match 'pio|platformio|python|cmake|ninja|xtensa|riscv|cc1' } | Select-Object ProcessName, Id, CPU, WorkingSet, StartTime
+
+2. If a heavy stale build is still running and the user approves stopping it, stop only those stale build/compiler processes. Do not kill unrelated Python or user apps without checking.
+
+Recommended next commands:
+Use PowerShell.
+
+1. Go to no-space firmware path:
+   cd C:\pesosfw
+
+2. Set PlatformIO core/cache to no-space path:
+   $env:PLATFORMIO_CORE_DIR = "C:\.platformio"
+
+3. Confirm board:
+   pio device list
+
+4. Monitor serial logs:
+   pio device monitor --port COM4 -b 115200
+
+5. Upload audio filesystem if needed:
+   pio run -e seeed_xiao_esp32s3_tflm --target uploadfs --upload-port COM4
+
+6. Rebuild/upload TFLite firmware only if source/config changes:
+   pio run -e seeed_xiao_esp32s3_tflm -j 2 --target upload --upload-port COM4
+
+Expected good serial sign for real inference:
+  [infer] ready - input [1,160,160,3] int8, output ...
+
+If serial only shows debug heartbeat:
+- That is expected immediately after normal reset while PESOS_DEBUG_NO_SLEEP is enabled.
+- It means the firmware booted, but the button-wake inference path has not been reached.
+- Adjust the debug sleep behavior or create a temporary forced inference smoke-test path if the user wants proof without deep sleep.
+
+Known issue from earlier attempt:
+- Building from P:\ got past the whitespace problem but then PlatformIO tried to use a wrong path like:
+  C:\Users\Lester Valdez\Downloads\pesos-firmware-v1\firmware\rc\audio.cpp
+- Use C:\pesosfw instead of P:\ to avoid that drive-alias path problem.
+
+Possible next failure points:
+1. Runtime TFLite init/operator failure.
+   The build now links, but infer_init()/Invoke() still need runtime proof.
+
+2. Missing TFLite Micro operators.
+   The current resolver is in src\inference.cpp. Add only the operators required by the actual compile/runtime error.
+
+3. Firmware exceeds app partition.
+   App partition is about 5.06 MB:
+   partitions.csv app0 size = 0x510000 = 5,308,416 bytes
+   Current linked TFLite firmware.bin is 3,762,928 bytes, so it fits.
+
+4. Runtime tensor arena / PSRAM failure.
+   TENSOR_ARENA_SIZE is currently 4 MB in include\config.h.
+   If allocation fails, reduce arena only if AllocateTensors still succeeds, or inspect arena_used_bytes from serial logs.
+
+5. Camera or audio hardware failure after real inference is enabled.
+   The recovery/stub firmware build already proved basic build and SPIFFS image generation, but real inference has not been runtime-proven.
+
+Important files:
+- platformio.ini
+  Contains:
+  [env:seeed_xiao_esp32s3] recovery/stub build
+  [env:seeed_xiao_esp32s3_tflm] real TFLite Micro build
+  [env:serial_probe] simple serial diagnostic build
+  [env:native] host tests
+
+- include\config.h
+  Pins, model size/classes, thresholds, tensor arena.
+
+- src\inference.cpp
+  TFLite Micro integration, op resolver, output decode/NMS, stub fallback.
+
+- src\model_data.cpp
+  Generated large model bytes. Required locally for real model firmware.
+
+- src\model_data_stub.cpp
+  Weak fallback symbols for portable stub builds.
+
+- src\CMakeLists.txt
+  ESP-IDF component source list. Includes model_data.cpp if it exists.
+
+- src\idf_component.yml
+  ESP-IDF component dependencies:
+  espressif/esp-tflite-micro
+  espressif/esp32-camera
+
+- partitions.csv
+  8 MB flash layout. app0 starts at 0x10000 and SPIFFS starts at 0x520000.
+
+- TFLITE_MICRO_EXPORT_NOTES.md
+  Model size and TFLite Micro status.
+
+- FIRMWARE_CHANGELOG.md
+  Backtrack log for the firmware state.
+
+- HARDWARE_PIN_HANDOVER.md
+  Hardware/upload handoff notes for the ESP32-S3 and wiring.
+
+Do not do these unless asked:
+- Do not retrain the model.
+- Do not delete model_exports.
+- Do not delete src\model_data.cpp unless regenerating it immediately from best_int8.tflite.
+- Do not switch back to the old 26 MB TFLite export.
+- Do not use esptool.py manual flashing unless PlatformIO upload is impossible and exact offsets are confirmed.
+
+Current safe fallback:
+- If the TFLite runtime path fails badly, the board can still be flashed with the known-good recovery/stub firmware:
+  cd C:\pesosfw
+  $env:PLATFORMIO_CORE_DIR = "C:\.platformio"
+  pio run -e seeed_xiao_esp32s3 --target upload --upload-port COM4
+  pio run -e seeed_xiao_esp32s3 --target uploadfs --upload-port COM4
+
+User intent:
+- Finish getting the new 8 MB-flash-compatible TFLite model uploaded and running on the ESP32-S3.
+- The next AI should focus on proving real runtime inference from serial logs, not retraining or rebuilding from scratch.

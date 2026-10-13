@@ -1,0 +1,25 @@
+[infer] invoke=32159 ms, threshold=0.25, candidates>threshold=1, detections=1
+[infer] top1 class=200 score=0.351 box_raw=(0.6,0.7,0.2,0.6)
+[infer] top2 class=200 score=0.187 box_raw=(0.4,0.7,0.2,0.6)
+[infer] top3 class=200 score=0.175 box_raw=(0.6,0.7,0.2,0.5)
+[detect] #1 class=200 denom=P200 conf=0.351 box=(0.62,0.71,0.20,0.56)
+[count] 1 bills -> P200
+[result] 200 pesos from 1 bills
+[ready] D5/GPIO6 LED blink 3 times before audio
+[speak] announcing P200 with 3 clips: two hundred pesos
+[audio] playing two (1397ms)
+[audio] playing hundred (1596ms)
+[audio] pl
+aying pesos (1754ms)
+[speak] announcement done
+[ready] beep
+[audio] playing beep (174ms)
+[ready] D5/GPIO6 LED on - ready for next capture
+[scan] manual mode - waiting for D6/GPIO43 press
+[ready] D5/GPIO6 LED off - capture busy
+[manual] D6 capture button pressed - capture in 3000 ms
+[manual] capture delay done
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 91 ms

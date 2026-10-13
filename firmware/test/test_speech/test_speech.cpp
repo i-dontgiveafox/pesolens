@@ -81,6 +81,14 @@ void test_exactly_twenty(void) {
     assert_clips(20, {"twenty", "pesos"});
 }
 
+void test_exactly_fifty(void) {
+    assert_clips(50, {"fifty", "pesos"});
+}
+
+void test_exactly_two_hundred(void) {
+    assert_clips(200, {"two", "hundred", "pesos"});
+}
+
 void test_thousand_with_teen(void) {
     assert_clips(1015, {"one", "thousand", "fifteen", "pesos"});
 }
@@ -103,6 +111,8 @@ int main(int argc, char** argv) {
     RUN_TEST(test_full_six_digit);
     RUN_TEST(test_exactly_ten);
     RUN_TEST(test_exactly_twenty);
+    RUN_TEST(test_exactly_fifty);
+    RUN_TEST(test_exactly_two_hundred);
     RUN_TEST(test_thousand_with_teen);
     return UNITY_END();
 }

@@ -3,8 +3,17 @@
 CONFIG_ESP32S3_DEFAULT_CPU_FREQ_MHZ=240
 CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240=y
 
+# XIAO ESP32-S3 Sense uses 8 MB flash.
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="8MB"
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_FLASHMODE="qio"
+
+# Required when Arduino is used as an ESP-IDF component.
+CONFIG_AUTOSTART_ARDUINO=y
+
 # PSRAM enabled in octal mode (XIAO ESP32-S3 Sense has 8 MB OPI PSRAM)
-CONFIG_SPIRAM=y
+CONFIG_ESP32S3_SPIRAM_SUPPORT=y
 CONFIG_SPIRAM_MODE_OCT=y
 CONFIG_SPIRAM_TYPE_AUTO=y
 CONFIG_SPIRAM_SPEED_80M=y
@@ -22,6 +31,31 @@ CONFIG_ESP_BROWNOUT_DET_LVL=7
 
 # Reduce log spam in release builds (Arduino sets its own log level via macros)
 CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+
+# Keep task watchdog quiet during long on-device TFLite inference.
+# The 320 model measures 60-70 s per scan and the loop task blocks that whole
+# time, starving the idle tasks the watchdog subscribes by default.
+#
+# NOTE: ESP_TASK_WDT_TIMEOUT_S has `range 1 60` in ESP-IDF 4.4
+# (components/esp_system/Kconfig). An earlier attempt to set 180 here was
+# silently rejected by Kconfig, which then fell back to its `default 5` -- a
+# 5 s watchdog, far worse than the 60 s it replaced. Do not raise this above 60.
+#
+# Since 60 s cannot cover a 60-70 s scan, stop the spam at its source instead:
+# unsubscribe the idle tasks. Panic is off, so the watchdog protects nothing
+# here anyway -- it only logged noise that buried real failures.
+CONFIG_ESP_TASK_WDT=y
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=60
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU0=n
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU1=n
+
+# UART0 on the ESP32-S3 defaults to GPIO43 (U0TXD) and GPIO44 (U0RXD) -- the
+# same pins this design uses for the D6 capture button and the I2S LRC/WS line.
+# i2s_set_pin() re-muxes GPIO44 afterwards so audio still functions, but leaving
+# the console on UART0 means two peripherals claim the same pads during boot.
+# Logs already reach the host over the native USB-Serial-JTAG peripheral.
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+CONFIG_ESP_CONSOLE_SECONDARY_NONE=y
 
 # Allow large static buffers in PSRAM
 CONFIG_FREERTOS_HZ=1000

@@ -1,0 +1,170 @@
+==============================================================================
+PESOLENS / XIAO ESP32-S3  —  FINAL DIAGNOSIS
+==============================================================================
+Date:        2026-05-23
+Prepared by: Firmware/software debugging session
+Prepared for: Hardware designers / hardware review
+Purpose:     Confirm that the "stuck in bootloader" problem is a HARDWARE issue
+             on this board, NOT a software, firmware, or PC-side problem.
+
+
+------------------------------------------------------------------------------
+1. ONE-LINE CONCLUSION
+------------------------------------------------------------------------------
+This board does NOT run any firmware because, every time it powers on, it boots
+straight into the chip's built-in USB download (flashing) mode. On an ESP32-S3
+that only happens when the GPIO0 / BOOT pin is electrically LOW at power-up.
+
+  >> This is a HARDWARE condition on the board itself.
+  >> It is NOT caused by the firmware, the PC, or the flashing tools.
+
+In plain terms: it behaves as if the BOOT button is being held down permanently
+by the board, even though no one is pressing it.
+
+
+------------------------------------------------------------------------------
+2. BOARD UNDER TEST
+------------------------------------------------------------------------------
+  Module ........ Seeed Studio XIAO ESP32-S3 (Sense)
+  Chip .......... ESP32-S3 (QFN56), silicon revision v0.2
+  USB ........... Native USB-Serial/JTAG built into the chip
+                  (USB ID 303A:1001) — there is NO separate USB-to-serial chip
+  MAC address ... 90:70:69:11:EC:10
+  Host PC ....... Windows 11, serial port COM3
+  Tools ......... PlatformIO Core 6.1.19, esptool.py v4.11.0
+
+
+------------------------------------------------------------------------------
+3. SYMPTOM REPORTED
+------------------------------------------------------------------------------
+  - Firmware compiles and uploads successfully (write + verify both pass).
+  - After reset / power-up, the board produces NO serial output at all.
+  - The flashing tool (esptool) repeatedly connects and reports
+    "Staying in bootloader."
+  - The board appears permanently stuck in bootloader / download mode.
+
+
+------------------------------------------------------------------------------
+4. BACKGROUND (how an ESP32-S3 chooses what to do at power-up)
+------------------------------------------------------------------------------
+Every time the chip powers on, it reads a "strapping" pin called GPIO0. On this
+module GPIO0 is the BOOT button:
+
+    GPIO0 reads HIGH at power-up  ->  Normal boot. The chip RUNS the firmware.
+    GPIO0 reads LOW  at power-up  ->  Download mode. The chip WAITS to be flashed
+                                      and does not run the firmware.
+
+Normally GPIO0 is pulled HIGH, and it only goes LOW for the brief moment someone
+physically holds the BOOT button. If GPIO0 is held LOW by the hardware, the chip
+will enter download mode on every single power-up.
+
+
+------------------------------------------------------------------------------
+5. WHAT WE TESTED, AND WHAT WE RULED OUT
+------------------------------------------------------------------------------
+(a) Clean re-flash of firmware + filesystem (full erase, write, verify)
+    Result: SUCCESS, but behavior unchanged.
+    Rules out: a corrupted or failed upload. The flashing path works perfectly.
+
+(b) Verified the USB build configuration for native USB is correct
+    (ARDUINO_USB_MODE=1, ARDUINO_USB_CDC_ON_BOOT=1).
+    Rules out: a USB serial software-configuration mistake.
+
+(c) Accounted for two known ESP32-S3 "false alarm" behaviors:
+      - Over native USB, the flashing tool's normal reset cannot re-read the
+        boot strapping pins, so it can falsely keep reporting "bootloader."
+      - A "force download" flag stored in the chip's always-on (RTC) domain can
+        survive software/watchdog resets.
+    We neutralized BOTH by performing a TRUE power cycle (physically unplugging
+    the USB cable, waiting, and plugging it back in). A real power-on reset
+    clears that RTC flag AND forces the chip to re-read GPIO0 from scratch.
+    Result: the fault persisted after a clean power cycle.
+    Rules out: the USB-reset quirk and the stuck-software-flag explanation.
+
+(d) DECISIVE TEST — bare LED "blink" program + clean power cycle:
+      - We flashed the simplest possible program: it ONLY blinks an LED. It has
+        NO serial output, NO sleep, and NO special configuration — this removes
+        every possible software/firmware/serial variable from the experiment.
+      - We did a full power cycle (unplug, wait ~5 s, replug) and pressed NO
+        buttons. This guarantees the chip re-reads GPIO0 cleanly at boot.
+      - Result 1: the LED did NOT blink (the program never ran).
+      - Result 2: with the cable still connected, the flashing tool was STILL
+        able to connect and load+run its small helper program ("flasher stub")
+        using its "no-reset" option. A board that is actually running user code
+        CANNOT accept a flasher stub. The fact that it accepted one proves the
+        chip had booted itself into ROM download mode after a clean power-up.
+
+
+------------------------------------------------------------------------------
+6. WHY THIS PROVES HARDWARE (NOT SOFTWARE)
+------------------------------------------------------------------------------
+After a clean power-on reset, the ONLY thing that makes an ESP32-S3 enter
+download mode is GPIO0 / BOOT being electrically LOW at the instant of boot.
+
+In our decisive test:
+  - No meaningful firmware was involved (a bare LED blink, no sleep, no serial).
+  - All software / RTC flags were cleared by the physical power cycle.
+  - The strapping pins were freshly re-sampled by the power-on reset.
+
+With every software explanation removed, the chip still chose download mode.
+Therefore GPIO0 was being held LOW by the board hardware itself.
+
+
+------------------------------------------------------------------------------
+7. MOST LIKELY HARDWARE CAUSES (for the hardware team to investigate)
+------------------------------------------------------------------------------
+  - BOOT button stuck closed mechanically or electrically (it may still "click"
+    but remain electrically shorted).
+  - Solder bridge, flux residue, or metal debris shorting GPIO0 (or the BOOT
+    button pads) to GND.
+  - A stray wire / jumper from the surrounding project wiring touching
+    GPIO0 / BOOT.
+        NOTE: The intended project wiring only uses pin D4 / GPIO5 for an
+        external button. It deliberately does NOT use GPIO0 / BOOT. So any
+        connection from project wiring to GPIO0/BOOT is accidental.
+  - Damaged pad or trace around GPIO0 or the BOOT button.
+  - (Less likely) internal damage to the chip's GPIO0 / strapping circuit.
+
+
+------------------------------------------------------------------------------
+8. RECOMMENDED HARDWARE CHECKS
+------------------------------------------------------------------------------
+With the board UNPLUGGED (no USB power):
+
+  1. Multimeter continuity test between GPIO0 / BOOT and GND, with the BOOT
+     button NOT pressed:
+        Expected  : OPEN circuit (no beep).
+        If it BEEPS: GPIO0 is shorted to ground = root cause CONFIRMED.
+        Sanity check: pressing BOOT SHOULD beep — that means the button itself
+        is wired correctly; it should only beep while pressed.
+
+  2. Press / release the BOOT button several times; confirm it is not stuck
+     in the closed (pressed) position.
+
+  3. Inspect under magnification for solder bridges, flux residue, or debris on
+     the BOOT button pads and the GPIO0 trace. Clean with isopropyl alcohol and
+     a soft brush, then re-test.
+
+  4. Confirm no project wiring or jumper accidentally touches GPIO0 / BOOT.
+
+  5. If a second identical XIAO ESP32-S3 is available, flash the SAME firmware
+     to it:
+        - If the second board boots normally, the fault is isolated to this
+          specific physical board (board-level defect, not a design/firmware
+          problem).
+
+
+------------------------------------------------------------------------------
+9. CONCLUSION
+------------------------------------------------------------------------------
+The firmware and the PC-side toolchain are confirmed NOT to be the cause. The
+board powers up directly into download mode because GPIO0 / BOOT is held LOW at
+boot — a hardware fault on this unit.
+
+Recommended action: repair or clean the GPIO0 / BOOT circuit on this board, or
+replace the board. Once a working board is in hand, the existing firmware can be
+flashed and run normally with no software changes required for this issue.
+
+==============================================================================
+END OF DIAGNOSIS
+==============================================================================

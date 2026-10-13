@@ -1,0 +1,139 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4206dcfe
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x1820
+load:0x403c9700,len:0xeb0
+load:0x403cc700,len:0x3284
+entry 0x403c9980
+[0;32mI (24) boot: ESP-IDF 4.4.7 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time 20:54:21[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (26) boot: chip revision: v0.2[0m
+[0;32mI (30) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (45) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (50) boot: Enabling RNG early entropy source...[0m
+[0;32mI (55) boot: Partition Table:[0m
+[0;32mI (59) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (66) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (74) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (81) boot:  2 app0             OTA app          00 10 00010000 00510000[0m
+[0;32mI (89) boot:  3 spiffs           Unknown data     01 82 00520000 002e0000[0m
+[0;32mI (96) boot: End of partition table[0m
+[0;32mI (100) esp_image: segment 0: paddr=00010020 vaddr=3c080020 size=32e254h (3334740) map[0m
+[0;32mI (635) esp_image: segment 1: paddr=0033e27c vaddr=3fc95cf0 size=01d9ch (  7580) load[0m
+[0;32mI (637) esp_image: segment 2: paddr=00340020 vaddr=42000020 size=706c4h (460484) map[0m
+[0;32mI (713) esp_image: segment 3: paddr=003b06ec vaddr=3fc97a8c size=019f0h (  6640) load[0m
+[0;32mI (715) esp_image: segment 4: paddr=003b20e4 vaddr=40374000 size=11ce8h ( 72936) load[0m
+[0;32mI (741) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (741) boot: Disabling RNG early entropy source...[0m
+[0;32mI (752) cpu_start: Multicore app[0m
+[0;32mI (753) opi psram: vendor id : 0x0d (AP)[0m
+[0;32mI (753) opi psram: dev id    : 0x02 (generation 3)[0m
+[0;32mI (755) opi psram: density   : 0x03 (64 Mbit)[0m
+[0;32mI (760) opi psram: good-die  : 0x01 (Pass)[0m
+[0;32mI (765) opi psram: Latency   : 0x01 (Fixed)[0m
+[0;32mI (770) opi psram: VCC       : 0x01 (3V)[0m
+[0;32mI (774) opi psram: SRF       : 0x01 (Fast Refresh)[0m
+[0;32mI (780) opi psram: BurstType : 0x01 (Hybrid Wrap)[0m
+[0;32mI (785) opi psram: BurstLen  : 0x01 (32 Byte)[0m
+[0;32mI (790) opi psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (796) opi psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (802) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (807) spiram: Found 64MBit SPI RAM device[0m
+[0;32mI (811) spiram: SPI RAM mode: sram 80m[0m
+[0;32mI (816) spiram: PSRAM initialized, cache is in normal (1-core) mode.[0m
+[0;32mI (823) cpu_start: Pro cpu up.[0m
+[0;32mI (827) cpu_start: Starting app cpu, entry point is 0x40376d3c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1253) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1261) cpu_start: Pro cpu start user code[0m
+[0;32mI (1261) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1262) cpu_start: Application information:[0m
+[0;32mI (1265) cpu_start: Project name:     pesos_firmware[0m
+[0;32mI (1270) cpu_start: App version:      1[0m
+[0;32mI (1275) cpu_start: Compile time:     Jun  1 2026 20:43:05[0m
+[0;32mI (1281) cpu_start: ELF file SHA256:  ad6a73432db41942...[0m
+[0;32mI (1287) cpu_start: ESP-IDF:          4.4.7[0m
+[0;32mI (1292) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (1297) cpu_start: Max chip rev:     v0.99 [0m
+[0;32mI (1301) cpu_start: Chip rev:         v0.2[0m
+[0;32mI (1306) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1314) heap_init: At 3FC9B580 len 0004E190 (312 KiB): D/IRAM[0m
+[0;32mI (1320) heap_init: At 3FCE9710 len 00005724 (21 KiB): STACK/DIRAM[0m
+[0;32mI (1327) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (1333) heap_init: At 600FE000 len 00002000 (8 KiB): RTCRAM[0m
+[0;32mI (1340) spiram: Adding pool of 8192K of external SPI memory to heap allocator[0m
+[0;32mI (1348) spi_flash: detected chip: gd[0m
+[0;32mI (1352) spi_flash: flash io: qio[0m
+[0;32mI (1356) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1363) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1370) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1386) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[  1389][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+
+=== pesos firmware boot ===
+[0;32mI (1531) gpio: GPIO[43]| InputEn: 1| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[cam] PSRAM total=8386307 bytes, free=8386307 bytes
+[cam] PSRAM ok
+[0;32mI (1532) gpio: GPIO[5]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[power] wake source: EXT0 on D4/GPIO5 (button, active-low)
+[power] wake reason: UNDEFINED (cold boot / reset)
+[mode] continuous scan enabled - no button required
+[0;32mI (1540) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (1543) cam_hal: cam init ok[0m
+[0;32mI (1547) sccb: pin_sda 40 pin_scl 39[0m
+[0;32mI (1551) sccb: sccb_i2c_port=1[0m
+[0;31mE (1567) camera: Camera probe failed with error 0x105(ESP_ERR_NOT_FOUND)[0m
+[0;31mE (1567) gdma: gdma_disconnect(299): no peripheral is connected to the channel[0m
+[cam] ERROR: esp_camera_init failed 0x105
+[err] camera_init failed
+
+[0;32mI (1767) I2S: DMA Malloc info, datalen=blocksize=1024, dma_buf_count=8[0m
+[audio] init ok (16 kHz, 16-bit, mono)
+[0;32mI (2231) I2S: DMA queue destroyed[0m
+[audio] playing error (380ms)
+[audio] deinit
+[debug] staying awake instead of deep sleep
+[debug] last shutdown reason: camera_init failed
+[debug] alive 2228 ms heartbeat=0 reason=camera_init failed
+[
+debug] alive 3229 ms heartbeat=1 reason=camera_init failed
+[debug] alive 4230 ms heartbeat=2 reason=camera_init failed
+[debug] alive 5231 ms heartbeat=3 reason=camera_init failed
+[debug] alive 6232 ms heartbeat=4 reason=camera_init failed
+[debug] alive 7233 ms heartbeat=5 reason=camera_init failed
+[debug] alive 8234 ms heartbeat=6 reason=camera_init failed
+[debug] alive 9235 ms heartbeat=7 reason=camera_init failed
+[debug] alive 10236 ms heartbeat=8 reason=camera_init failed
+[debug] alive 11237 ms heartbeat=9 reason=camera_init failed
+[debug] alive 12238 ms heartbeat=10 reason=camera_init failed
+[debug] alive 13239 ms heartbeat=11 reason=camera_init failed
+[debug] alive 14240 ms heartbeat=12 reason=camera_init failed
+[debug] alive 15241 ms heartbeat=13 reason=camera_init failed
+[debug] alive 16242 ms heartbeat=14 reason=camera_init failed
+[debug] alive 17243 ms heartbeat=15 reason=camera_init failed
+[debug] alive 18244 ms heartbeat=16 reason=camera_init failed
+[debug] alive 19245 ms heartbeat=17 reason=camera_init failed
+[
+debug] alive 20246 ms heartbeat=18 reason=camera_init failed
+[debug] alive 21247 ms heartbeat=19 reason=camera_init failed
+[
+debug] alive 22248 ms heartbeat=20 reason=camera_init failed
+[debug] alive 23249 ms heartbeat=21 reason=camera_init failed
+[debug] alive 24250 ms heartbeat=22 reason=camera_init failed
+[debug] alive 25251 ms heartbeat=23 reason=camera_init failed
+[debug] alive 26252 ms heartbeat=24 reason=camera_init failed
+[debug] alive 27253 ms heartbeat=25 reason=camera_init failed
+[debug] alive 28254 ms heartbeat=26 reason=camera_init failed
+[debug] alive 29255 ms heartbeat=27 reason=camera_init failed
+[debug] alive 30256 ms heartbeat=28 reason=camera_init failed
+[debug] alive 31257 ms heartbeat=29 reason=camera_init failed
+[debug] alive 32258 ms heartbeat=30 reason=camera_init failed
+[debug] alive 33259 ms heartbeat=31 reason=camera_init failed
+[debug] alive 34260 ms heartbeat=32 reason=camera_init failed

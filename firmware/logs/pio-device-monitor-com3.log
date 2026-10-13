@@ -1,0 +1,14 @@
+--- Terminal on COM3 | 115200 8-N-1
+--- Available filters and text transformations: debug, default, direct, esp32_exception_decoder, hexlify, log2file, nocontrol, printable, send_on_enter, time
+--- More details at https://bit.ly/pio-monitor-filters
+--- Quit: Ctrl+C | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+[infer] invoke=32150 ms, threshold=0.25, candidates>threshold=0, detections=0
+[infer] top1 class=200 score=0.058 box_raw=(0.9,0.6,0.2,0.9)
+[infer] top2 class=200 score=0.035 box_raw=(0.9,0.5,0.2,0.9)
+[infer] top3 class=200 score=0.023 box_raw=(0.6,0.7,0.2,0.6)
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+[scan] capture start
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=224x224
+[cam] preprocess done in 91 ms
