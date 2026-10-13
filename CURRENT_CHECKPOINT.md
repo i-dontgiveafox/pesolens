@@ -12,9 +12,13 @@ Date: 2026-10-13
   `firmware/.pio`, `firmware/managed_components`, `firmware/model_exports`, and two
   personal wallpaper images. Model weights are **not** going to GitHub (several are over 100 MB).
 - Secret scan of the tracked files found no API keys or tokens.
-- Blocked: the safety classifier denied the repo init and reset step, so the user
-  must approve it. Next step: `git init` on top of `origin/main`, commit the local
-  state, then a normal (non-force) push.
+- **Done and verified:** the repo was initialized on top of `origin/main`, and the local
+  state was committed as `81d52e4` and pushed normally (no force).
+  `git ls-remote` confirms `main` = `81d52e4`. 312 files; `README.md` and `docs/`
+  from GitHub were kept.
+- Also excluded `**/model_data.cpp` (20 MB generated arrays) and `*.pb`.
+  Repo-local git identity: `i-dontgiveafox <jamesasperilla@gmail.com>`, taken from
+  the first commit, because no global git identity is set on this PC.
 - Added a global rule to `~/.claude/CLAUDE.md`: commit and push after every verified fix.
 
 ## 2026-10-04 Authoritative Current State (read this first)
