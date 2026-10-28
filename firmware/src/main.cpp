@@ -317,8 +317,18 @@ static bool g_audio_ready = false;
 
 #ifdef PESOS_MANUAL_CAPTURE
 static bool manual_capture_pressed() {
-    static bool armed = true;
+    // A latching switch may already be ON when firmware boots. Treat the
+    // startup level as the baseline so powering on cannot trigger a scan;
+    // require OFF (HIGH) followed by ON (LOW) for each scan.
+    static bool initialized = false;
+    static bool armed = false;
     const bool pressed = digitalRead(CAPTURE_BUTTON_PIN) == LOW;
+
+    if (!initialized) {
+        initialized = true;
+        armed = !pressed;
+        return false;
+    }
 
     if (!pressed) {
         armed = true;
@@ -370,7 +380,7 @@ void setup() {
 #endif
 #ifdef PESOS_MANUAL_CAPTURE
     pinMode(CAPTURE_BUTTON_PIN, INPUT_PULLUP);
-    Serial.printf("[manual] D6/GPIO%u button enabled - press to start %u ms aim delay\n",
+    Serial.printf("[manual] D6/GPIO%u latching switch enabled - toggle OFF then ON to start %u ms aim delay\n",
                   (unsigned)CAPTURE_BUTTON_PIN, (unsigned)MANUAL_CAPTURE_DELAY_MS);
 #endif
 
@@ -428,7 +438,7 @@ void setup() {
 #endif
 
 #ifdef PESOS_MANUAL_CAPTURE
-    Serial.println("[scan] manual mode - waiting for D6/GPIO43 press");
+    Serial.println("[scan] manual mode - waiting for D6/GPIO43 OFF-to-ON toggle");
     ready_led_set(true);
     Serial.printf("[ready] D%u/GPIO%u LED on - ready for capture\n",
                   (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
@@ -543,7 +553,7 @@ void loop() {
         ready_led_set(false);
         Serial.printf("[ready] D%u/GPIO%u LED off - capture busy\n",
                       (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
-        Serial.printf("[manual] D6 capture button pressed - capture in %u ms\n",
+        Serial.printf("[manual] D6 switch toggled ON - capture in %u ms\n",
                       (unsigned)MANUAL_CAPTURE_DELAY_MS);
         // Acknowledge the press audibly so the user knows the scan started.
         // The beep's ~200 ms comes out of the aim delay, so capture timing is unchanged.
@@ -560,7 +570,7 @@ void loop() {
         ready_led_set(true);
         Serial.printf("[ready] D%u/GPIO%u LED on - ready for next capture\n",
                       (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
-        Serial.println("[scan] manual mode - waiting for D6/GPIO43 press");
+        Serial.println("[scan] manual mode - waiting for D6/GPIO43 OFF-to-ON toggle");
     }
     delay(10);
 #else

@@ -1,5 +1,28 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-28 Review of Codex latching-switch change; board reconnected
+
+- Reviewed the uncommitted Codex diff (`manual_capture_pressed()` in `firmware/src/main.cpp`).
+  The logic is correct: it samples the boot level as a baseline, triggers on OFF→ON, confirms
+  with a 30 ms re-read, and re-arms on OFF. Toggling during a running scan is ignored.
+- Verified: `pio run -e seeed_xiao_esp32s3_tflm_button_capture` builds (flash 73.1%, RAM 6.9%).
+- The board is on COM3 and still running `gpio_probe`. At idle D6 reads `open`, and D9/D10 read 3V3 as before.
+- In progress: the user toggles the new switch while the probe log runs, to check that D6 now
+  reaches GND before the scan firmware is flashed.
+
+## 2026-10-27 Latching D6 switch support (code updated; board not connected)
+
+- Client replaced the momentary D6 button with a micro push-button latching
+  switch. Manual capture now triggers on an OFF/HIGH to ON/LOW transition and
+  requires toggling OFF to re-arm for another scan.
+- The initial switch state is sampled as a baseline, so a switch left ON during
+  power-up does not immediately start a scan. Start with OFF, then toggle ON.
+- Wiring assumption: OFF leaves D6 open (INPUT_PULLUP reads HIGH); ON connects
+  D6 to GND (reads LOW). Verify the switch contact terminals with continuity
+  before connecting power.
+- Updated `firmware/src/main.cpp`, `firmware/include/config.h`, and
+  `firmware/README.md`. No board was connected, and no upload was performed.
+
 Date: 2026-10-14
 
 ## 2026-10-14 (later) D6 press is not reaching the board: hardware fault

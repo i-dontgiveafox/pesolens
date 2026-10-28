@@ -11,8 +11,10 @@
 // also used as the deep-sleep EXT0 wake source. D4 maps to GPIO5.
 #define BUTTON_PIN          5
 
-// Manual capture button on XIAO silkscreen D6. The installed XIAO_ESP32S3
-// Arduino variant maps D6 to GPIO43. Active-low: button from D6 to GND.
+// Manual capture latching switch on XIAO silkscreen D6. The installed
+// XIAO_ESP32S3 Arduino variant maps D6 to GPIO43. Wire the switch so OFF is
+// open/HIGH and ON connects D6 to GND/LOW. Firmware triggers on the OFF→ON
+// transition and requires a return to OFF before another scan.
 // Standalone auto-run builds override this to -1 and reuse D6/GPIO43 as the
 // ready/status LED pin.
 #ifndef CAPTURE_BUTTON_PIN
