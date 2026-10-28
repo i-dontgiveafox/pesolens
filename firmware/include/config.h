@@ -13,8 +13,8 @@
 
 // Manual capture latching switch on XIAO silkscreen D6. The installed
 // XIAO_ESP32S3 Arduino variant maps D6 to GPIO43. Wire the switch so OFF is
-// open/HIGH and ON connects D6 to GND/LOW. Firmware triggers on the OFF→ON
-// transition and requires a return to OFF before another scan.
+// open/HIGH and ON connects D6 to GND/LOW. Every push (either direction of
+// the flip) starts one scan; the level at boot is only a baseline.
 // Standalone auto-run builds override this to -1 and reuse D6/GPIO43 as the
 // ready/status LED pin.
 #ifndef CAPTURE_BUTTON_PIN

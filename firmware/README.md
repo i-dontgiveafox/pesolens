@@ -22,7 +22,7 @@ Latest state and history: `../CURRENT_CHECKPOINT.md` (authoritative), `FIRMWARE_
 
 ### Scan flow (`src/main.cpp`)
 
-Toggle the latching D6 switch OFF then ON → ready LED off → 3 s aim delay → capture QVGA 320×240 → center-crop 240×240 →
+Push the latching D6 switch → ready LED off → 3 s aim delay → capture QVGA 320×240 → center-crop 240×240 →
 resize to 256×256 → inference (≈ 50 s, silent) → LED blinks 3× → speak total **or** error
 tone if no bill ≥ 0.25 confidence → ready beep → LED on.
 
@@ -74,10 +74,10 @@ has no effect on an env until you delete its generated file.
 | I2S DIN / BCLK / LRC → MAX98357A | D9 / D8 / D7 | 8 / 7 / 44 |
 | Future deep-sleep wake button | D4 | 5 |
 
-For the latching switch, each OFF→ON toggle starts one scan. Toggle it OFF
-afterward to re-arm the next scan. The firmware ignores the switch's state at
-boot, so it will not scan immediately if the switch was left ON; start from OFF
-and toggle ON to scan. Confirm the switch contacts provide open circuit in OFF
+For the latching switch, every push starts one scan, whichever way the switch
+latches (OFF→ON or ON→OFF). The level at boot is only a baseline, so powering
+on with the switch in either position does not scan. Pushes made while a scan
+is running are ignored. Confirm the switch contacts provide open circuit in OFF
 and connect D6 to GND in ON before powering the board.
 
 ## Debugging without the board

@@ -1,5 +1,20 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-28 12:45 CURRENT STATE: every-push scan firmware flashed to COM3
+
+- The user chose option A: **every push of the latching switch starts one scan**, whichever way
+  it latches. `manual_capture_pressed()` now triggers on any D6 level change confirmed by a
+  30 ms re-read. The level at boot is only a baseline. `manual_capture_resync()` runs after each
+  scan, so a push made during a scan does not queue a second scan. This supersedes Codex's
+  OFF→ON-only behaviour in 999e24c.
+- Built and flashed `seeed_xiao_esp32s3_tflm_button_capture` to COM3, and esptool verified every
+  hash. App only; SPIFFS audio untouched. The board was confirmed alive on `gpio_probe` before flashing.
+- Boot log verified at 12:45: camera OV3660 init ok, inference ready (256×256 int8), audio init
+  ok, self-test beep, `[scan] manual mode - waiting for D6/GPIO43 switch push`, ready LED on.
+- **Still open:** in three probe runs the switch never changed D6 (see below). Unless the wiring
+  is fixed, pushes will not register. When a push does register, serial shows
+  `[manual] D6 switch pushed`, the ready LED goes off, and a beep plays.
+
 ## 2026-10-28 Review of Codex latching-switch change; board reconnected
 
 - Reviewed the uncommitted Codex diff (`manual_capture_pressed()` in `firmware/src/main.cpp`).

@@ -316,35 +316,35 @@ static bool g_audio_ready = false;
 #endif
 
 #ifdef PESOS_MANUAL_CAPTURE
+// Latching switch: every push flips the D6 level, and every flip starts one
+// scan, so the user never has to "reset" the switch. The level seen at boot
+// is only a baseline, so powering on cannot trigger a scan.
+static int g_switch_level = -1;
+
+// Re-read the switch as the new baseline. Called at boot and after each scan
+// so a push made while a scan was running does not queue another scan.
+static void manual_capture_resync() {
+    g_switch_level = digitalRead(CAPTURE_BUTTON_PIN);
+}
+
 static bool manual_capture_pressed() {
-    // A latching switch may already be ON when firmware boots. Treat the
-    // startup level as the baseline so powering on cannot trigger a scan;
-    // require OFF (HIGH) followed by ON (LOW) for each scan.
-    static bool initialized = false;
-    static bool armed = false;
-    const bool pressed = digitalRead(CAPTURE_BUTTON_PIN) == LOW;
-
-    if (!initialized) {
-        initialized = true;
-        armed = !pressed;
+    if (g_switch_level < 0) {
+        manual_capture_resync();
         return false;
     }
 
-    if (!pressed) {
-        armed = true;
+    const int level = digitalRead(CAPTURE_BUTTON_PIN);
+    if (level == g_switch_level) {
         return false;
     }
 
-    if (!armed) {
-        return false;
-    }
-
+    // Contact bounce: only accept the flip if it is still there 30 ms later.
     delay(30);
-    if (digitalRead(CAPTURE_BUTTON_PIN) != LOW) {
+    if (digitalRead(CAPTURE_BUTTON_PIN) != level) {
         return false;
     }
 
-    armed = false;
+    g_switch_level = level;
     return true;
 }
 #endif
@@ -380,7 +380,7 @@ void setup() {
 #endif
 #ifdef PESOS_MANUAL_CAPTURE
     pinMode(CAPTURE_BUTTON_PIN, INPUT_PULLUP);
-    Serial.printf("[manual] D6/GPIO%u latching switch enabled - toggle OFF then ON to start %u ms aim delay\n",
+    Serial.printf("[manual] D6/GPIO%u latching switch enabled - push to start %u ms aim delay\n",
                   (unsigned)CAPTURE_BUTTON_PIN, (unsigned)MANUAL_CAPTURE_DELAY_MS);
 #endif
 
@@ -438,7 +438,7 @@ void setup() {
 #endif
 
 #ifdef PESOS_MANUAL_CAPTURE
-    Serial.println("[scan] manual mode - waiting for D6/GPIO43 OFF-to-ON toggle");
+    Serial.println("[scan] manual mode - waiting for D6/GPIO43 switch push");
     ready_led_set(true);
     Serial.printf("[ready] D%u/GPIO%u LED on - ready for capture\n",
                   (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
@@ -553,7 +553,7 @@ void loop() {
         ready_led_set(false);
         Serial.printf("[ready] D%u/GPIO%u LED off - capture busy\n",
                       (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
-        Serial.printf("[manual] D6 switch toggled ON - capture in %u ms\n",
+        Serial.printf("[manual] D6 switch pushed - capture in %u ms\n",
                       (unsigned)MANUAL_CAPTURE_DELAY_MS);
         // Acknowledge the press audibly so the user knows the scan started.
         // The beep's ~200 ms comes out of the aim delay, so capture timing is unchanged.
@@ -567,10 +567,11 @@ void loop() {
         }
         Serial.println("[manual] capture delay done");
         scan_once(g_input_buf, g_audio_ready);
+        manual_capture_resync();
         ready_led_set(true);
         Serial.printf("[ready] D%u/GPIO%u LED on - ready for next capture\n",
                       (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
-        Serial.println("[scan] manual mode - waiting for D6/GPIO43 OFF-to-ON toggle");
+        Serial.println("[scan] manual mode - waiting for D6/GPIO43 switch push");
     }
     delay(10);
 #else
