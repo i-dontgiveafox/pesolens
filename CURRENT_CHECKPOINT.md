@@ -20,6 +20,14 @@
   alone in each state. Then check D6 pad to GND with the switch ON. Self-locking switches with
   4 or 6 pins (2 poles × COM/NO/NC) are easy to wire across the wrong pair. Re-run the probe
   after the fix, then flash the scan firmware.
+- 12:36–12:40: third probe run, with a logger that also records USB drops. The user pushed the
+  switch again with the board on USB only (no battery). There were no pin transitions and no
+  reset. The only port loss was at 12:40:35, when the user unplugged the board on purpose.
+  The docs (`firmware/HARDWARE_PIN_HANDOVER.md:129-130`) confirm the intended wiring is D6 to GND.
+- The user has no hardware tools or experience, so the continuity check goes to the friend who
+  built the hardware. Proposed plan: flash the scan firmware so the friend gets visible feedback
+  (the ready LED goes off and the board beeps when a push registers). The user still has to choose
+  between (A) a scan on every state change and (B) Codex's OFF→ON-only behaviour.
 
 ## 2026-10-27 Latching D6 switch support (code updated; board not connected)
 
