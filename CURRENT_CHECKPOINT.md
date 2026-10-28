@@ -1,5 +1,20 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-28 ~13:15 ROOT CAUSE FOUND: the latching switch is the battery power switch, not on D6
+
+- The user unplugged USB and the white ready LED stayed on, so the board runs on a battery. Pushing
+  the latching switch then **turned the whole board off**, and pushing again turned it back on.
+- So the switch is wired in the **battery/power line**, not between D6 and GND. That explains
+  every observation: no pin ever changed in any probe or heartbeat run (D6=HIGH throughout); the
+  `[alive]` uptime kept counting across a "replug", because the battery kept the board running;
+  the red charge LED changed; the Oct 13 client video (push → one beep in < 8 s is the boot
+  self-test); and the friend's "it works every push" (the board powers on).
+- On USB the switch has no visible effect, because USB powers the board either way.
+- **Decision needed from the user/friend:** (1) add a separate momentary button on D6→GND for
+  scanning and keep the latching switch as power, or (2) firmware "scan on power-up": each
+  switch-ON boots the board, runs one scan and speaks the result, and switch-OFF cuts power.
+  Option 2 needs no rewiring.
+
 ## 2026-10-28 12:45 CURRENT STATE: every-push scan firmware flashed to COM3
 
 - The user chose option A: **every push of the latching switch starts one scan**, whichever way
