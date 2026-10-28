@@ -573,6 +573,16 @@ void loop() {
                       (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
         Serial.println("[scan] manual mode - waiting for D6/GPIO43 switch push");
     }
+    // Idle heartbeat: proves the board is alive and shows the raw D6 level,
+    // so a switch that flips D6 is visible even if no scan triggers.
+    static uint32_t last_heartbeat_ms = 0;
+    if (millis() - last_heartbeat_ms >= MANUAL_HEARTBEAT_MS) {
+        last_heartbeat_ms = millis();
+        Serial.printf("[alive] uptime %lu s, waiting for push, D6=%s, free heap %u\n",
+                      (unsigned long)(millis() / 1000),
+                      digitalRead(CAPTURE_BUTTON_PIN) == LOW ? "LOW (GND)" : "HIGH (open)",
+                      (unsigned)ESP.getFreeHeap());
+    }
     delay(10);
 #else
     static uint32_t g_cycle = 0;

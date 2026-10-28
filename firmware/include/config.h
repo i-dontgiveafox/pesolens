@@ -21,6 +21,8 @@
 #define CAPTURE_BUTTON_PIN  43
 #endif
 #define MANUAL_CAPTURE_DELAY_MS 3000
+// Idle "[alive]" serial heartbeat period in manual capture mode.
+#define MANUAL_HEARTBEAT_MS     10000
 
 // Ready indicator LED. Debug/manual builds keep this on D5/GPIO6 because
 // D6/GPIO43 is the manual capture button. The standalone deployment env
