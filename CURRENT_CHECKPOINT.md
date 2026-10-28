@@ -7,8 +7,19 @@
   with a 30 ms re-read, and re-arms on OFF. Toggling during a running scan is ignored.
 - Verified: `pio run -e seeed_xiao_esp32s3_tflm_button_capture` builds (flash 73.1%, RAM 6.9%).
 - The board is on COM3 and still running `gpio_probe`. At idle D6 reads `open`, and D9/D10 read 3V3 as before.
-- In progress: the user toggles the new switch while the probe log runs, to check that D6 now
-  reaches GND before the scan firmware is flashed.
+- 12:21–12:25: the first probe log (4 min) showed no change, but the user was away and did not
+  press anything, so that run is inconclusive.
+- 12:33–12:35: second probe log. The user pushed the new latching switch about 5 times, holding
+  each state. There were **no transitions on any pin**: D6 stayed `open` (pull-up HIGH, pull-down LOW).
+  The probe samples every pin about every 10 ms and prints any change, so a held ON state would
+  have shown up.
+- **Conclusion: the new switch does not connect D6 to GND (or to 3V3) in either state.** This is
+  the same symptom as the Oct 14 fault. It is wiring or the switch, not firmware. The scan
+  firmware has not been flashed; the board still runs `gpio_probe` for re-testing.
+- **Next:** with the board unplugged, take multimeter continuity readings. Check the switch pins
+  alone in each state. Then check D6 pad to GND with the switch ON. Self-locking switches with
+  4 or 6 pins (2 poles × COM/NO/NC) are easy to wire across the wrong pair. Re-run the probe
+  after the fix, then flash the scan firmware.
 
 ## 2026-10-27 Latching D6 switch support (code updated; board not connected)
 
