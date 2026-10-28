@@ -1,5 +1,23 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-28 13:45 CURRENT STATE: cold-boot camera failure fixed (my regression from c0b8c47)
+
+- **Bug I introduced in c0b8c47:** `PESOS_NO_SERIAL_WAIT` removed the roughly 5.5 s serial wait,
+  and that wait had been giving the OV3660 time to power up. On a cold power-up (`POWERON`: USB
+  plug-in or battery switch ON), the sensor was detected at address 0x3c but `esp_camera_init`
+  failed (ESP_FAIL, then 0x105 on retries), and the board stopped in `fail_and_sleep` after an
+  error tone. On battery this looked completely dead (no LED). My esptool warm-reset test hid
+  it, because the camera stays powered across a warm reset. Lesson: test a real power cycle.
+- First fix attempt (1 s settle plus 3 retries 500 ms apart): **verified failing** on a cold
+  power-up at 13:42.
+- Final fix: `camera_init_with_retry()` waits until `millis() >= 5000` and retries up to 3×,
+  1.5 s apart. **Verified** on a real USB replug (`POWERON`, 13:44:32): camera ok on the first
+  attempt, boot beep, power-on scan, inference ~42 s, no bill → error tone, ready beep, LED on.
+  The user heard the tone.
+- Battery scan now takes about 60 s from switch ON to the spoken result. The speaker is
+  confirmed working (the user heard the beep and tone).
+- **Next:** battery test with a real bill: unplug, switch ON, and hold a bill in front of the camera.
+
 ## 2026-10-28 13:27 CURRENT STATE: scan-on-power-up firmware flashed and verified on USB
 
 - The user chose option 2. The `button_capture` env now adds `-DPESOS_SCAN_ON_BOOT` and

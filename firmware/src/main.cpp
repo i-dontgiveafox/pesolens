@@ -126,6 +126,26 @@ static void fail_and_sleep(const char* tag) {
     shutdown_and_sleep();
 }
 
+// On a cold power-up (battery switch ON, USB plug-in) the OV3660 is not ready
+// immediately and esp_camera_init fails; a warm reset hides this. 1 s was
+// verified too short on 2026-10-28; 5 s matches the old serial-wait timing
+// that cold-booted reliably. Retry a few times before giving up.
+static bool camera_init_with_retry() {
+    const uint32_t kSettleMs = 5000;
+    if (millis() < kSettleMs) {
+        delay(kSettleMs - millis());
+    }
+    for (int attempt = 1; attempt <= 3; ++attempt) {
+        if (camera_init()) {
+            return true;
+        }
+        Serial.printf("[cam] init attempt %d failed, retrying\n", attempt);
+        esp_camera_deinit();
+        delay(1500);
+    }
+    return false;
+}
+
 static void wait_for_serial_monitor() {
 #ifdef PESOS_NO_SERIAL_WAIT
     delay(100);
@@ -410,7 +430,7 @@ void setup() {
                   (unsigned)CAPTURE_BUTTON_PIN, (unsigned)MANUAL_CAPTURE_DELAY_MS);
 #endif
 
-    if (!camera_init()) {
+    if (!camera_init_with_retry()) {
         fail_and_sleep("camera_init failed");
     }
 
@@ -510,7 +530,7 @@ void setup() {
 
     Serial.println("[wake] button → capture");
 
-    if (!camera_init()) {
+    if (!camera_init_with_retry()) {
         fail_and_sleep("camera_init failed");
     }
 
