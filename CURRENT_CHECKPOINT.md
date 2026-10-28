@@ -1,5 +1,21 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-28 13:27 CURRENT STATE: scan-on-power-up firmware flashed and verified on USB
+
+- The user chose option 2. The `button_capture` env now adds `-DPESOS_SCAN_ON_BOOT` and
+  `-DPESOS_NO_SERIAL_WAIT`. At the end of `setup()`, `run_manual_scan(false)` runs one scan
+  (no start beep, since the boot beep has just played), then the board idles with the ready LED
+  on. The D6 every-push trigger and the `[alive]` heartbeat remain. Scan logic was extracted
+  from `loop()` into `run_manual_scan()`.
+- Built `button_capture` and `button_capture_dump` (both SUCCESS; the only warning is the
+  pre-existing unused `wake`). Flashed to COM3 and esptool verified every hash. Model files unchanged
+  since 81d52e4.
+- Verified on USB at 13:25 after a reset: boot → beep → `[scan] power-on scan` → LED off → 3 s
+  aim → capture → inference 42.3 s → no bill (the frame was dark, mean −120) → 3 blinks → error
+  tone → ready beep → LED on → heartbeats. The whole flow took about 55 s from reset.
+- **Next:** real test on battery. Unplug USB, switch ON with a bill in front of the camera, and
+  check that the amount is spoken. Serial cannot be seen on battery.
+
 ## 2026-10-28 ~13:15 ROOT CAUSE FOUND: the latching switch is the battery power switch, not on D6
 
 - The user unplugged USB and the white ready LED stayed on, so the board runs on a battery. Pushing

@@ -22,7 +22,8 @@ Latest state and history: `../CURRENT_CHECKPOINT.md` (authoritative), `FIRMWARE_
 
 ### Scan flow (`src/main.cpp`)
 
-Push the latching D6 switch → ready LED off → 3 s aim delay → capture QVGA 320×240 → center-crop 240×240 →
+Switch the latching power switch ON (it is wired in the battery line, not to D6; the
+`button_capture` env builds with `PESOS_SCAN_ON_BOOT`) → boot beep → ready LED off → 3 s aim delay → capture QVGA 320×240 → center-crop 240×240 →
 resize to 256×256 → inference (≈ 50 s, silent) → LED blinks 3× → speak total **or** error
 tone if no bill ≥ 0.25 confidence → ready beep → LED on.
 
@@ -74,7 +75,10 @@ has no effect on an env until you delete its generated file.
 | I2S DIN / BCLK / LRC → MAX98357A | D9 / D8 / D7 | 8 / 7 / 44 |
 | Future deep-sleep wake button | D4 | 5 |
 
-For the latching switch, every push starts one scan, whichever way the switch
+To scan another bill, switch OFF and ON again. On USB the board stays powered
+whatever the switch position, so the switch only acts on battery.
+
+If a separate switch or button is ever wired from D6 to GND, every push starts one scan, whichever way the switch
 latches (OFF→ON or ON→OFF). The level at boot is only a baseline, so powering
 on with the switch in either position does not scan. Pushes made while a scan
 is running are ignored. Confirm the switch contacts provide open circuit in OFF
