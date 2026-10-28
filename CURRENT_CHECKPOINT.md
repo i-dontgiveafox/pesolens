@@ -1,5 +1,16 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-28 14:03 CURRENT STATE: busy-blink flashed; audio SPIFFS re-uploaded; LED mystery
+
+- Flashed the busy-blink firmware (an esp_timer toggles D5 every 300 ms from power-on through the scan;
+  3 slow blinks before audio; steady on when done). Re-uploaded all 35 SPIFFS audio clips (hashes
+  verified). Bootloader, app (with the model) and audio are now all fresh.
+- **Unverified / suspicious:** the user reports the white LED stays steady on through the whole
+  scan, including the 3 slow pre-audio blinks the old firmware already had. Hypothesis: the white LED
+  is wired as a **power indicator (3V3/BAT)**, not to D5, which would also explain it staying lit on
+  battery. Next: have the friend confirm where the white LED is wired. If it is power-only, the
+  blink code has no visible effect but does no harm.
+
 ## 2026-10-28 13:45 CURRENT STATE: cold-boot camera failure fixed (my regression from c0b8c47)
 
 - **Bug I introduced in c0b8c47:** `PESOS_NO_SERIAL_WAIT` removed the roughly 5.5 s serial wait,

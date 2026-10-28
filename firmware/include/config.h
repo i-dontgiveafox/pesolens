@@ -38,6 +38,8 @@
 #define READY_LED_OFF_LEVEL 0
 #define READY_LED_BLINK_COUNT 3
 #define READY_LED_BLINK_MS    1000
+// Fast "busy" blink half-period while warming up / scanning (manual mode).
+#define READY_LED_BUSY_BLINK_MS 300
 
 #if defined(PESOS_MANUAL_CAPTURE) && READY_LED_PIN == CAPTURE_BUTTON_PIN
 #error "READY_LED_PIN conflicts with CAPTURE_BUTTON_PIN in manual capture mode"

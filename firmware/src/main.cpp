@@ -7,6 +7,7 @@
 #include <Arduino.h>
 #include <esp_sleep.h>
 #include <esp_system.h>
+#include <esp_timer.h>
 
 #include "config.h"
 #include "camera.h"
@@ -48,8 +49,50 @@ static void ready_led_init() {
 #endif
 }
 
+// Busy blink: a background esp_timer toggles the ready LED while the board is
+// warming up / scanning, so the user can see it is working during the long
+// blocking inference. Any explicit LED state change stops it.
+#if READY_LED_PIN >= 0
+static esp_timer_handle_t g_busy_blink_timer = nullptr;
+static bool g_busy_blink_level = false;
+
+static void busy_blink_tick(void*) {
+    g_busy_blink_level = !g_busy_blink_level;
+    digitalWrite(READY_LED_PIN, g_busy_blink_level ? READY_LED_ON_LEVEL : READY_LED_OFF_LEVEL);
+}
+#endif
+
+static void ready_led_busy_blink_stop() {
+#if READY_LED_PIN >= 0
+    if (g_busy_blink_timer != nullptr) {
+        esp_timer_stop(g_busy_blink_timer);  // returns an error if not running; harmless
+    }
+#endif
+}
+
+static void ready_led_busy_blink_start() {
+#if READY_LED_PIN >= 0
+    if (g_busy_blink_timer == nullptr) {
+        const esp_timer_create_args_t args = {
+            .callback = &busy_blink_tick,
+            .arg = nullptr,
+            .dispatch_method = ESP_TIMER_TASK,
+            .name = "busy_blink",
+            .skip_unhandled_events = true,
+        };
+        if (esp_timer_create(&args, &g_busy_blink_timer) != ESP_OK) {
+            g_busy_blink_timer = nullptr;
+            return;
+        }
+    }
+    ready_led_busy_blink_stop();
+    esp_timer_start_periodic(g_busy_blink_timer, (uint64_t)READY_LED_BUSY_BLINK_MS * 1000);
+#endif
+}
+
 static void ready_led_set(bool ready, const char* reason = nullptr) {
 #if READY_LED_PIN >= 0
+    ready_led_busy_blink_stop();
     digitalWrite(READY_LED_PIN, ready ? READY_LED_ON_LEVEL : READY_LED_OFF_LEVEL);
     if (reason) {
         Serial.printf("[ready] D%u/GPIO%u LED %s - %s at %lu ms\n",
@@ -82,6 +125,7 @@ static void auto_ready_window(uint32_t cycle) {
 
 static void ready_led_blink_before_audio() {
 #if READY_LED_PIN >= 0
+    ready_led_busy_blink_stop();
     Serial.printf("[ready] D%u/GPIO%u LED blink %u times before audio\n",
                   (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN,
                   (unsigned)READY_LED_BLINK_COUNT);
@@ -372,8 +416,8 @@ static bool manual_capture_pressed() {
 // result -> LED on. ack_beep plays a start beep; the power-on scan skips it
 // because the boot self-test beep has just played.
 static void run_manual_scan(bool ack_beep) {
-    ready_led_set(false);
-    Serial.printf("[ready] D%u/GPIO%u LED off - capture busy\n",
+    ready_led_busy_blink_start();
+    Serial.printf("[ready] D%u/GPIO%u LED blinking - capture busy\n",
                   (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
     Serial.printf("[manual] capture in %u ms\n", (unsigned)MANUAL_CAPTURE_DELAY_MS);
     // The beep's ~200 ms comes out of the aim delay, so capture timing is unchanged.
@@ -402,6 +446,11 @@ void setup() {
     const esp_reset_reason_t reset_reason = esp_reset_reason();
     Serial.printf("[boot] reset reason: %s\n", reset_reason_name(reset_reason));
     ready_led_init();
+#if defined(PESOS_MANUAL_CAPTURE) && defined(PESOS_SCAN_ON_BOOT)
+    // Switching ON is the scan trigger: blink from the first moment so the
+    // user sees the board responding during the camera warm-up.
+    ready_led_busy_blink_start();
+#endif
 
     if (!psram_check()) {
         // PSRAM is required for camera FB + model arena. Halting drains the
