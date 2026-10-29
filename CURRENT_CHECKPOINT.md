@@ -1,5 +1,28 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-29 Client report: "only a beep, no audio; LED solid white; not scanning" (analysis only, board unplugged)
+
+- **Expected battery flow with the current firmware (10c28b3):** switch ON, then about 5-8 s later the boot beep,
+  then **about 50 s of silence** (3 s aim + ~42 s inference), then 3 slow blinks (6 s), then the spoken
+  amount (or the error tone if there's no bill), then the ready beep. About 60 s in total.
+- **Most likely explanation:** the client hears the boot beep and switches off, or gives up, before the
+  result at about 60 s. A second possibility: no bill is in view at capture time, so they get the error
+  tone plus the ready beep (two short tones), which is easy to hear as "just a beep".
+  The 10-28 USB tests never had a bill in view (dark frames), so **no amount has yet been spoken on the
+  device with the 256 px model**.
+- If the client's unit still has firmware from **before 10-28 13:44**, switch ON boots and beeps, then waits
+  for a D6 press that can't happen (the switch is the power switch). That alone explains "not scanning
+  since the button change". Which firmware the client has is unconfirmed.
+- **Solid white LED:** consistent with the 14:03 hypothesis that the white LED is a power LED, not D5/GPIO6.
+  The firmware blinks D5 (busy blink and the 3 slow blinks), and the user saw neither on 10-28. So the LED
+  does not show whether the device is scanning. This is a wiring fact, not evidence of a fault.
+- Possible brownout on battery during inference: the firmware plays 3 beeps on a brownout/crash reboot.
+  Ask the client whether they hear 1 beep or 3.
+- Side finding: the TFLM build uses `CONFIG_COMPILER_OPTIMIZATION_DEFAULT` (-Og, debug). Switching to
+  PERF (-O2) may cut the 42 s inference. Untested; needs hardware to measure.
+- **Next (needs the board):** USB plus serial, real power cycle, bill held 20-30 cm away for the whole
+  60 s; confirm a spoken amount. Then run the same test on battery. Confirm which pin the white LED is on.
+
 ## 2026-10-29 audio clips re-checked (local only; board not connected)
 
 - `firmware/data/` still holds all 35 WAV clips (git-tracked, unchanged since 2026-05-29). They cover
