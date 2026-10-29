@@ -1,5 +1,23 @@
 # PesoLens Current Checkpoint
 
+## PLAN FOR 2026-10-30 (board comes back from the client), decided 2026-10-29
+
+Priority (user): **bill recognition**. The client reports it never recognizes a bill.
+Evidence so far: no on-device test has ever had a bill in view with the 256 px model. The 10-28 frames
+were dark (mean -120). On the PC, the same model detects bills in device frames at 0.40-0.88. So the
+model may be fine, and the camera/capture path is the main suspect. Not proven either way.
+
+1. **LED fix:** power-on-scan build with the LED on D6/GPIO43 and the D6 button code disabled (guards for
+   `CAPTURE_BUTTON_PIN = -1` in manual mode). Build before the board arrives; flash, then confirm the busy blink.
+2. **Bill recognition, measured first:** flash `button_capture_dump` (dumps every captured JPEG over serial).
+   On USB, do a real power cycle, then 10+ scans with real bills (each denomination, 20-30 cm, good light).
+   Save the frames and detections. For each frame, check: dark? rotated 90°? bill cut off by the 240 center
+   crop? out of focus? Run the dumped frames through the model on the PC to separate camera problems from
+   model problems.
+3. Likely fixes depending on step 2: more warm-up frames / exposure settle after cold boot (only 2 now),
+   rotation correction, crop/distance guidance, retrain with device-camera frames if the model is the issue.
+4. Then repeat on battery, and only then speed (try `CONFIG_COMPILER_OPTIMIZATION_PERF`; 42 s inference).
+
 ## 2026-10-29 LED pin history reconstructed from logs (explains the friend's "it was always D6")
 
 - 2026-05-31: firmware LED added on **D5/GPIO6** (manual D6-button mode).
