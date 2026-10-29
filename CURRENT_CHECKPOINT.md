@@ -1,5 +1,18 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-29 audio clips re-checked (local only; board not connected)
+
+- `firmware/data/` still holds all 35 WAV clips (git-tracked, unchanged since 2026-05-29). They cover
+  every word `speech.cpp` can produce plus `beep`/`error`. `million` is referenced only in a comment,
+  because amounts are clamped to 999999.
+- Unpacked `.pio/build/seeed_xiao_esp32s3_tflm_button_capture/spiffs.bin` (built 2026-10-28 13:57,
+  sha256 7eec0287...) with mkspiffs: all 35 clips are byte-identical to `data/`.
+- This is the image the 14:03 entry below says went to COM3 with `uploadfs` (hashes verified then).
+  Nothing has been flashed since, and app-only `upload` does not touch SPIFFS.
+- **Not re-verified today:** the board was not plugged in (no COM3), so the flash was not read back.
+  To confirm on hardware: plug in, then run `esptool.py --port COM3 read_flash 0x520000 0x2E0000` and compare
+  with `spiffs.bin`, or just listen for the boot beep and a spoken amount.
+
 ## 2026-10-28 14:03 CURRENT STATE: busy-blink flashed; audio SPIFFS re-uploaded; LED mystery
 
 - Flashed the busy-blink firmware (an esp_timer toggles D5 every 300 ms from power-on through the scan;
