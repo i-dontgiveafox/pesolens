@@ -1,5 +1,19 @@
 # PesoLens Current Checkpoint
 
+## 2026-10-29 LED pin history reconstructed from logs (explains the friend's "it was always D6")
+
+- 2026-05-31: firmware LED added on **D5/GPIO6** (manual D6-button mode).
+- **2026-06-01: `auto_run_d6_led` flashed to COM3**: LED on **D6/GPIO43**, no button, scans by itself on
+  power-up (`logs/auto-run-d6-led-verify.log`, `auto-run-reupload-verify.log`,
+  `original-firmware-restore-verify.log`). This matches the friend's wiring (LED on D6, switch = power).
+- **2026-06-14: replaced by the manual D6-button firmware with LED on D5** (`logs/restore-upload-verify.log`:
+  GPIO6 output, GPIO43 input pull-up). No progress doc records why. Every log since (07-27, 07-28,
+  07-29, 10-04, all Oct flashes) is manual mode with LED on D5.
+- Consequence: since 06-14 the firmware has driven the LED on the wrong pin and waited for a D6 button
+  that isn't wired. 10-28 (c0b8c47) added scan-on-power-up but kept the LED on D5.
+- Git history starts at 81d52e4 (2026-10-13), so the June changes are only in logs and docs.
+- **Fix (pending the user's go-ahead and the board):** power-on-scan build with LED on D6 and the D6 button disabled.
+
 ## 2026-10-29 Client report: "only a beep, no audio; LED solid white; not scanning" (analysis only, board unplugged)
 
 - **Expected battery flow with the current firmware (10c28b3):** switch ON, then about 5-8 s later the boot beep,
