@@ -37,6 +37,10 @@ Board back on COM3 (USB). Status of the four things to confirm:
   **no series resistor**, which over-drives the GPIO; add 100-220 ohm. (3) MT3608 5 V feeds the XIAO 5V pin, which is also
   USB VBUS: keep the battery switch OFF while on USB.
 
+- 2026-10-31 evening: board handed to the friend to reseat/replace the camera (and add an LED resistor).
+  Flashed at handoff: `button_capture_dump` test build. When it returns: USB, battery switch OFF,
+  `python tools/bench_scan.py COM3 --cmd c`, check the JPEG, then the bill test, then flash `button_capture` for the client.
+
 **Firmware changes today (built, flashed, verified on hardware):**
 - `button_capture` and `button_capture_dump` envs: LED on D6/GPIO43, `CAPTURE_BUTTON_PIN=-1` (no button), scan on power-up.
   `main.cpp` guards all button code for pin -1.
