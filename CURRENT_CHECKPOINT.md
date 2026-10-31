@@ -30,6 +30,13 @@ Board back on COM3 (USB). Status of the four things to confirm:
 - 21:37 re-test with the camera aimed at the user (occlusion ruled out): frame 1 is one flat green colour (every pixel
   identical, `logs/bench/20261031-213737_aimed_at_user1.jpg`); frame 2 got no frame at all (`fb_get returned null`).
 
+- Friend's wiring list (received 2026-10-31) checked against firmware: I2S D9/D8/D7 and LED D6 match; no wired pin
+  overlaps the camera's internal pins, so the external wiring can't explain the camera fault.
+  Discrepancies: (1) the list says **OV2640**, but the board has reported **OV3660 (PID 0x3660)** in every log since 2026-05-30
+  (the list is wrong, or the module was swapped; firmware supports both). (2) LED goes straight from GPIO43 to GND with
+  **no series resistor**, which over-drives the GPIO; add 100-220 ohm. (3) MT3608 5 V feeds the XIAO 5V pin, which is also
+  USB VBUS: keep the battery switch OFF while on USB.
+
 **Firmware changes today (built, flashed, verified on hardware):**
 - `button_capture` and `button_capture_dump` envs: LED on D6/GPIO43, `CAPTURE_BUTTON_PIN=-1` (no button), scan on power-up.
   `main.cpp` guards all button code for pin -1.
