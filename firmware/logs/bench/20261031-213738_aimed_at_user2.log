@@ -1,0 +1,4 @@
+[bench] capture-only test
+[0;33mW (507228) cam_hal: Failed to get the frame on time![0m
+[cam] ERROR: esp_camera_fb_get returned null
+[scan] idle - waiting for next trigger

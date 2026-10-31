@@ -27,6 +27,9 @@ Board back on COM3 (USB). Status of the four things to confirm:
   on the XIAO, check the ribbon for creases. Then on USB run `python tools/bench_scan.py COM3 --cmd c` and look at the JPEG.
   If still striped, replace the OV3660/OV2640 camera module. Only then do the bill test (`--cmd s` with a real bill).
 
+- 21:37 re-test with the camera aimed at the user (occlusion ruled out): frame 1 is one flat green colour (every pixel
+  identical, `logs/bench/20261031-213737_aimed_at_user1.jpg`); frame 2 got no frame at all (`fb_get returned null`).
+
 **Firmware changes today (built, flashed, verified on hardware):**
 - `button_capture` and `button_capture_dump` envs: LED on D6/GPIO43, `CAPTURE_BUTTON_PIN=-1` (no button), scan on power-up.
   `main.cpp` guards all button code for pin -1.
