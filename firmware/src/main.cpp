@@ -388,10 +388,36 @@ static int g_switch_level = -1;
 // Re-read the switch as the new baseline. Called at boot and after each scan
 // so a push made while a scan was running does not queue another scan.
 static void manual_capture_resync() {
+#if CAPTURE_BUTTON_PIN >= 0
     g_switch_level = digitalRead(CAPTURE_BUTTON_PIN);
+#endif
+}
+
+// USB bench commands (harmless on battery: nothing is ever received):
+//   's' = one full scan, 'a' = speak a test amount (checks the word clips),
+//   'c' = capture one frame, print its stats and dump it (no inference).
+static int serial_command() {
+    int cmd = 0;
+    while (Serial.available() > 0) {
+        const int c = Serial.read();
+        if (c == 's' || c == 'a' || c == 'c') cmd = c;
+    }
+    return cmd;
+}
+
+static void bench_capture_only() {
+    camera_fb_t* fb = camera_capture();
+    if (!fb) return;
+    camera_preprocess_for_model(fb, g_input_buf);  // prints input int8 stats
+    camera_dump_jpeg_to_serial(fb);
+    camera_release(fb);
+    Serial.println("[bench] capture-only done");
 }
 
 static bool manual_capture_pressed() {
+#if CAPTURE_BUTTON_PIN < 0
+    return false;  // no capture button wired (power-on-scan hardware)
+#endif
     if (g_switch_level < 0) {
         manual_capture_resync();
         return false;
@@ -435,7 +461,7 @@ static void run_manual_scan(bool ack_beep) {
     ready_led_set(true);
     Serial.printf("[ready] D%u/GPIO%u LED on - ready for next capture\n",
                   (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
-    Serial.println("[scan] manual mode - waiting for D6/GPIO43 switch push");
+    Serial.println("[scan] idle - waiting for next trigger");
 }
 #endif
 
@@ -474,9 +500,13 @@ void setup() {
                   (unsigned)AUTO_SCAN_READY_MS);
 #endif
 #ifdef PESOS_MANUAL_CAPTURE
+#if CAPTURE_BUTTON_PIN >= 0
     pinMode(CAPTURE_BUTTON_PIN, INPUT_PULLUP);
     Serial.printf("[manual] D6/GPIO%u latching switch enabled - push to start %u ms aim delay\n",
                   (unsigned)CAPTURE_BUTTON_PIN, (unsigned)MANUAL_CAPTURE_DELAY_MS);
+#else
+    Serial.println("[manual] no capture button; scans on power-up (and on 's' over USB serial)");
+#endif
 #endif
 
     if (!camera_init_with_retry()) {
@@ -539,7 +569,7 @@ void setup() {
     Serial.println("[scan] power-on scan (latching power switch)");
     run_manual_scan(false);
 #else
-    Serial.println("[scan] manual mode - waiting for D6/GPIO43 switch push");
+    Serial.println("[scan] idle - waiting for next trigger");
     ready_led_set(true);
     Serial.printf("[ready] D%u/GPIO%u LED on - ready for capture\n",
                   (unsigned)READY_LED_XIAO_D_PIN, (unsigned)READY_LED_PIN);
@@ -654,16 +684,35 @@ void loop() {
     if (manual_capture_pressed()) {
         Serial.println("[manual] D6 switch pushed");
         run_manual_scan(true);
+    } else {
+        const int cmd = serial_command();
+        if (cmd == 's') {
+            Serial.println("[manual] serial 's' - scan requested");
+            run_manual_scan(true);
+        } else if (cmd == 'a') {
+            Serial.println("[bench] audio test: P1270");
+            play_announcement(1270, g_audio_ready);
+            Serial.println("[scan] idle - waiting for next trigger");
+        } else if (cmd == 'c') {
+            Serial.println("[bench] capture-only test");
+            bench_capture_only();
+            Serial.println("[scan] idle - waiting for next trigger");
+        }
     }
     // Idle heartbeat: proves the board is alive and shows the raw D6 level,
     // so a switch that flips D6 is visible even if no scan triggers.
     static uint32_t last_heartbeat_ms = 0;
     if (millis() - last_heartbeat_ms >= MANUAL_HEARTBEAT_MS) {
         last_heartbeat_ms = millis();
+#if CAPTURE_BUTTON_PIN >= 0
         Serial.printf("[alive] uptime %lu s, waiting for push, D6=%s, free heap %u\n",
                       (unsigned long)(millis() / 1000),
                       digitalRead(CAPTURE_BUTTON_PIN) == LOW ? "LOW (GND)" : "HIGH (open)",
                       (unsigned)ESP.getFreeHeap());
+#else
+        Serial.printf("[alive] uptime %lu s, idle (send 's' to scan), free heap %u\n",
+                      (unsigned long)(millis() / 1000), (unsigned)ESP.getFreeHeap());
+#endif
     }
     delay(10);
 #else

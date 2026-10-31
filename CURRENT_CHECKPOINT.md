@@ -1,6 +1,44 @@
 # PesoLens Current Checkpoint
 
-## PLAN FOR 2026-10-30 (board comes back from the client), decided 2026-10-29
+## 2026-10-31 ~21:30 CURRENT STATE: LED + audio verified on hardware; CAMERA IS BROKEN (hardware suspected)
+
+Board back on COM3 (USB). Status of the four things to confirm:
+
+| Item | Status | Evidence |
+|---|---|---|
+| Beeps | **Working** | Boot beep, error tone, ready beep all heard by the user. |
+| Spoken audio | **Working** | `a` bench command spoke "one thousand two hundred seventy pesos" (6 SPIFFS clips); user heard clear words. |
+| LED | **Working on D6** | New build drives LED on D6/GPIO43; user saw fast busy blink during scan, 3 slow blinks, then steady. |
+| Bill recognition | **Blocked: camera delivers no usable image** | See below. Not testable until the camera is fixed (user also had no bill today). |
+
+**Camera finding (most likely the real reason bills were never recognized):**
+- Every capture today is garbage: solid green or black with vertical stripes, every row identical
+  (row-to-row diff 0.24 vs column diff 7.3). Frames: `firmware/logs/bench/20261031-*.jpg`.
+  Int8 input mean is about -116, the same "dark frame" signature as 10-28 (-120) and 06-15 (-124).
+  So those "dark frames" were probably this fault, not bad lighting.
+- The sensor still answers on I2C (PID 0x3660 OV3660), so power and SCCB work, but pixel data is wrong or missing.
+- Camera code (`camera.cpp` init) is identical to the 2026-06-14 backup; esp32-camera 2.0.15 is unchanged since 2026-05-30;
+  the deployed sdkconfig matches the 07-29 config. On 07-29 the auto-scan build logged real pixel stats (mean -16).
+- Decisive test: re-flashed that same auto-scan env (`seeed_xiao_esp32s3_tflm`) today. It now gets **no frames at all**
+  (`esp_camera_fb_get returned null` x4). Same code that worked in July now fails in two different ways, so the cause is
+  **hardware**: most likely a loose camera ribbon / Sense board-to-board connector, possibly a damaged camera module.
+  Not proven (no scope), but no software difference remains to explain it.
+- **Next:** the friend (who built it) should power off, reseat the camera ribbon on the Sense board and reseat the Sense board
+  on the XIAO, check the ribbon for creases. Then on USB run `python tools/bench_scan.py COM3 --cmd c` and look at the JPEG.
+  If still striped, replace the OV3660/OV2640 camera module. Only then do the bill test (`--cmd s` with a real bill).
+
+**Firmware changes today (built, flashed, verified on hardware):**
+- `button_capture` and `button_capture_dump` envs: LED on D6/GPIO43, `CAPTURE_BUTTON_PIN=-1` (no button), scan on power-up.
+  `main.cpp` guards all button code for pin -1.
+- USB bench commands in manual mode: `s` = full scan, `a` = speak test amount P1270, `c` = capture-only frame dump with stats.
+- New `firmware/tools/bench_scan.py` sends a command over COM3 without resetting the board, saves log + JPEG to `logs/bench/`.
+- Fixed a stale `sdkconfig...button_capture_dump` (from May) that put the IDF console on UART0 = GPIO43 (the LED pin);
+  moved to `firmware/backups/stale-sdkconfig-20261031/`, regenerated (now identical to the tflm config).
+- Currently flashed: `button_capture_dump`. For the client, flash `button_capture` (no frame dump) once the camera works.
+- My mistake today: first version of bench_scan.py stopped on the previous scan's "idle" line, so it saved the earlier frame;
+  fixed (only output after the board acks the command counts). Did not change the camera conclusion (all frames bad).
+
+## (SUPERSEDED by the entry above) PLAN FOR 2026-10-30
 
 Priority (user): **bill recognition**. The client reports it never recognizes a bill.
 Evidence so far: no on-device test has ever had a bill in view with the 256 px model. The 10-28 frames

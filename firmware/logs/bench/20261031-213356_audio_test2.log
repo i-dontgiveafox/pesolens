@@ -1,0 +1,11 @@
+[bench] audio test: P1270
+[speak] announcing P1270 with 6 clips: one thousand two hundred seventy pesos
+[audio] playing one (1342ms)
+[audio] playing thousand (1636ms)
+[audio] playing two (1450ms)
+[audio] playing hundred (1597ms)
+[audio] playing seventy (1824ms)
+[audio] playing pesos (1701ms)
+[speak] announcement done
+[scan] idle - waiting for next trigger
+[alive] uptime 287 s, idle (send 's' to scan), free heap 296903

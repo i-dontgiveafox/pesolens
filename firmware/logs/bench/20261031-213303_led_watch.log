@@ -1,0 +1,40 @@
+[manual] serial 's' - scan requested
+[ready] D6/GPIO43 LED blinking - capture busy
+[manual] capture in 3000 ms
+[audio] playing beep (69ms)
+[manual] capture delay done
+[scan] capture start at 227379 ms
+[cam] capture 320x240 (153600 bytes, fmt=0)
+[scan] capture complete in 0 ms; preprocessing frame
+[cam] preprocess src=320x240, crop=240x240@(40,0), dst=256x256
+[cam] preprocess done in 118 ms
+[cam] input int8 stats min=-128 max=8 mean=-83.3 (n=196608)
+[scan] preprocess complete in 136 ms; inference start
+[infer] invoke=42068 ms, threshold=0.25, candidates>threshold=0, nms_detections=0, returned=0
+[infer] class_max 20=0.021 50=0.052 100=0.005 500=0.005 1000=0.010
+[infer] conf-dist anchors=1344 global_best=0.052  >=0.10:0  >=0.15:0  >=0.20:0  >=0.25:0   out_quant scale=0.005179 zero=-127
+[infer] top1 class=50 score=0.052 box_raw=(0.4,0.5,0.8,1.0)
+[infer] top2 class=50 score=0.052 box_raw=(0.5,0.5,0.7,1.0)
+[infer] top3 class=50 score=0.052 box_raw=(0.4,0.5,0.8,1.0)
+[scan] inference complete in 42081 ms; detections=0
+[count] 0 bills -> P0
+[result] 0 pesos from 0 bills
+>>>>>>>>>>  NO BILL DETECTED / UNDETERMINED  <<<<<<<<<<
+[time] capture=0 ms preprocess=136 ms infer=42081 ms total=42217 ms
+[ready] D6/GPIO43 LED blink 3 times before audio
+[audio-out] start - ready LED remains off
+[speak] no bill detected; playing error tone
+[audio] playing error (287ms)
+[audio-out] done
+[ready] beep
+[audio] playing beep (133ms)
+[frame] dumping capture total=P0 bills=0
+[frame] jpeg bytes=1830
+[frame] JPEG_BASE64_BEGIN
+/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADwAUADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDy2iiivzk/JwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
+KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
+KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z
+[frame] JPEG_BASE64_END
+[ready] D6/GPIO43 LED on - ready for next capture
+[scan] idle - waiting for next trigger
+[alive] uptime 276 s, idle (send 's' to scan), free heap 296903
